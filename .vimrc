@@ -7,6 +7,10 @@ filetype indent on
 
 let $PAGER='' " XXX?
 
+set encoding=utf-8
+
+set list listchars=tab:··,trail:·
+
 set modelines=0
 set t_Co=256
 set nocompatible
@@ -41,16 +45,18 @@ inoremap <Nul> <C-x><C-o>
 map <silent><A-Right> :tabnext<CR>
 map <silent><A-Left> :tabprevious<CR>
 
-" HTML & JS-specific
+" Syntax-specific
 let html_indent_script1 = "inc"
 let html_indent_style1 = "inc"
 let html_indent_inctags = "html,body,head,tbody,li,p"
 
 let g:js_indent_log = 0
 
-" Python-specific:
+let c_space_errors = 1
+
 let python_highlight_all = 1
 
+" Python-specific:
 set suffixesadd+=.py
 
 set tags+=$HOME/.vim/tags/python.ctags
