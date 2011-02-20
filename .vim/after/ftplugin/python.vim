@@ -1,19 +1,19 @@
 let python_highlight_all = 1
 
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set suffixesadd+=.py
+setl expandtab
+setl tabstop=4
+setl shiftwidth=4
+setl suffixesadd+=.py
 
-set tags+=$HOME/.vim/tags/python.ctags
+setl tags+=$HOME/.vim/tags/python.ctags
+
+setl omnifunc=pythoncomplete#Complete
+
+setl makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+setl efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 
 map <silent><C-Left> <C-T>
 map <silent><C-Right> <C-]>
-
-autocmd Filetype python set omnifunc=pythoncomplete#Complete
-
-autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 
 if has('python')
 python << EOF

@@ -1,4 +1,5 @@
-set expandtab
-set tabstop=3
-set softtabstop=3
-set shiftwidth=3
+setl expandtab
+setl tabstop=3
+setl softtabstop=3
+setl shiftwidth=3
+setl nocindent
