@@ -19,8 +19,6 @@ setlocal indentexpr=GetJsIndent()
 setlocal indentkeys+=0},0),0],0=*/,0=/*,*<Return>
 
 if exists("*GetJsIndent")
-	echo "GetJsIndent already existed"
-
 	finish
 endif
 

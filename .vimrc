@@ -5,6 +5,8 @@ syntax on
 filetype plugin on
 filetype indent on
 
+set spellfile=~/words.utf8.add
+
 set statusline=
 set statusline+=%-3.3n\                      " buffer number
 set statusline+=%f\                          " file name
@@ -18,15 +20,18 @@ set statusline+=%b,0x%-8B\                   " current char
 set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 
 " Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
-
 function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
+   if !exists("*synstack")
+      return
+   endif
 
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+let g:Powerline_symbols = 'fancy'
+
+set undofile
+set undodir=~/.vimundo
 
 set encoding=utf-8
 
@@ -62,6 +67,43 @@ set hl=l:Visual
 set hlsearch
 set incsearch
 set showmatch
+
+function! EditScss()
+   " The current file
+   let file = expand("%")
+
+   " The current file's basename plus .scss
+   let scss = expand("%:r") . ".scss"
+
+   " If the file exists
+   if filereadable(scss)
+      " Prompt the user and store the user's choice (1-indexed) in a variable
+      let choice = confirm("Do you want to edit " . scss . " instead?", "&Yes\n&No", 1, "Question")
+
+      " If the user picked [Y]es
+      if choice == 1
+         " Set file to the escaped scss filename
+         let file = fnameescape(scss)
+      endif
+   endif
+
+   " e[dit] the file
+   exe "e" file
+
+   " Execute the autocommands for the file
+   exe "doautocmd BufReadPost" file
+endfunction
+
+" Execute EditScss() whenever a *.css file is read
+:au BufReadCmd *.css call EditScss()
+
+au! BufRead,BufNewFile *.json set filetype=json foldmethod=syntax
+
+" Ctrl-c copies to clipboard
+map <C-c> "+y
+
+" Make Y behave like C and D
+nnoremap Y y$
 
 inoremap <Nul> <C-x><C-o>
 
