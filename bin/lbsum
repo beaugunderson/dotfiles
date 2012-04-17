@@ -1,4 +1,0 @@
-#!/bin/bash
-TotalBytes=$(/bin/ls -al | head -n 1 | cut -c7-18)
-TotalMeg="$(echo -e "scale=3 \n$TotalBytes/1024 \nquit" | bc)mb"
-echo -n "$TotalMeg"
