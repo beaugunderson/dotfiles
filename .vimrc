@@ -1,41 +1,50 @@
+call pathogen#infect()
+
+set background=dark
 colorscheme gardener
+
+"colorscheme solarized
 
 syntax on
 
 filetype plugin on
 filetype indent on
 
-set spellfile=~/words.utf8.add
+set spellfile=~/.vim/spell/words.utf8.add
+set spellcapcheck=
+set spelllang=en_us
 
-set statusline=
-set statusline+=%-3.3n\                      " buffer number
-set statusline+=%f\                          " file name
-set statusline+=%h%m%r%w                     " flags
-set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
-set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
-set statusline+=%{&fileformat}]              " file format
-set statusline+=%=                           " right align
-set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
-set statusline+=%b,0x%-8B\                   " current char
-set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+" Map leader to comma
+let mapleader = ","
 
-" Show syntax highlighting groups for word under cursor
-function! <SID>SynStack()
-   if !exists("*synstack")
-      return
-   endif
+" Fix highlighting
+highlight Pmenu ctermfg=0 ctermbg=3
+highlight PmenuSel ctermfg=0 ctermbg=7
 
-   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+if has("autocmd")
+   " When editing a file, always jump to the last cursor position
+   autocmd BufReadPost *
+      \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+      \    exe "normal g'\"" |
+      \ endif
+endif
 
 let g:Powerline_symbols = 'fancy'
+
+call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+call Pl#Theme#InsertSegment('currhigroup', 'after', 'virtualenv:statusline')
 
 set undofile
 set undodir=~/.vimundo
 
 set encoding=utf-8
 
-set list listchars=tab:··,trail:·
+set list listchars=tab:··,trail:·,nbsp:␣
+
+set ignorecase
+set smartcase
+
+set magic
 
 set modelines=0
 set t_Co=256
@@ -52,9 +61,14 @@ set completeopt=menu,preview,longest
 
 set mouse=a
 set mousehide
+set ttymouse=xterm2
+
+set term=xterm-256color
 
 set browsedir=buffer
-set wildignore=*.o,*.obj,*.bak,*.exe
+set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,.git,.svn
+
+set title
 
 set smarttab autoindent
 set tabstop=3
@@ -68,36 +82,27 @@ set hlsearch
 set incsearch
 set showmatch
 
-function! EditScss()
-   " The current file
-   let file = expand("%")
+" Toggle pasting with F2
+set pastetoggle=<F2>
 
-   " The current file's basename plus .scss
-   let scss = expand("%:r") . ".scss"
+" Space toggles search highlights
+noremap <space> :set hlsearch! hlsearch?<CR>
 
-   " If the file exists
-   if filereadable(scss)
-      " Prompt the user and store the user's choice (1-indexed) in a variable
-      let choice = confirm("Do you want to edit " . scss . " instead?", "&Yes\n&No", 1, "Question")
+" Keep search results centered in the screen
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+nnoremap <silent> g# g#zz
 
-      " If the user picked [Y]es
-      if choice == 1
-         " Set file to the escaped scss filename
-         let file = fnameescape(scss)
-      endif
-   endif
+" Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
 
-   " e[dit] the file
-   exe "e" file
-
-   " Execute the autocommands for the file
-   exe "doautocmd BufReadPost" file
-endfunction
-
-" Execute EditScss() whenever a *.css file is read
-:au BufReadCmd *.css call EditScss()
-
-au! BufRead,BufNewFile *.json set filetype=json foldmethod=syntax
+" Perl regexes
+nnoremap / /\v
+vnoremap / /\v
 
 " Ctrl-c copies to clipboard
 map <C-c> "+y
@@ -105,16 +110,15 @@ map <C-c> "+y
 " Make Y behave like C and D
 nnoremap Y y$
 
+" What does this do?
 inoremap <Nul> <C-x><C-o>
 
 map <silent><A-Right> :tabnext<CR>
 map <silent><A-Left> :tabprevious<CR>
 
+" Command-T options
+let g:CommandTMaxCachedDirectories=0
+let g:CommandTMaxHeight=25
+
 " Syntax-specific
-"let html_indent_script1 = "inc"
-"let html_indent_style1 = "inc"
-"let html_indent_inctags = "html,body,head,tbody,li,p"
-
-"let g:js_indent_log = 0
-
 let c_space_errors = 1
