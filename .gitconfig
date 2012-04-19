@@ -1,0 +1,49 @@
+[user]
+	name = Beau Gunderson
+	email = beau@beaugunderson.com
+[core]
+	whitespace=space-before-tab,trailing-space,cr-at-eol
+[color]
+	ui = auto
+	diff = auto
+	branch = auto
+	status = auto
+	interactive = auto
+	showbranch = auto
+[color "branch"]
+	current = 214 reverse
+	local = 214
+	remote = 10
+[color "diff"]
+	whitespace = 1 reverse
+	meta = 15 bold
+	frag = 239 bold
+	old = 196 bold
+	new = 10 bold
+[color "status"]
+	added = 214
+	changed = 10
+	untracked = 196
+[alias]
+	# git reauthor $START..$END
+	reauthor = !sh -c 'eval `git log --reverse --topo-order --pretty=format:\"git cherry-pick %H && git commit --amend -C %H --author=\\\"%aN <%aE>\\\" && \" $0 `"echo success"'
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	ls = ls-files
+	# Show files ignored by git:
+	ign = ls-files -o -i --exclude-standard
+	wdiff = diff --color-words
+	switch = !legit switch \"$@\"
+	branches = !legit branches
+	sprout = !legit sprout \"$@\"
+	unpublish = !legit unpublish \"$@\"
+	harvest = !legit harvest \"$@\"
+	sync = !legit sync \"$@\"
+	publish = !legit publish \"$@\"
+	graft = !legit graft \"$@\"
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[github]
+	user = beaugunderson
+	token = 6dde7d78dac4a88b5e8ca0761c5841e
+[hub]
+	protocol = https
