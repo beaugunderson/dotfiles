@@ -15,7 +15,7 @@ set spellcapcheck=
 set spelllang=en_us
 
 " Map leader to comma
-let mapleader = ","
+let mapleader=","
 
 " Fix highlighting
 highlight Pmenu ctermfg=0 ctermbg=3
@@ -27,12 +27,20 @@ if has("autocmd")
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
       \    exe "normal g'\"" |
       \ endif
+
+   au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+
+   au BufNewFile,BufReadPost *.ejs setl filetype=jst
 endif
 
-let g:Powerline_symbols = 'fancy'
+set fillchars=vert:\│
+
+let g:Powerline_symbols='fancy'
 
 call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 call Pl#Theme#InsertSegment('currhigroup', 'after', 'virtualenv:statusline')
+
+let g:syntastic_javascript_checker='jshint'
 
 set undofile
 set undodir=~/.vimundo
