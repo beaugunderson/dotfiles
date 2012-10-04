@@ -19,7 +19,6 @@
 " it will change pretty much  immediately, you might have to
 " move out of and back into your buffer for it to refresh.
 
-
 " Features:
 "   256 Color XTerm Compatibility
 "   Richer Syntax
@@ -58,7 +57,7 @@
 " Using The Options:
 "       To enable a feature add the line
 "           let g:gardenter_some_feature=1
-"       to your ~/.vimrc 
+"       to your ~/.vimrc
 "       To disable the feature temporarily run the command
 "           :unlet g:gardener_some_feature
 "       To  disable the  feature permanently,  simply remove
@@ -72,95 +71,96 @@ if has("gui_running")
 
 " Colors for the User Interface.
     if exists("g:gardener_setnum")
-        hi linenr           guibg=black       guifg=#808080    gui=bold
+        hi linenr       guibg=black       guifg=#808080    gui=bold
     else
-        hi linenr           guibg=#262626     guifg=#808080    gui=bold
+        hi linenr       guibg=#262626     guifg=#808080    gui=bold
     endif
 
-    hi Cursor           guibg=#cc4455     guifg=white      gui=bold 
+    hi Cursor           guibg=#cc4455     guifg=white      gui=bold
     hi link             CursorIM Cursor
-    if exists("g:gardener_soil")
-        hi Normal           guibg=#332211     guifg=white      gui=none 
-    else
-        hi Normal           guibg=black       guifg=white      gui=none 
-    endif
-    hi NonText          guibg=#445566     guifg=#ffeecc    gui=bold 
-    hi Visual           guibg=#557799     guifg=white      gui=none 
 
-    hi Directory        guibg=bg	      guifg=#337700    gui=none
+    if exists("g:gardener_soil")
+        hi Normal       guibg=#332211     guifg=white      gui=none
+    else
+        hi Normal       guibg=black       guifg=white      gui=none
+    endif
+
+    hi NonText          guibg=#445566     guifg=#ffeecc    gui=bold
+    hi Visual           guibg=#557799     guifg=white      gui=none
+
+    hi Directory        guibg=bg          guifg=#337700    gui=none
 
     hi IncSearch        guibg=#0066cc     guifg=white      gui=none
     hi link Seach       IncSearch
 
-    hi SpecialKey       guibg=bg	      guifg=fg         gui=none 
-    hi Titled           guibg=bg	      guifg=fg         gui=none 
+    hi SpecialKey       guibg=bg          guifg=fg         gui=none
+    hi Titled           guibg=bg          guifg=fg         gui=none
 
-    hi ErrorMsg         guibg=bg	      guifg=#ff0000    gui=bold 
-    hi ModeMsg          guibg=bg	      guifg=#ffeecc    gui=none 
-    hi link	            MoreMsg           ModeMsg
-    hi Question         guibg=bg	      guifg=#ccffcc    gui=bold 
-    hi link	            WarningMsg        ErrorMsg
+    hi ErrorMsg         guibg=bg          guifg=#ff0000    gui=bold
+    hi ModeMsg          guibg=bg          guifg=#ffeecc    gui=none
+    hi link               MoreMsg           ModeMsg
+    hi Question         guibg=bg          guifg=#ccffcc    gui=bold
+    hi link               WarningMsg        ErrorMsg
 
-    hi StatusLineNC     guibg=#ffeecc	  guifg=black	   gui=none 
-    hi StatusLine       guibg=#cc4455	  guifg=white	   gui=bold 
-    hi VertSplit        guibg=#ffeecc	  guifg=black	   gui=none 
+    hi StatusLineNC     guibg=#ffeecc     guifg=black      gui=none
+    hi StatusLine       guibg=#cc4455     guifg=white      gui=bold
+    hi VertSplit        guibg=black       guifg=#ffeecc    gui=none
 
-    hi DiffAdd          guibg=#446688     guifg=fg	       gui=none 
-    hi DiffChange       guibg=#558855     guifg=fg	       gui=none 
-    hi DiffDelete       guibg=#884444     guifg=fg	       gui=none 
-    hi DiffText         guibg=#884444     guifg=fg	       gui=bold 
+    hi DiffAdd          guibg=#446688     guifg=fg         gui=none
+    hi DiffChange       guibg=#558855     guifg=fg         gui=none
+    hi DiffDelete       guibg=#884444     guifg=fg         gui=none
+    hi DiffText         guibg=#884444     guifg=fg         gui=bold
 
     " Colors for Syntax Highlighting.
     if exists("g:gardener_light_comments")
-        hi Comment          guibg=#334455     guifg=#dddddd    gui=none 
+        hi Comment      guibg=#334455     guifg=#dddddd    gui=none
     else
-        hi Comment          guibg=bg          guifg=#888888    gui=none    
+        hi Comment      guibg=bg          guifg=#888888    gui=none
     endif
 
-
-    hi Define	        guibg=bg          guifg=#66ccdd    gui=bold
+    hi Define           guibg=bg          guifg=#66ccdd    gui=bold
     hi Conditional      guibg=bg          guifg=#aadd55    gui=bold
 
-    hi Constant         guibg=bg          guifg=white	   gui=bold    
-    hi Identifier       guibg=bg          guifg=#ffddaa    gui=none    
-    hi String           guibg=bg          guifg=#ffffcc    gui=none    
-    hi Character        guibg=bg          guifg=#ffffcc    gui=bold    
-    hi Number           guibg=bg          guifg=#bbddff    gui=bold    
-    hi Boolean          guibg=bg          guifg=#ff55ff    gui=bold    
-    hi Float            guibg=bg          guifg=#bbddff    gui=bold    
+    hi Constant         guibg=bg          guifg=white      gui=bold
+    hi Identifier       guibg=bg          guifg=#ffddaa    gui=none
+    hi String           guibg=bg          guifg=#ffffcc    gui=none
+    hi Character        guibg=bg          guifg=#ffffcc    gui=bold
+    hi Number           guibg=bg          guifg=#bbddff    gui=bold
+    hi Boolean          guibg=bg          guifg=#ff55ff    gui=bold
+    hi Float            guibg=bg          guifg=#bbddff    gui=bold
 
-    hi Function         guibg=bg          guifg=#ffffaa    gui=bold    
-    hi Statement        guibg=bg          guifg=#ffffcc    gui=bold    
+    hi Function         guibg=bg          guifg=#ffffaa    gui=bold
+    hi Statement        guibg=bg          guifg=#ffffcc    gui=bold
 
-    hi Repeat           guibg=bg          guifg=#ff9900    gui=bold    
-    hi Label            guibg=bg          guifg=#ffccff    gui=bold    
-    hi Operator         guibg=bg          guifg=#cc9966    gui=bold    
-    hi Keyword          guibg=bg          guifg=#66ffcc    gui=bold    
-    hi Exception        guibg=bg          guifg=#66ffcc    gui=bold    
+    hi Repeat           guibg=bg          guifg=#ff9900    gui=bold
+    hi Label            guibg=bg          guifg=#ffccff    gui=bold
+    hi Operator         guibg=bg          guifg=#cc9966    gui=bold
+    hi Keyword          guibg=bg          guifg=#66ffcc    gui=bold
+    hi Exception        guibg=bg          guifg=#66ffcc    gui=bold
 
-    hi PreProc	        guibg=bg          guifg=#ffcc99    gui=bold    
-    hi Include	        guibg=bg          guifg=#99cc99    gui=bold    
-    hi link Macro	  Include
-    hi link PreCondit Include
+    hi PreProc          guibg=bg          guifg=#ffcc99    gui=bold
+    hi Include          guibg=bg          guifg=#99cc99    gui=bold
+    hi link               Macro             Include
+    hi link               PreCondit         Include
 
-    hi Type		        guibg=bg	      guifg=#ccffaa    gui=bold    
-    hi Structure	    guibg=bg	      guifg=#99ff99    gui=bold    
-    hi Typedef	        guibg=bg	      guifg=#99cc99    gui=italic  
+    hi Type             guibg=bg          guifg=#ccffaa    gui=bold
+    hi Structure        guibg=bg          guifg=#99ff99    gui=bold
+    hi Typedef          guibg=bg          guifg=#99cc99    gui=italic
 
-    hi StorageClass	    guibg=bg	      guifg=#99cc99    gui=bold    
-    hi Special	        guibg=bg	      guifg=#bbddff	   gui=bold    
-    hi SpecialChar	    guibg=bg	      guifg=#bbddff	   gui=bold    
-    hi Tag		        guibg=bg	      guifg=#bbddff	   gui=bold    
-    hi Delimiter	    guibg=bg	      guifg=fg	       gui=bold    
-    hi SpecialComment   guibg=#334455     guifg=#dddddd	   gui=italic  
-    hi Debug	        guibg=bg          guifg=#ff9999	   gui=none    
+    hi StorageClass     guibg=bg          guifg=#99cc99    gui=bold
+    hi Special          guibg=bg          guifg=#bbddff    gui=bold
+    hi SpecialChar      guibg=bg          guifg=#bbddff    gui=bold
+    hi Tag              guibg=bg          guifg=#bbddff    gui=bold
+    hi Delimiter        guibg=bg          guifg=fg         gui=bold
+    hi SpecialComment   guibg=#334455     guifg=#dddddd    gui=italic
+    hi Debug            guibg=bg          guifg=#ff9999    gui=none
 
     hi Underlined       guibg=bg          guifg=#99ccff    gui=underline
 
-    hi Title            guibg=#445566     guifg=white	   gui=bold    
-    hi Ignore           guibg=bg	      guifg=#cccccc    gui=italic  
-    hi Error            guibg=#ff0000     guifg=white	   gui=bold    
-    hi Todo	            guibg=#556677     guifg=#ff0000    gui=bold    
+    hi Title            guibg=#445566     guifg=white      gui=bold
+    hi Ignore           guibg=bg          guifg=#cccccc    gui=italic
+    hi Error            guibg=#ff0000     guifg=white      gui=bold
+    hi Todo             guibg=#556677     guifg=#ff0000    gui=bold
 
     hi htmlH1           guibg=bg          guifg=#ffffff    gui=bold
     hi htmlH2           guibg=bg          guifg=#dadada    gui=bold
@@ -168,16 +168,13 @@ if has("gui_running")
     hi htmlH4           guibg=bg          guifg=#b2b2b2    gui=bold
     hi htmlH5           guibg=bg          guifg=#9e9e9e    gui=bold
     hi htmlH6           guibg=bg          guifg=#8a8a8a    gui=bold
-
 else
-" Colors for the User Interface.
-
+    " Colors for the User Interface.
     if exists("g:gardener_setnum")
         exec "hi linenr     cterm=BOLD   ctermfg=235   ctermbg=244"
     else
         exec "hi linenr     cterm=BOLD   ctermfg=244   ctermbg=235"
     endif
-
 
     exec "hi Cursor         cterm=BOLD   ctermfg=255   ctermbg=167"
     exec "hi CursorIM       cterm=BOLD   ctermfg=255   ctermbg=167"
@@ -200,7 +197,7 @@ else
 
     exec "hi StatusLineNC   cterm=NONE   ctermfg=16    ctermbg=229"
     exec "hi StatusLine     cterm=BOLD   ctermfg=255   ctermbg=167"
-    exec "hi VertSplit      cterm=NONE   ctermfg=16    ctermbg=229"
+    exec "hi VertSplit      cterm=NONE   ctermfg=229   ctermbg=16"
 
     exec "hi DiffAdd        cterm=NONE   ctermfg=255   ctermbg=60"
     exec "hi DiffAdd        cterm=NONE   ctermfg=255   ctermbg=65"
@@ -209,30 +206,30 @@ else
 
     " Colors for Syntax Highlighting.
     if exists("g:gardener_light_comments")
-        exec "hi Comment        cterm=NONE   ctermfg=253   ctermbg=60"
+        exec "hi Comment    cterm=NONE   ctermfg=253   ctermbg=60"
     else
-        exec "hi Comment        cterm=NONE   ctermfg=244   ctermbg=NONE"
+        exec "hi Comment    cterm=NONE   ctermfg=244   ctermbg=NONE"
     endif
 
-    exec "hi Constant       cterm=BOLD   ctermfg=255  ctermbg=NONE"
-    exec "hi String         cterm=NONE   ctermfg=230  ctermbg=NONE"
-    exec "hi Character      cterm=BOLD   ctermfg=230  ctermbg=NONE"
-    exec "hi Number         cterm=BOLD   ctermfg=153  ctermbg=NONE"
-    exec "hi Boolean        cterm=NONE   ctermfg=207  ctermbg=NONE"
-    exec "hi Float          cterm=BOLD   ctermfg=153  ctermbg=NONE"
+    exec "hi Constant       cterm=BOLD   ctermfg=255   ctermbg=NONE"
+    exec "hi String         cterm=NONE   ctermfg=230   ctermbg=NONE"
+    exec "hi Character      cterm=BOLD   ctermfg=230   ctermbg=NONE"
+    exec "hi Number         cterm=BOLD   ctermfg=153   ctermbg=NONE"
+    exec "hi Boolean        cterm=NONE   ctermfg=207   ctermbg=NONE"
+    exec "hi Float          cterm=BOLD   ctermfg=153   ctermbg=NONE"
 
-    exec "hi Identifier     cterm=NONE   ctermfg=223  ctermbg=NONE"
-    exec "hi Function       cterm=BOLD   ctermfg=229  ctermbg=NONE"
-    exec "hi Statement      cterm=BOLD   ctermfg=230  ctermbg=NONE"
+    exec "hi Identifier     cterm=NONE   ctermfg=223   ctermbg=NONE"
+    exec "hi Function       cterm=BOLD   ctermfg=229   ctermbg=NONE"
+    exec "hi Statement      cterm=BOLD   ctermfg=230   ctermbg=NONE"
 
-    exec "hi Define         cterm=BOLD   ctermfg=68  ctermbg=NONE"
-    exec "hi Conditional    cterm=BOLD   ctermfg=149  ctermbg=NONE"
+    exec "hi Define         cterm=BOLD   ctermfg=68    ctermbg=NONE"
+    exec "hi Conditional    cterm=BOLD   ctermfg=149   ctermbg=NONE"
 
-    exec "hi Repeat         cterm=BOLD   ctermfg=208  ctermbg=NONE"
-    exec "hi Label          cterm=BOLD   ctermfg=225  ctermbg=NONE"
-    exec "hi Operator       cterm=BOLD   ctermfg=173  ctermbg=NONE"
-    exec "hi Keyword        cterm=BOLD   ctermfg=86   ctermbg=NONE"
-    exec "hi Exception      cterm=BOLD   ctermfg=86   ctermbg=NONE"
+    exec "hi Repeat         cterm=BOLD   ctermfg=208   ctermbg=NONE"
+    exec "hi Label          cterm=BOLD   ctermfg=225   ctermbg=NONE"
+    exec "hi Operator       cterm=BOLD   ctermfg=173   ctermbg=NONE"
+    exec "hi Keyword        cterm=BOLD   ctermfg=86    ctermbg=NONE"
+    exec "hi Exception      cterm=BOLD   ctermfg=86    ctermbg=NONE"
 
     exec "hi PreProc        cterm=BOLD   ctermfg=222   ctermbg=NONE"
     exec "hi Include        cterm=BOLD   ctermfg=114   ctermbg=NONE"
@@ -262,10 +259,8 @@ else
     exec "hi htmlH4         cterm=BOLD   ctermfg=249   ctermbg=NONE"
     exec "hi htmlH5         cterm=BOLD   ctermfg=247   ctermbg=NONE"
     exec "hi htmlH6         cterm=BOLD   ctermfg=245   ctermbg=NONE"
-
 endif
-" And finally.
 
+" And finally.
 let g:colors_name = "gardener"
 let colors_name   = "gardener"
-
