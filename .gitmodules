@@ -18,10 +18,6 @@
 	path = home/.vim/bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
 	ignore = dirty
-[submodule "home/.vim/bundle/vim-smartinput"]
-	path = home/.vim/bundle/vim-smartinput
-	url = https://github.com/kana/vim-smartinput.git
-	ignore = dirty
 [submodule "home/.vim/bundle/vim-human-dates"]
 	path = home/.vim/bundle/vim-human-dates
 	url = https://beaugunderson@github.com/beaugunderson/vim-human-dates.git
