@@ -42,6 +42,9 @@ call Pl#Theme#InsertSegment('currhigroup', 'after', 'virtualenv:statusline')
 
 let g:syntastic_javascript_checker='jshint'
 
+let g:syntastic_mode_map = { 'mode': 'active',
+   \ 'passive_filetypes': ['cpp'] }
+
 set undofile
 set undodir=~/.vimundo
 
