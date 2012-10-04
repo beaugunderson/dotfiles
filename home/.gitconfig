@@ -2,14 +2,15 @@
 	name = Beau Gunderson
 	email = beau@beaugunderson.com
 [core]
-	whitespace=space-before-tab,trailing-space,cr-at-eol
+	whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=2
 [color]
-	ui = auto
-	diff = auto
 	branch = auto
-	status = auto
+	diff = auto
+	grep = auto
 	interactive = auto
 	showbranch = auto
+	status = auto
+	ui = auto
 [color "branch"]
 	current = 214 reverse
 	local = 214
@@ -24,12 +25,20 @@
 	added = 214
 	changed = 10
 	untracked = 196
+[diff]
+	renames = copies
+	# wordRegex
+[grep]
+	lineNumber = true
+	extendedRegexp = true
 [alias]
 	# git reauthor $START..$END
 	reauthor = !sh -c 'eval `git log --reverse --topo-order --pretty=format:\"git cherry-pick %H && git commit --amend -C %H --author=\\\"%aN <%aE>\\\" && \" $0 `"echo success"'
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	ls = ls-files
+	cs = clone -p
 	# Show files ignored by git:
 	ign = ls-files -o -i --exclude-standard
 	wdiff = diff --color-words
@@ -41,9 +50,32 @@
 	sync = !legit sync \"$@\"
 	publish = !legit publish \"$@\"
 	graft = !legit graft \"$@\"
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+# Not needed because pull.rebase = true, i.e. rebase by default
+#[branch]
+#	autosetuprebase = always
+[pull]
+	rebase = true
+[rebase]
+	stat = true
 [github]
 	user = beaugunderson
 	token = 6dde7d78dac4a88b5e8ca0761c5841e
-[hub]
-	protocol = https
+[mergetool "splice"]
+	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+	trustExitCode = true
+[mergetool "vimdiff3"]
+	cmd = vim -f -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
+[mergetool "fugitive"]
+	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+[merge]
+	tool = fugitive
+	conflictstyle = merge
+[rerere]
+	enable = 1
+[url "git@github.com:"]
+	insteadOf = https://beaugunderson@github.com/
+	pushInsteadOf = https://beaugunderson@github.com/
+	insteadOf = https://github.com/
+	pushInsteadOf = https://github.com/
+[help]
+	autocorrect = 30
