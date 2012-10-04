@@ -1,3 +1,3 @@
-set expandtab
-set tabstop=3
-set shiftwidth=3
+setl expandtab
+setl tabstop=3
+setl shiftwidth=3
