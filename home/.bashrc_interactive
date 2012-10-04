@@ -60,7 +60,7 @@ else
 fi
 
 if echo hello|grep --color=auto l >/dev/null 2>&1; then
-	export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+	export GREP_OPTIONS="--color=auto" GREP_COLOR="1;32"
 fi
 
 if [ -f ~/.bash_aliases ]; then
@@ -78,14 +78,21 @@ shell_is_linux && eval $(dircolors -b $HOME/.dircolors)
 # Add some github magic
 alias git=hub
 
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
 
-alias l='ls -hF --group-directories-first --color=auto'
-alias ls='ls -hF --group-directories-first --color=auto'
-alias ll='ls -hlF --group-directories-first --color=auto --time-style="+%D %r"'
-alias lll='ls -ahlF --group-directories-first --color=auto --time-style="+%D %r"'
+if shell_is_osx
+then
+	LS_OPTIONS="-G"
+else
+	LS_OPTIONS='--group-directories-first --color=auto --time-style="+%D %r"'
+fi
+
+alias l="ls -hF $LS_OPTIONS"
+alias ls="ls -hF $LS_OPTIONS"
+alias ll="ls -hlF $LS_OPTIONS"
+alias lll="ls -ahlF $LS_OPTIONS"
 
 alias df="df -h"
 
@@ -98,23 +105,27 @@ alias cd..="cd .."
 alias cd...="cd ../.."
 
 # Selector
-source bash-selector.sh --hist --cd
+source ~/bin/bash-selector.sh --hist --cd
 
 # Source AWS settings
-source ~/aws.sh
+source ~/bin/aws.sh
 
 # Source nvm
-source ~/nvm/nvm.sh
+shell_is_linux && source ~/nvm/nvm.sh
 
 # Source z
 source ~/bin/z.sh
 
 # Create Prompt
-BL="\[\033[0;36m\]"
-WH="\[\033[1;37m\]"
-LG="\[\033[0;37m\]"
-DG="\[\033[1;30m\]"
-NC="\[\033[0m\]"
+if shell_is_linux
+then
+	BRACKET="\[\033[0;36m\]"
+else
+	BRACKET="\[\033[1;32m\]"
+fi
 
-#PS1="$BL[$WH\h$BL]$LG.$BL[$WH\u$BL]$LG.$BL[$WH\w $DG($LG\$(lbsum)$DG)$BL]$LG.$BL[$WH\@$BL]$NC "
-PS1="$BL[$WH\h$BL]$LG.$BL[$WH\u$BL]$LG.$BL[$WH\w$BL]$LG.$BL[$WH\@$BL]$NC "
+WHITE="\[\033[1;37m\]"
+GRAY="\[\033[0;37m\]"
+NOTHING="\[\033[0m\]"
+
+PS1="$BRACKET[$WHITE\h$BRACKET]$GRAY.$BRACKET[$WHITE\u$BRACKET]$GRAY.$BRACKET[$WHITE\w$BRACKET]$GRAY.$BRACKET[$WHITE\@$BRACKET]$NOTHING "
