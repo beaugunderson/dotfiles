@@ -121,7 +121,7 @@ if shell_is_linux
 then
 	BRACKET="\[\033[0;36m\]"
 else
-	BRACKET="\[\033[1;32m\]"
+	BRACKET="\[\033[0;32m\]"
 fi
 
 WHITE="\[\033[1;37m\]"
