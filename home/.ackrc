@@ -1,0 +1,9 @@
+--pager=less -FRSX
+--smart-case
+--type-set=ejs=.ejs
+--type-set=sass=.sass
+--type-set=json=.json
+--type-set=puppet=.pp
+--type-set=conf=.conf
+--type-set=markdown=.md,.markdown
+--ignore-dir=node_modules
