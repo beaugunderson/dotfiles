@@ -17,10 +17,6 @@ set spelllang=en_us
 " Map leader to comma
 let mapleader=","
 
-" Fix highlighting
-highlight Pmenu ctermfg=0 ctermbg=3
-highlight PmenuSel ctermfg=0 ctermbg=7
-
 if has("autocmd")
    " When editing a file, always jump to the last cursor position
    autocmd BufReadPost *
@@ -33,7 +29,7 @@ if has("autocmd")
    au BufNewFile,BufReadPost *.ejs setl filetype=jst
 endif
 
-set fillchars=vert:\│
+set fillchars=vert:\ 
 
 let g:Powerline_symbols='fancy'
 
@@ -126,6 +122,8 @@ inoremap <Nul> <C-x><C-o>
 
 map <silent><A-Right> :tabnext<CR>
 map <silent><A-Left> :tabprevious<CR>
+
+autocmd WinEnter,BufRead * match OverLength /\%81v.\+/
 
 " Command-T options
 let g:CommandTMaxCachedDirectories=0
