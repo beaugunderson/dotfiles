@@ -73,6 +73,8 @@
 [rerere]
 	enable = 1
 [url "git@github.com:"]
+	insteadOf = git://github.com/
+	pushInsteadOf = git://github.com/
 	insteadOf = https://beaugunderson@github.com/
 	pushInsteadOf = https://beaugunderson@github.com/
 	insteadOf = https://github.com/
