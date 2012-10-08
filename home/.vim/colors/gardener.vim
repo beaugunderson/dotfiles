@@ -111,7 +111,7 @@ hi NonText          cterm=none        ctermfg=230      ctermbg=60
 hi Normal           cterm=none        ctermfg=255      ctermbg=233
 hi Number           cterm=bold        ctermfg=153      ctermbg=none
 hi Operator         cterm=bold        ctermfg=173      ctermbg=none
-hi OverLength       cterm=none        ctermfg=1        ctermbg=0
+hi OverLength       cterm=none        ctermfg=1        ctermbg=none
 hi Pmenu            cterm=none        ctermfg=0        ctermbg=3
 hi PmenuSel         cterm=none        ctermfg=0        ctermbg=7
 hi PreCondit        cterm=bold        ctermfg=114      ctermbg=none
