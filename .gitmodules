@@ -26,3 +26,6 @@
 	path = home/.vim/bundle/vim-scss-instead
 	url = https://beaugunderson@github.com/beaugunderson/vim-scss-instead.git
 	ignore = dirty
+[submodule "home/.vim/bundle/vim-unimpaired"]
+	path = home/.vim/bundle/vim-unimpaired
+	url = git://github.com/tpope/vim-unimpaired.git
