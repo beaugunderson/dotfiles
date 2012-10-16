@@ -1,0 +1,66 @@
+{
+  "bitwise": true,
+  "eqeqeq": true,
+  "latedef": true,
+  "noempty": true,
+  "nonew": true,
+  "trailing": true,
+  "undef": true,
+  "unused": true,
+  "strict": false,
+  "white": false,
+
+  "node": true,
+  "browser": true,
+
+  "indent": 2,
+
+  "maxparams": 5,
+  "maxdepth": 5,
+  "maxstatements": 25,
+  "maxcomplexity": 10,
+
+  "predef": [
+    "console",
+    "exports",
+    "module",
+    "process",
+    "require",
+
+    "$",
+    "_",
+    "async",
+    "moment",
+    "google",
+    "request",
+    "sprintf",
+
+    "__dirname",
+
+    "btoa",
+
+    "document",
+    "window",
+
+    "clearTimeout",
+    "setTimeout",
+
+    "setInterval",
+    "clearInterval",
+
+    "should",
+
+    "describe",
+    "xdescribe",
+    "before",
+    "beforeEach",
+    "afterEach",
+    "after",
+    "it",
+    "xit",
+
+    "DAWG_URL",
+    "DAWG_USER",
+    "DAWG_PASSWORD"
+  ]
+}

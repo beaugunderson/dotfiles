@@ -39,6 +39,9 @@ stty -ixon -ixoff
 # Ignore Ctrl-D
 set -o ignoreeof
 
+# Vi editing mode
+set -o vi
+
 function start_agent {
 	echo "Initialising new SSH agent..."
 	/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
