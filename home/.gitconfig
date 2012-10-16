@@ -57,9 +57,6 @@
 	rebase = true
 [rebase]
 	stat = true
-[github]
-	user = beaugunderson
-	token = 6dde7d78dac4a88b5e8ca0761c5841e
 [mergetool "splice"]
 	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
 	trustExitCode = true
