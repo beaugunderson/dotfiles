@@ -1,5 +1,4 @@
 export BASH_ENV=$HOME/.bashrc
-export CDPATH=".:/home/www"
 export EDITOR=vim
 
 # don't put duplicate lines in the history. See bash(1) for more options
