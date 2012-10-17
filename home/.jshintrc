@@ -17,7 +17,7 @@
 
   "maxparams": 5,
   "maxdepth": 5,
-  "maxstatements": 25,
+  "maxstatements": 35,
   "maxcomplexity": 10,
 
   "predef": [
