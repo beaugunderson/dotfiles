@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-These are my bash, ack, jshin, git, ssh, and vim configuration files.
+These are my bash, ack, jshint, git, ssh, and vim configuration files.
