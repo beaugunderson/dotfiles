@@ -118,6 +118,9 @@ shell_is_linux && source ~/nvm/nvm.sh
 # Source z
 source ~/.bin/z.sh
 
+# SSH completion
+source ~/.completion/ssh.sh
+
 # Create Prompt
 if shell_is_linux
 then
