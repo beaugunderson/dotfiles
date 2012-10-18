@@ -29,3 +29,6 @@
 [submodule "home/.vim/bundle/vim-unimpaired"]
 	path = home/.vim/bundle/vim-unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
+[submodule "home/.vim/bundle/vim-javascript-syntax"]
+	path = home/.vim/bundle/vim-javascript-syntax
+	url = git://github.com/jelera/vim-javascript-syntax.git
