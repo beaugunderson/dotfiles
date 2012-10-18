@@ -41,6 +41,10 @@ let g:syntastic_javascript_checker='jshint'
 let g:syntastic_mode_map = { 'mode': 'active',
    \ 'passive_filetypes': ['cpp'] }
 
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 set undofile
 set undodir=~/.vimundo
 
