@@ -74,7 +74,7 @@ hi link             Search            IncSearch
 hi link             WarningMsg        ErrorMsg
 
 " Terminal colors
-hi Boolean          cterm=none        ctermfg=207      ctermbg=none
+hi Boolean          cterm=none        ctermfg=13       ctermbg=none
 hi Character        cterm=bold        ctermfg=230      ctermbg=none
 hi Comment          cterm=none        ctermfg=240      ctermbg=none
 hi Conditional      cterm=bold        ctermfg=149      ctermbg=none
@@ -130,7 +130,7 @@ hi StorageClass     cterm=bold        ctermfg=78       ctermbg=none
 hi String           cterm=none        ctermfg=230      ctermbg=none
 hi Structure        cterm=bold        ctermfg=114      ctermbg=none
 hi Tag              cterm=bold        ctermfg=153      ctermbg=none
-hi Title            cterm=bold        ctermfg=255      ctermbg=60
+hi Title            cterm=bold        ctermfg=255      ctermbg=none
 hi Type             cterm=bold        ctermfg=193      ctermbg=none
 hi Typedef          cterm=bold        ctermfg=114      ctermbg=none
 hi VertSplit        cterm=none        ctermfg=0        ctermbg=229
@@ -143,3 +143,5 @@ hi htmlH4           cterm=bold        ctermfg=249      ctermbg=none
 hi htmlH5           cterm=bold        ctermfg=247      ctermbg=none
 hi htmlH6           cterm=bold        ctermfg=245      ctermbg=none
 hi linenr           cterm=bold        ctermfg=244      ctermbg=235
+
+hi link             javaScriptDotNotation Function
