@@ -78,3 +78,5 @@
 	pushInsteadOf = https://github.com/
 [help]
 	autocorrect = 30
+[push]
+	default = current
