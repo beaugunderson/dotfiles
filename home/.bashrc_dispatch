@@ -88,3 +88,6 @@ unset fn_cmd
 unset EXPORT_FUNCTIONS
 unset BASHRC_DISPATCH_PID
 unset PRF
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
