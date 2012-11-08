@@ -76,6 +76,7 @@ hi link             WarningMsg        ErrorMsg
 " Terminal colors
 hi Boolean          cterm=none        ctermfg=13       ctermbg=none
 hi Character        cterm=bold        ctermfg=230      ctermbg=none
+hi ColorColumn      cterm=none        ctermfg=none     ctermbg=234
 hi Comment          cterm=none        ctermfg=240      ctermbg=none
 hi Conditional      cterm=bold        ctermfg=149      ctermbg=none
 hi Constant         cterm=bold        ctermfg=255      ctermbg=none
