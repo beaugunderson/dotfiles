@@ -3,8 +3,6 @@ call pathogen#infect()
 set background=dark
 colorscheme gardener
 
-"colorscheme solarized
-
 syntax on
 
 filetype plugin on
@@ -81,9 +79,12 @@ set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,.git,.svn
 
 set title
 
+set textwidth=80
+set colorcolumn=+1
+
 set smarttab autoindent
-set tabstop=3
-set shiftwidth=3
+set tabstop=2
+set shiftwidth=2
 set backspace=eol,start,indent
 set complete=.,w,b,u,U,t,i,d
 set number
