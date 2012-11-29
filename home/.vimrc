@@ -43,8 +43,10 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-set undofile
-set undodir=~/.vimundo
+if has("&undofile")
+  set undofile
+  set undodir=~/.vimundo
+endif
 
 set encoding=utf-8
 
@@ -80,7 +82,10 @@ set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,.git,.svn
 set title
 
 set textwidth=80
-set colorcolumn=+1
+
+if has("&colorcolumn")
+  set colorcolumn=+1
+endif
 
 set smarttab autoindent
 set tabstop=2
