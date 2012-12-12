@@ -15,6 +15,7 @@
 
   "indent": 2,
 
+  "maxerr": 1000,
   "maxparams": 5,
   "maxdepth": 5,
   "maxstatements": 35,
