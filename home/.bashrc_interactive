@@ -130,6 +130,7 @@ else
 fi
 
 WHITE="\[\033[1;37m\]"
+RED="\[\033[1;31m\]"
 GRAY="\[\033[0;37m\]"
 NOTHING="\[\033[0m\]"
 
@@ -138,4 +139,30 @@ then
 	BRACKET="\[\033[0;31m\]"
 fi
 
-PS1="$BRACKET[$WHITE\h$BRACKET]$GRAY.$BRACKET[$WHITE\u$BRACKET]$GRAY.$BRACKET[$WHITE\w$BRACKET]$GRAY.$BRACKET[$WHITE\@$BRACKET]$NOTHING "
+function git_branch {
+	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+
+function git_clean {
+	git diff --quiet HEAD 2> /dev/null
+}
+
+function git_status {
+	GIT_BRANCH=$(git_branch)
+	COLOR=$RED
+
+	git_clean && COLOR=$WHITE
+
+	if [[ $GIT_BRANCH ]]
+	then
+		GIT_BRANCH="$GRAY.$BRACKET[$COLOR$GIT_BRANCH$BRACKET]"
+	fi
+
+	echo -ne $GIT_BRANCH
+}
+
+function _prompt_command {
+	PS1="$BRACKET[$WHITE\h$BRACKET]$GRAY.$BRACKET[$WHITE\u$BRACKET]$GRAY.$BRACKET[$WHITE\w$BRACKET]$GRAY.$BRACKET[$WHITE\@$BRACKET]`git_status`$NOTHING "
+}
+
+PROMPT_COMMAND=_prompt_command
