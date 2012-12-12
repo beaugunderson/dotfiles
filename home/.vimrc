@@ -117,6 +117,10 @@ nnoremap <silent> g# g#zz
 vnoremap < <gv
 vnoremap > >gv
 
+" ; for :
+nnoremap ; :
+vnoremap ; :
+
 " Perl regexes
 nnoremap / /\v
 vnoremap / /\v
