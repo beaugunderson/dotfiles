@@ -42,31 +42,31 @@ set -o ignoreeof
 set -o vi
 
 function start_agent {
-	echo "Initialising new SSH agent..."
-	/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-	echo succeeded
-	chmod 600 "${SSH_ENV}"
-	. "${SSH_ENV}" > /dev/null
-	/usr/bin/ssh-add;
-	/usr/bin/ssh-add ~/.ssh/beau-singly;
+  echo "Initialising new SSH agent..."
+  /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+  echo succeeded
+  chmod 600 "${SSH_ENV}"
+  . "${SSH_ENV}" > /dev/null
+  /usr/bin/ssh-add;
+  /usr/bin/ssh-add ~/.ssh/beau-singly;
 }
 
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
-	. "${SSH_ENV}" > /dev/null
-	ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-		start_agent;
-	}
+  . "${SSH_ENV}" > /dev/null
+  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+    start_agent;
+  }
 else
-	start_agent;
+  start_agent;
 fi
 
 if echo hello|grep --color=auto l >/dev/null 2>&1; then
-	export GREP_OPTIONS="--color=auto" GREP_COLOR="1;32"
+  export GREP_OPTIONS="--color=auto" GREP_COLOR="1;32"
 fi
 
 if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
@@ -86,9 +86,9 @@ alias egrep="egrep --color=auto"
 
 if shell_is_osx
 then
-	LS_OPTIONS="-G"
+  LS_OPTIONS="-G"
 else
-	LS_OPTIONS='--group-directories-first --color=auto --time-style="+%D %r"'
+  LS_OPTIONS='--group-directories-first --color=auto --time-style="+%D %r"'
 fi
 
 alias l="ls -hF $LS_OPTIONS"
@@ -124,9 +124,9 @@ source ~/.completion/ssh.sh
 # Create Prompt
 if shell_is_linux
 then
-	BRACKET="\[\e[0;36m\]"
+  BRACKET="\[\e[0;36m\]"
 else
-	BRACKET="\[\e[0;32m\]"
+  BRACKET="\[\e[0;32m\]"
 fi
 
 WHITE="\[\e[1;37m\]"
@@ -136,34 +136,38 @@ LIGHT_GRAY="\[\e[38;05;241m\]"
 GREEN="\[\e[38;05;34m\]"
 NOTHING="\[\e[0m\]"
 
+# If I use literal Unicode characters then it wedges bash on OS X
+BOX=`echo -e "\xE2\x97\xBC"`
+SLASH=`echo -e "\xE2\x95\xB1"`
+
 if (($SHLVL > 1))
 then
-	BRACKET="\[\e[0;31m\]"
+  BRACKET="\[\e[0;31m\]"
 fi
 
 function git_branch {
-	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
 function git_clean {
-	git diff --quiet HEAD 2> /dev/null
+  git diff --quiet HEAD 2> /dev/null
 }
 
 function git_status {
-	GIT_BRANCH=$(git_branch)
-	COLOR=$RED
+  GIT_BRANCH=$(git_branch)
+  COLOR=$RED
 
-	if [[ $GIT_BRANCH ]]
-	then
-		git_clean && COLOR=$GREEN
-		GIT_BRANCH=" $COLOR$GIT_BRANCH"
-	fi
+  if [[ $GIT_BRANCH ]]
+  then
+    git_clean && COLOR=$GREEN
+    GIT_BRANCH=" $COLOR$GIT_BRANCH"
+  fi
 
-	echo -e "$GIT_BRANCH"
+  echo -e "$GIT_BRANCH"
 }
 
 function _prompt_command {
-	PS1="$BRACKET◼$GRAY \h$LIGHT_GRAY╱$GRAY\u $WHITE\w`git_status`$NOTHING "
+  PS1="$BRACKET$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u $WHITE\w`git_status`$NOTHING "
 }
 
 PROMPT_COMMAND=_prompt_command
