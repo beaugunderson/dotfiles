@@ -124,19 +124,21 @@ source ~/.completion/ssh.sh
 # Create Prompt
 if shell_is_linux
 then
-	BRACKET="\[\033[0;36m\]"
+	BRACKET="\[\e[0;36m\]"
 else
-	BRACKET="\[\033[0;32m\]"
+	BRACKET="\[\e[0;32m\]"
 fi
 
-WHITE="\[\033[1;37m\]"
-RED="\[\033[1;31m\]"
-GRAY="\[\033[0;37m\]"
-NOTHING="\[\033[0m\]"
+WHITE="\[\e[1;37m\]"
+RED="\[\e[1;31m\]"
+GRAY="\[\e[38;05;239m\]"
+LIGHT_GRAY="\[\e[38;05;241m\]"
+GREEN="\[\e[38;05;34m\]"
+NOTHING="\[\e[0m\]"
 
 if (($SHLVL > 1))
 then
-	BRACKET="\[\033[0;31m\]"
+	BRACKET="\[\e[0;31m\]"
 fi
 
 function git_branch {
@@ -151,18 +153,17 @@ function git_status {
 	GIT_BRANCH=$(git_branch)
 	COLOR=$RED
 
-	git_clean && COLOR=$WHITE
-
 	if [[ $GIT_BRANCH ]]
 	then
-		GIT_BRANCH="$GRAY.$BRACKET[$COLOR$GIT_BRANCH$BRACKET]"
+		git_clean && COLOR=$GREEN
+		GIT_BRANCH=" $COLOR$GIT_BRANCH"
 	fi
 
-	echo -ne $GIT_BRANCH
+	echo -e "$GIT_BRANCH"
 }
 
 function _prompt_command {
-	PS1="$BRACKET[$WHITE\h$BRACKET]$GRAY.$BRACKET[$WHITE\u$BRACKET]$GRAY.$BRACKET[$WHITE\w$BRACKET]$GRAY.$BRACKET[$WHITE\@$BRACKET]`git_status`$NOTHING "
+	PS1="$BRACKET◼$GRAY \h$LIGHT_GRAY╱$GRAY\u $WHITE\w`git_status`$NOTHING "
 }
 
 PROMPT_COMMAND=_prompt_command
