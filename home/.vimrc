@@ -83,7 +83,7 @@ set title
 
 set textwidth=80
 
-if has("&colorcolumn")
+if exists("&colorcolumn")
   set colorcolumn=+1
 endif
 
