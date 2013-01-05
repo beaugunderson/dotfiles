@@ -132,13 +132,13 @@ fi
 WHITE="\[\e[1;37m\]"
 RED="\[\e[1;31m\]"
 GRAY="\[\e[38;05;239m\]"
-LIGHT_GRAY="\[\e[38;05;241m\]"
+LIGHT_GRAY="\[\e[38;05;235m\]"
 GREEN="\[\e[38;05;34m\]"
 NOTHING="\[\e[0m\]"
 
 # If I use literal Unicode characters then it wedges bash on OS X
 BOX=`echo -e "\xE2\x97\xBC"`
-SLASH=`echo -e "\xE2\x95\xB1"`
+SLASH="/"
 
 if (($SHLVL > 1))
 then
