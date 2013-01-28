@@ -12,6 +12,25 @@ set spellfile=~/.vim/spell/words.utf8.add
 set spellcapcheck=
 set spelllang=en_us
 
+" Wrapping
+set wrap
+"set linebreak " Doesn't work with list option
+
+" Move through display lines, not numbered lines
+nnoremap k gk
+nnoremap j gj
+
+nnoremap <Up> gk
+nnoremap <Down> gj
+
+set formatoptions=croqanlj " add anlj
+
+" Soon
+"noremap <Up> <nop>
+"noremap <Down> <nop>
+"noremap <Left> <nop>
+"noremap <Right> <nop>
+
 " Map leader to comma
 let mapleader=","
 
@@ -37,11 +56,11 @@ call Pl#Theme#InsertSegment('currhigroup', 'after', 'virtualenv:statusline')
 let g:syntastic_javascript_checker='jshint'
 
 let g:syntastic_mode_map = { 'mode': 'active',
-   \ 'passive_filetypes': ['cpp'] }
+  \ 'passive_filetypes': ['cpp'] }
 
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name")
+  \ . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+  \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 if has("&undofile")
   set undofile
@@ -116,10 +135,6 @@ nnoremap <silent> g# g#zz
 " Reselect visual block after indent/outdent
 vnoremap < <gv
 vnoremap > >gv
-
-" ; for :
-nnoremap ; :
-vnoremap ; :
 
 " Perl regexes
 nnoremap / /\v
