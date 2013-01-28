@@ -1,17 +1,25 @@
 {
+  "curly": false,
+  "laxbreak": false,
+  "loopfunc": false,
+  "onevar": false,
+  "strict": false,
+
   "bitwise": true,
+  "browser": true,
+  "#camelcase": true,
   "eqeqeq": true,
+  "immed": true,
   "latedef": true,
+  "noarg": true,
+  "node": true,
+  "newcap": true,
   "noempty": true,
   "nonew": true,
   "trailing": true,
   "undef": true,
   "unused": true,
-  "strict": false,
-  "white": false,
-
-  "node": true,
-  "browser": true,
+  "white": true,
 
   "indent": 2,
 
@@ -28,14 +36,6 @@
     "process",
     "require",
 
-    "$",
-    "_",
-    "async",
-    "moment",
-    "google",
-    "request",
-    "sprintf",
-
     "__dirname",
 
     "btoa",
@@ -49,8 +49,6 @@
     "setInterval",
     "clearInterval",
 
-    "should",
-
     "describe",
     "xdescribe",
     "before",
@@ -58,10 +56,6 @@
     "afterEach",
     "after",
     "it",
-    "xit",
-
-    "DAWG_URL",
-    "DAWG_USER",
-    "DAWG_PASSWORD"
+    "xit"
   ]
 }
