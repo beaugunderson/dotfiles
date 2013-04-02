@@ -114,13 +114,16 @@ source ~/.bin/bash-selector.sh --hist --cd
 source ~/.bin/aws.sh
 
 # Source nvm
-[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
+#[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
 
 # Source z
 source ~/.bin/z.sh
 
 # SSH completion
 source ~/.completion/ssh.sh
+
+# Singly configuration
+source ~/.singly.sh
 
 # Create Prompt
 if shell_is_linux
@@ -134,6 +137,7 @@ WHITE="\[\e[1;37m\]"
 RED="\[\e[1;31m\]"
 GRAY="\[\e[38;05;239m\]"
 LIGHT_GRAY="\[\e[38;05;235m\]"
+MEDIUM_GRAY="\[\e[38;05;244m\]"
 GREEN="\[\e[38;05;34m\]"
 NOTHING="\[\e[0m\]"
 
@@ -168,7 +172,7 @@ function git_status {
 }
 
 function _prompt_command {
-  PS1="$BRACKET$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u $WHITE\w`git_status`$NOTHING "
+  PS1="$BRACKET$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u $MEDIUM_GRAY\w`git_status`$NOTHING "
 }
 
 PROMPT_COMMAND=_prompt_command
