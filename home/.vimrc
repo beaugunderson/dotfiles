@@ -31,6 +31,9 @@ set formatoptions=croqanlj " add anlj
 "noremap <Left> <nop>
 "noremap <Right> <nop>
 
+" Fix highlighting for git signs
+highlight clear SignColumn
+
 " Map leader to comma
 let mapleader=","
 
