@@ -78,3 +78,5 @@
 	autocorrect = 30
 [push]
 	default = current
+[remote "origin"]
+	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
