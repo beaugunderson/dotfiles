@@ -38,3 +38,6 @@
 [submodule "home/.vim/bundle/vim-gitgutter"]
 	path = home/.vim/bundle/vim-gitgutter
 	url = git://github.com/airblade/vim-gitgutter.git
+[submodule "home/.vim/bundle/powerline"]
+	path = home/.vim/bundle/powerline
+	url = https://github.com/Lokaltog/powerline.git
