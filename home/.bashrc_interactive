@@ -9,6 +9,9 @@ export HISTIGNORE="&:[bf]g:exit"
 export INPUTRC=~/.inputrc
 export PAGER="less -r"
 
+# Hardcode the brew vim on OS X
+shell_is_osx && export PATH=/usr/local/Cellar/vim/7.3.923/bin:$PATH
+
 export PATH=$PATH:$HOME/.bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin
 export PATH=$PATH:/usr/local/sbin:/usr/local/lib/php:/var/lib/gems/1.9/bin
 export PATH=$PATH:/usr/local/heroku/bin
@@ -121,9 +124,6 @@ source ~/.bin/z.sh
 
 # SSH completion
 source ~/.completion/ssh.sh
-
-# Singly configuration
-source ~/.singly.sh
 
 # Create Prompt
 if shell_is_linux
