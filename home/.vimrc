@@ -1,5 +1,7 @@
 call pathogen#infect()
 
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
 set background=dark
 colorscheme gardener
 
@@ -37,6 +39,18 @@ highlight clear SignColumn
 " Map leader to comma
 let mapleader=","
 
+" Fix slow exit from insert mode
+if ! has('gui_running')
+    set ttimeoutlen=10
+
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+
+    augroup END
+endif
+
 if has("autocmd")
    " When editing a file, always jump to the last cursor position
    autocmd BufReadPost *
@@ -50,11 +64,6 @@ if has("autocmd")
 endif
 
 set fillchars=vert:\ 
-
-let g:Powerline_symbols='fancy'
-
-call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
-call Pl#Theme#InsertSegment('currhigroup', 'after', 'virtualenv:statusline')
 
 let g:syntastic_javascript_checker='jshint'
 
@@ -84,7 +93,10 @@ set t_Co=256
 set nocompatible
 
 set ruler
+" Always display the statusline in all windows
 set laststatus=2
+" Hide the default mode text
+set noshowmode
 set showtabline=2
 
 set autoread
