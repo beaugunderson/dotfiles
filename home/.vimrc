@@ -27,6 +27,10 @@ nnoremap <Down> gj
 
 set formatoptions=croqanlj " add anlj
 
+" Unite commands
+nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <space>/ :Unite grep:.<cr>
+
 " Soon
 "noremap <Up> <nop>
 "noremap <Down> <nop>

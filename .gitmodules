@@ -40,3 +40,9 @@
 [submodule "home/.vim/bundle/vim-multiple-cursors"]
 	path = home/.vim/bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
+[submodule "home/.vim/bundle/unite"]
+	path = home/.vim/bundle/unite
+	url = https://github.com/Shougo/unite.vim.git
+[submodule "home/.vim/bundle/vimproc"]
+	path = home/.vim/bundle/vimproc
+	url = https://github.com/Shougo/vimproc.vim.git
