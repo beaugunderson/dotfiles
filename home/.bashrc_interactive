@@ -94,6 +94,8 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
+alias treen="tree -I node_modules"
+
 if shell_is_osx
 then
   LS_OPTIONS="-G"
@@ -124,6 +126,9 @@ source ~/.bin/aws.sh
 
 # Source nvm
 #[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
+
+# Source brew completion
+shell_is_osx && source `brew --repository`/Library/Contributions/brew_bash_completion.sh
 
 # Source z
 source ~/.bin/z.sh
