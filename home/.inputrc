@@ -12,8 +12,13 @@ Control-k: menu-complete-backward
 "\e[B": history-search-forward
 "\e[A": history-search-backward
 
+# Ubuntu via PuTTY
 "\eOD": vi-backward-word
 "\eOC": vi-forward-word
+
+# Local iTerm 2 on OS X
+"\e[1;9D": vi-prev-word
+"\e[1;9C": vi-next-word
 
 #set keymap vi
 #set editing-mode vi
