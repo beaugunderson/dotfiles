@@ -1,5 +1,4 @@
 export BASH_ENV=$HOME/.bashrc
-export EDITOR=vim
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTSIZE=1000
@@ -8,9 +7,13 @@ export HISTIGNORE="&:[bf]g:exit"
 
 export INPUTRC=~/.inputrc
 export PAGER="less -r"
+export EDITOR="vim"
 
 # Hardcode the brew vim on OS X
+shell_is_osx && export EDITOR=/usr/local/Cellar/vim/7.3.923/bin/vim
 shell_is_osx && export PATH=/usr/local/Cellar/vim/7.3.923/bin
+
+# Reset the path
 shell_is_linux && export PATH=
 
 export PATH=$PATH:$HOME/.bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin
