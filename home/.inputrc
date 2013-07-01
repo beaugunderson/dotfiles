@@ -8,8 +8,12 @@ Control-k: menu-complete-backward
 
 "\M-s": menu-complete
 
+# Find these sequences using `read`
 "\e[B": history-search-forward
 "\e[A": history-search-backward
+
+"\eOD": vi-backward-word
+"\eOC": vi-forward-word
 
 #set keymap vi
 #set editing-mode vi
