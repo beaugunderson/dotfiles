@@ -23,6 +23,9 @@ export SHELL=bash
 export SSH_ENV=$HOME/.ssh/environment
 export TERM=xterm-256color
 
+shell_is_osx && export \
+  JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"
+
 # UTF-8 support, fixes Ruby among other things
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
