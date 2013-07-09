@@ -28,8 +28,14 @@ nnoremap <Down> gj
 set formatoptions=croqanlj " add anlj
 
 " Unite commands
-nnoremap <C-p> :Unite file_rec/async<cr>
-nnoremap <space>/ :Unite grep:.<cr>
+let g:unite_source_history_yank_enable=1 " Keep track of history
+
+" Fuzzy matching by default
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+nnoremap <C-p> :Unite -start-insert file_mru file_rec/async<cr>
+nnoremap <space>y :Unite history/yank<cr>
+nnoremap <space>/ :Unite -start-insert grep:.<cr>
 
 " Soon
 "noremap <Up> <nop>
