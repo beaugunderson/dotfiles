@@ -49,3 +49,6 @@
 [submodule "home/.vim/bundle/vim-characterize"]
 	path = home/.vim/bundle/vim-characterize
 	url = git://github.com/tpope/vim-characterize.git
+[submodule "home/.vim/bundle/unite-outline"]
+	path = home/.vim/bundle/unite-outline
+	url = https://github.com/h1mesuke/unite-outline.git
