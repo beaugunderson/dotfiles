@@ -52,3 +52,6 @@
 [submodule "home/.vim/bundle/unite-outline"]
 	path = home/.vim/bundle/unite-outline
 	url = https://github.com/h1mesuke/unite-outline.git
+[submodule "home/.vim/bundle/YouCompleteMe"]
+	path = home/.vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
