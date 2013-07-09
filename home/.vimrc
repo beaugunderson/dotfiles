@@ -34,6 +34,7 @@ let g:unite_source_history_yank_enable=1 " Keep track of history
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 nnoremap <C-p> :Unite -start-insert file_mru file_rec/async<cr>
+nnoremap <space>o :Unite -start-insert outline<cr>
 nnoremap <space>y :Unite history/yank<cr>
 nnoremap <space>/ :Unite -start-insert grep:.<cr>
 
