@@ -25,7 +25,11 @@ nnoremap j gj
 nnoremap <Up> gk
 nnoremap <Down> gj
 
-set formatoptions=croqanlj " add anlj
+if version >= 7300
+  set formatoptions=croqanlj " add anlj
+else
+  set formatoptions=croqanl " add anl
+endif
 
 " Unite commands
 let g:unite_source_history_yank_enable=1 " Keep track of history
@@ -51,7 +55,7 @@ highlight clear SignColumn
 let mapleader=","
 
 " Fix slow exit from insert mode
-if ! has('gui_running')
+if ! has("gui_running")
     set ttimeoutlen=10
 
     augroup FastEscape
@@ -76,7 +80,7 @@ endif
 
 set fillchars=vert:\ 
 
-let g:syntastic_javascript_checker='jshint'
+let g:syntastic_javascript_checkers = ['jshint']
 
 let g:syntastic_mode_map = { 'mode': 'active',
   \ 'passive_filetypes': ['cpp'] }
