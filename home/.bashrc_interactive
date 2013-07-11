@@ -134,8 +134,11 @@ shell_is_osx && source `brew --repository`/Library/Contributions/brew_bash_compl
 # Source z
 source ~/.bin/z.sh
 
-# SSH completion
+# Source SSH completion
 source ~/.completion/ssh.sh
+
+# Source host-specific options
+[ -f ~/.hosts/$HOSTNAME.sh ] && source ~/.hosts/$HOSTNAME.sh
 
 # Create Prompt
 if shell_is_linux
