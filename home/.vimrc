@@ -42,6 +42,16 @@ nnoremap <space>o :Unite -start-insert outline<cr>
 nnoremap <space>y :Unite history/yank<cr>
 nnoremap <space>/ :Unite -start-insert grep:.<cr>
 
+" Make YouCompleteMe play nice with Tern
+let g:ycm_cache_omnifunc = 0
+
+" Tern
+let g:tern_show_argument_hints="on_hold"
+
+nnoremap <leader>tr :TernRename<cr>
+nnoremap <leader>tt :TernType<cr>
+nnoremap <leader>td :TernDef<cr>
+
 " Soon
 "noremap <Up> <nop>
 "noremap <Down> <nop>
