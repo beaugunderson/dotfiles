@@ -13,6 +13,8 @@ export EDITOR="vim"
 shell_is_osx && export EDITOR=/usr/local/Cellar/vim/7.3.923/bin/vim
 shell_is_osx && export PATH=/usr/local/Cellar/vim/7.3.923/bin
 
+shell_is_osx && export PATH=$PATH:/usr/local/opt/ruby192/bin
+
 # Reset the path
 shell_is_linux && export PATH=
 
@@ -85,9 +87,6 @@ fi
 
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
-# Fancy LS_COLORS
-shell_is_linux && eval $(dircolors -b $HOME/.dircolors)
-
 # Add some github magic
 alias git=hub
 
@@ -95,19 +94,33 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
-alias treen="tree -I node_modules"
+alias tree="tree -C"
+alias treen="tree -C -I node_modules"
 
-if shell_is_osx
+# Fancy LS_COLORS
+DIRCOLORS=dircolors
+
+[ -f `which gdircolors` ] && DIRCOLORS=gdircolors
+
+eval $($DIRCOLORS -b $HOME/.dircolors)
+
+if [ ! -f `which gls` ] && shell_is_osx
 then
   LS_OPTIONS="-G"
 else
-  LS_OPTIONS='--group-directories-first --color=auto --time-style="+%D %r"'
+  LS_OPTIONS='--group-directories-first --color=auto --time-style="+%D %r" --quoting-style=shell'
 fi
 
-alias l="ls -hF $LS_OPTIONS"
-alias ls="ls -hF $LS_OPTIONS"
-alias ll="ls -hlF $LS_OPTIONS"
-alias lll="ls -ahlF $LS_OPTIONS"
+LS=ls
+
+[ -f `which gls` ] && LS=gls
+
+alias l="$LS -hF $LS_OPTIONS"
+alias ls="$LS -hF $LS_OPTIONS"
+alias ll="$LS -hlF $LS_OPTIONS"
+alias lrt="$LS -hlFrt $LS_OPTIONS"
+alias lx="$LS -hlFX $LS_OPTIONS"
+alias lll="$LS -ahlF $LS_OPTIONS"
 
 alias df="df -h"
 
