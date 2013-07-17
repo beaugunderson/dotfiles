@@ -175,7 +175,7 @@ SLASH="/"
 
 if (($SHLVL > 1))
 then
-  BRACKET="\[\e[0;31m\]"
+  BRACKET=$MEDIUM_GRAY
 fi
 
 function git_branch {
