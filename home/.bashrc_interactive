@@ -100,11 +100,11 @@ alias treen="tree -C -I node_modules"
 # Fancy LS_COLORS
 DIRCOLORS=dircolors
 
-[ ! -z `which gdircolors` ] && DIRCOLORS=gdircolors
+[ ! -z `which gdircolors 2> /dev/null` ] && DIRCOLORS=gdircolors
 
 eval $($DIRCOLORS -b $HOME/.dircolors)
 
-if [ ! -z `which gls` ] && shell_is_osx
+if [ ! -z `which gls 2> /dev/null` ] && shell_is_osx
 then
   LS_OPTIONS="-G"
 else
@@ -113,7 +113,7 @@ fi
 
 LS=ls
 
-[ ! -z `which gls` ] && LS=gls
+[ ! -z `which gls 2> /dev/null` ] && LS=gls
 
 alias l="$LS -hF $LS_OPTIONS"
 alias ls="$LS -hF $LS_OPTIONS"
