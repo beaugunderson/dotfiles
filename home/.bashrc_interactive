@@ -104,7 +104,7 @@ DIRCOLORS=dircolors
 
 eval $($DIRCOLORS -b $HOME/.dircolors)
 
-if [ ! -z `which gls 2> /dev/null` ] && shell_is_osx
+if [ -z `which gls 2> /dev/null` ] && shell_is_osx
 then
   LS_OPTIONS="-G"
 else
