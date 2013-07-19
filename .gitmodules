@@ -37,9 +37,7 @@
 [submodule "home/.vim/bundle/powerline"]
 	path = home/.vim/bundle/powerline
 	url = https://github.com/Lokaltog/powerline.git
-[submodule "home/.vim/bundle/vim-multiple-cursors"]
-	path = home/.vim/bundle/vim-multiple-cursors
-	url = https://github.com/terryma/vim-multiple-cursors.git
+	ignore = dirty
 [submodule "home/.vim/bundle/unite"]
 	path = home/.vim/bundle/unite
 	url = https://github.com/Shougo/unite.vim.git
