@@ -45,6 +45,9 @@ nnoremap <space>/ :Unite -start-insert grep:.<cr>
 " Make YouCompleteMe play nice with Tern
 let g:ycm_cache_omnifunc = 0
 
+" Make YouCompleteMe play nice with Floobits
+let g:ycm_allow_changing_updatetime = 0
+
 " Tern
 let g:tern_show_argument_hints="on_hold"
 
@@ -193,10 +196,6 @@ map <silent><A-Right> :tabnext<CR>
 map <silent><A-Left> :tabprevious<CR>
 
 autocmd WinEnter,BufRead * match OverLength /\%81v.\+/
-
-" Command-T options
-let g:CommandTMaxCachedDirectories=0
-let g:CommandTMaxHeight=25
 
 " Syntax-specific
 let c_space_errors = 1
