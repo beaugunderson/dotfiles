@@ -38,6 +38,7 @@
 	lg = log --graph --decorate --all --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	ls = ls-files
 	cs = clone -p
+	update-submodules = submodule foreach git pull --no-rebase origin master
 	# Show files ignored by git:
 	ign = ls-files -o -i --exclude-standard
 	wdiff = diff --color-words
