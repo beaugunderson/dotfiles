@@ -85,7 +85,8 @@ fi
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && \
+  source $HOME/.tmuxinator/scripts/tmuxinator
 
 # Add some github magic
 alias git=hub
@@ -122,6 +123,11 @@ alias lrt="$LS -hlFrt $LS_OPTIONS"
 alias lx="$LS -hlFX $LS_OPTIONS"
 alias lll="$LS -ahlF $LS_OPTIONS"
 
+alias p="projects"
+
+alias gs="git status"
+alias gd="git diff -w"
+
 alias df="df -h"
 
 alias www-permissions="chown -R www-data: . && chmod -R ug+rw ."
@@ -138,17 +144,18 @@ source ~/.bin/bash-selector.sh --hist --cd
 # Source AWS settings
 source ~/.bin/aws.sh
 
-# Source nvm
-#[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
-
 # Source brew completion
-shell_is_osx && source `brew --repository`/Library/Contributions/brew_bash_completion.sh
+shell_is_osx && \
+  source `brew --repository`/Library/Contributions/brew_bash_completion.sh
 
 # Source z
 source ~/.bin/z.sh
 
 # Source SSH completion
 source ~/.completion/ssh.sh
+
+# Source npm completion
+eval "$(npm completion -)"
 
 # Source host-specific options
 [ -f ~/.hosts/$HOSTNAME.sh ] && source ~/.hosts/$HOSTNAME.sh
@@ -179,11 +186,12 @@ then
 fi
 
 function git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+  command git branch --no-color 2> /dev/null | \
+    sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
 function git_clean {
-  git diff --quiet HEAD 2> /dev/null
+  command git diff --quiet HEAD 2> /dev/null
 }
 
 function git_status {
