@@ -9,11 +9,8 @@ export INPUTRC=~/.inputrc
 export PAGER="less -r"
 export EDITOR="vim"
 
-# Hardcode the brew vim on OS X
-shell_is_osx && export EDITOR=/usr/local/Cellar/vim/7.3.923/bin/vim
-shell_is_osx && export PATH=/usr/local/Cellar/vim/7.3.923/bin
-
-shell_is_osx && export PATH=$PATH:/usr/local/opt/ruby192/bin
+# Hardcode ruby on OS X
+shell_is_osx && export PATH=/usr/local/opt/ruby192/bin
 
 # Reset the path
 shell_is_linux && export PATH=
