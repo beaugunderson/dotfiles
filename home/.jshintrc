@@ -43,8 +43,8 @@
     "document",
     "window",
 
-    "clearTimeout",
     "setTimeout",
+    "clearTimeout",
 
     "setInterval",
     "clearInterval",
