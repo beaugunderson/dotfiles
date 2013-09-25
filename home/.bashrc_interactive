@@ -10,9 +10,9 @@ export PAGER="less -r"
 export EDITOR="vim"
 
 # Hardcode ruby on OS X
-shell_is_osx && export PATH=/usr/local/opt/ruby192/bin
+shell_is_osx && export PATH=$(brew --prefix ruby)/bin
 
-# Reset the path
+ #Reset the path
 shell_is_linux && export PATH=
 
 export PATH=$PATH:$HOME/.bin:/bin:/usr/local/bin:/usr/bin:/sbin:/usr/sbin
@@ -202,6 +202,30 @@ function git_status {
   fi
 
   echo -e "$GIT_BRANCH"
+}
+
+# Manage a simple HTTP server
+# Usage: http start|stop|restart [port]
+function http () {
+  local port="${2:-8000}"
+  case $1 in
+    "start")
+      echo "starting http server"
+      nohup python -m SimpleHTTPServer >| /tmp/nohup.out &
+      open "http://localhost:${port}/"
+      ;;
+    "stop")
+      echo "stopping http server"
+      kill $(pgrep -f SimpleHTTPServer) > /dev/null
+      ;;
+    "restart")
+      echo "restarting http server"
+      kill $(pgrep -f SimpleHTTPServer) > /dev/null
+      nohup python -m SimpleHTTPServer >| /tmp/nohup.out &
+      ;;
+    *)
+      echo "need start|stop|restart"
+  esac
 }
 
 function _prompt_command {
