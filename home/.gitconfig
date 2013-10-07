@@ -50,9 +50,6 @@
 	sync = !legit sync \"$@\"
 	publish = !legit publish \"$@\"
 	graft = !legit graft \"$@\"
-# Not needed because pull.rebase = true, i.e. rebase by default
-#[branch]
-#	autosetuprebase = always
 [pull]
 	rebase = true
 [rebase]
@@ -80,5 +77,5 @@
 	autocorrect = 30
 [push]
 	default = current
-#[remote "origin"]
-#	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
+[hub]
+	host = hqgit01.hq.practicefusion.com
