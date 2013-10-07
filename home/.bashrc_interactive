@@ -158,6 +158,30 @@ eval "$(npm completion -)"
 # Source host-specific options
 [ -f ~/.hosts/$HOSTNAME.sh ] && source ~/.hosts/$HOSTNAME.sh
 
+# Manage a simple HTTP server
+# Usage: http start|stop|restart [port]
+function http () {
+  local port="${2:-8000}"
+  case $1 in
+    "start")
+      echo "starting http server"
+      nohup python -m SimpleHTTPServer >| /tmp/nohup.out &
+      open "http://localhost:${port}/"
+      ;;
+    "stop")
+      echo "stopping http server"
+      kill $(pgrep -f SimpleHTTPServer) > /dev/null
+      ;;
+    "restart")
+      echo "restarting http server"
+      kill $(pgrep -f SimpleHTTPServer) > /dev/null
+      nohup python -m SimpleHTTPServer >| /tmp/nohup.out &
+      ;;
+    *)
+      echo "need start|stop|restart"
+  esac
+}
+
 # Create Prompt
 if shell_is_linux
 then
@@ -205,28 +229,6 @@ function git_status {
   echo -e "$GIT_BRANCH"
 }
 
-# Manage a simple HTTP server
-# Usage: http start|stop|restart [port]
-function http () {
-  local port="${2:-8000}"
-  case $1 in
-    "start")
-      echo "starting http server"
-      nohup python -m SimpleHTTPServer >| /tmp/nohup.out &
-      open "http://localhost:${port}/"
-      ;;
-    "stop")
-      echo "stopping http server"
-      kill $(pgrep -f SimpleHTTPServer) > /dev/null
-      ;;
-    "restart")
-      echo "restarting http server"
-      kill $(pgrep -f SimpleHTTPServer) > /dev/null
-      nohup python -m SimpleHTTPServer >| /tmp/nohup.out &
-      ;;
-    *)
-      echo "need start|stop|restart"
-  esac
 }
 
 function _prompt_command {
