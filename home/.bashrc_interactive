@@ -29,6 +29,8 @@ export TERM=xterm-256color
 shell_is_osx && export \
   JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"
 
+export WORKON_HOME=~/.envs
+
 # UTF-8 support, fixes Ruby among other things
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -155,6 +157,10 @@ source ~/.completion/ssh.sh
 # Source npm completion
 eval "$(npm completion -)"
 
+# Source virtualenvwrapper.sh if it exists
+[ -f /usr/local/bin/virtualenvwrapper.sh ] && \
+  source /usr/local/bin/virtualenvwrapper.sh
+
 # Source host-specific options
 [ -f ~/.hosts/$HOSTNAME.sh ] && source ~/.hosts/$HOSTNAME.sh
 
@@ -185,9 +191,9 @@ function http () {
 # Create Prompt
 if shell_is_linux
 then
-  BRACKET="\[\e[0;36m\]"
+  BOX_COLOR="\[\e[0;36m\]"
 else
-  BRACKET="\[\e[0;32m\]"
+  BOX_COLOR="\[\e[0;32m\]"
 fi
 
 WHITE="\[\e[1;37m\]"
@@ -196,6 +202,7 @@ GRAY="\[\e[38;05;239m\]"
 LIGHT_GRAY="\[\e[38;05;235m\]"
 MEDIUM_GRAY="\[\e[38;05;244m\]"
 GREEN="\[\e[38;05;34m\]"
+YELLOW="\[\e[38;05;172m\]"
 NOTHING="\[\e[0m\]"
 
 # If I use literal Unicode characters then it wedges bash on OS X
@@ -204,7 +211,7 @@ SLASH="/"
 
 if (($SHLVL > 1))
 then
-  BRACKET=$MEDIUM_GRAY
+  BOX_COLOR=$MEDIUM_GRAY
 fi
 
 function git_branch {
@@ -229,10 +236,16 @@ function git_status {
   echo -e "$GIT_BRANCH"
 }
 
+function virtualenv_status {
+  if [[ $VIRTUAL_ENV ]]
+  then
+    echo -e " $YELLOW`basename $VIRTUAL_ENV`"
+  fi
 }
 
 function _prompt_command {
-  PS1="$BRACKET$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u $MEDIUM_GRAY\w`git_status`$NOTHING "
+  PS1="$BOX_COLOR$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u`virtualenv_status`"
+  PS1="$PS1 $MEDIUM_GRAY\w`git_status`$NOTHING "
 }
 
 PROMPT_COMMAND=_prompt_command
