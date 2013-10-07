@@ -11,6 +11,7 @@ export EDITOR="vim"
 
 # Hardcode ruby on OS X
 shell_is_osx && export PATH=$(brew --prefix ruby)/bin
+shell_is_osx && export PATH=$PATH:/Applications/Postgres.app/Contents/MacOS/bin
 
  #Reset the path
 shell_is_linux && export PATH=
