@@ -98,6 +98,10 @@ alias egrep="egrep --color=auto"
 alias tree="tree -C"
 alias treen="tree -C -I node_modules"
 
+shell_is_osx && function dash {
+  open dash://$1
+}
+
 # Fancy LS_COLORS
 DIRCOLORS=dircolors
 
@@ -160,6 +164,9 @@ eval "$(npm completion -)"
 # Source virtualenvwrapper.sh if it exists
 [ -f /usr/local/bin/virtualenvwrapper.sh ] && \
   source /usr/local/bin/virtualenvwrapper.sh
+
+# Source projects completion
+eval "$(projects alias)"
 
 # Source host-specific options
 [ -f ~/.hosts/$HOSTNAME.sh ] && source ~/.hosts/$HOSTNAME.sh
