@@ -42,6 +42,9 @@ nnoremap <space>o :Unite -start-insert outline<cr>
 nnoremap <space>y :Unite history/yank<cr>
 nnoremap <space>/ :Unite -start-insert grep:.<cr>
 
+" XXX: Opens as kind 'common', needs to be 'file'
+nnoremap <space>p :Unite output:VimProcBang\ projects\ glob<cr>
+
 " Make YouCompleteMe play nice with Tern
 let g:ycm_cache_omnifunc = 0
 
