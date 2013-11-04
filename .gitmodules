@@ -53,10 +53,7 @@
 [submodule "home/.vim/bundle/YouCompleteMe"]
 	path = home/.vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
+	ignore = dirty
 [submodule "home/.vim/bundle/tern_for_vim"]
 	path = home/.vim/bundle/tern_for_vim
 	url = https://github.com/marijnh/tern_for_vim.git
-[submodule "home/.vim/bundle/floobits-vim"]
-	path = home/.vim/bundle/floobits-vim
-	url = https://github.com/Floobits/floobits-vim
-	ignore = dirty
