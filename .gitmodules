@@ -57,3 +57,6 @@
 [submodule "home/.vim/bundle/tern_for_vim"]
 	path = home/.vim/bundle/tern_for_vim
 	url = https://github.com/marijnh/tern_for_vim.git
+[submodule "home/.vim/bundle/python-syntax"]
+	path = home/.vim/bundle/python-syntax
+	url = https://github.com/hdima/python-syntax
