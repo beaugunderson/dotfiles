@@ -73,9 +73,9 @@
 	pushInsteadOf = https://beaugunderson@github.com/
 	insteadOf = https://github.com/
 	pushInsteadOf = https://github.com/
-[help]
-	autocorrect = 30
 [push]
 	default = current
 [hub]
 	host = hqgit01.hq.practicefusion.com
+[credential]
+	helper = cache
