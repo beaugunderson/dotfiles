@@ -9,6 +9,9 @@ export INPUTRC=~/.inputrc
 export PAGER="less -r"
 export EDITOR="vim"
 
+# git wants to use /usr/bin/vim instead of /usr/local/bin/vim on OS X
+shell_is_osx && export GIT_EDITOR="/usr/local/bin/vim"
+
 # Hardcode ruby on OS X
 shell_is_osx && export PATH=$(brew --prefix ruby)/bin
 shell_is_osx && export PATH=$PATH:/Applications/Postgres.app/Contents/MacOS/bin
@@ -22,7 +25,7 @@ export PATH=$PATH:/usr/local/heroku/bin
 export PATH=$PATH:/usr/local/go/bin
 
 export PROMPT_COMMAND="history -a"
-export SHELL=bash
+export SHELL=`which bash`
 export SSH_ENV=$HOME/.ssh/environment
 export TERM=xterm-256color
 
