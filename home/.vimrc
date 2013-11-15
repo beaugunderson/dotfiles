@@ -98,7 +98,7 @@ set fillchars=vert:\
 
 let g:syntastic_javascript_checkers = ['jshint']
 
-let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = ['flake8', 'pylint']
 
 let g:syntastic_mode_map = { 'mode': 'active',
   \ 'passive_filetypes': ['cpp'] }
@@ -148,7 +148,7 @@ set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,.git,.svn
 
 set title
 
-set textwidth=80
+set textwidth=79
 
 if exists("&colorcolumn")
   set colorcolumn=+1
