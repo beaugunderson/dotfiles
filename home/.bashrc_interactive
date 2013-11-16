@@ -253,6 +253,30 @@ function virtualenv_status {
   fi
 }
 
+# Manage a simple HTTP server
+# Usage: serve start|stop|restart [port]
+function serve () {
+  local port="${2:-8000}"
+  case $1 in
+    "start")
+      echo "starting http server"
+      nohup python -m SimpleHTTPServer >| /tmp/nohup.out &
+      open "http://localhost:${port}/"
+      ;;
+    "stop")
+      echo "stopping http server"
+      kill $(pgrep -f SimpleHTTPServer) > /dev/null
+      ;;
+    "restart")
+      echo "restarting http server"
+      kill $(pgrep -f SimpleHTTPServer) > /dev/null
+      nohup python -m SimpleHTTPServer >| /tmp/nohup.out &
+      ;;
+    *)
+      echo "need start|stop|restart"
+  esac
+}
+
 function _prompt_command {
   PS1="$BOX_COLOR$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u`virtualenv_status`"
   PS1="$PS1 $MEDIUM_GRAY\w`git_status`$NOTHING "
