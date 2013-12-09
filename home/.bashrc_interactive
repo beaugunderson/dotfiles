@@ -151,6 +151,11 @@ source ~/.bin/bash-selector.sh --hist --cd
 # Source AWS settings
 source ~/.bin/aws.sh
 
+# Source bash completion
+shell_is_osx && \
+  [ -f `brew --prefix`/etc/bash_completion ] && \
+    source `brew --prefix`/etc/bash_completion
+
 # Source brew completion
 shell_is_osx && \
   source `brew --repository`/Library/Contributions/brew_bash_completion.sh
