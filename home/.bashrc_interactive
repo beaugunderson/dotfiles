@@ -125,6 +125,7 @@ LS=ls
 
 alias l="$LS -hF $LS_OPTIONS"
 alias ls="$LS -hF $LS_OPTIONS"
+alias l1="$LS -hF1 $LS_OPTIONS"
 alias ll="$LS -hlF $LS_OPTIONS"
 alias lrt="$LS -hlFrt $LS_OPTIONS"
 alias lx="$LS -hlFX $LS_OPTIONS"
