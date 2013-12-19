@@ -18,6 +18,9 @@ set spelllang=en_us
 set wrap
 "set linebreak " Doesn't work with list option
 
+" Map leader to comma
+let mapleader=","
+
 " Move through display lines, not numbered lines
 nnoremap k gk
 nnoremap j gj
@@ -48,9 +51,6 @@ nnoremap <space>p :Unite output:VimProcBang\ projects\ glob<cr>
 " Make YouCompleteMe play nice with Tern
 let g:ycm_cache_omnifunc = 0
 
-" Make YouCompleteMe play nice with Floobits
-let g:ycm_allow_changing_updatetime = 0
-
 " Tern
 let g:tern_show_argument_hints="on_hold"
 
@@ -66,9 +66,6 @@ nnoremap <leader>td :TernDef<cr>
 
 " Fix highlighting for git signs
 highlight clear SignColumn
-
-" Map leader to comma
-let mapleader=","
 
 " Fix slow exit from insert mode
 if ! has("gui_running")
@@ -200,7 +197,7 @@ inoremap <Nul> <C-x><C-o>
 map <silent><A-Right> :tabnext<CR>
 map <silent><A-Left> :tabprevious<CR>
 
-autocmd WinEnter,BufRead * match OverLength /\%81v.\+/
+autocmd WinEnter,BufRead * match OverLength /\%80v.\+/
 
 " Syntax-specific
 let c_space_errors = 1
