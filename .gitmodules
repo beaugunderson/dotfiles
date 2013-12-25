@@ -75,3 +75,6 @@
 [submodule "home/.vim/bundle/vim-javascript"]
 	path = home/.vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule "home/.vim/bundle/vim-vinegar"]
+	path = home/.vim/bundle/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar.git
