@@ -73,6 +73,13 @@
 	pushInsteadOf = https://beaugunderson@github.com/
 	insteadOf = https://github.com/
 	pushInsteadOf = https://github.com/
+[url "git@hqgit01.hq.practicefusion.com:"]
+	insteadOf = git://hqgit01.hq.practicefusion.com/
+	pushInsteadOf = git://hqgit01.hq.practicefusion.com/
+	insteadOf = https://beaugunderson@ghqgit01.hq.practicefusion.com/
+	pushInsteadOf = https://beaugunderson@hqgit01.hq.practicefusion.com/
+	insteadOf = https://hqgit01.hq.practicefusion.com/
+	pushInsteadOf = https://hqgit01.hq.practicefusion.com/
 [push]
 	default = current
 [hub]
