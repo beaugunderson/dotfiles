@@ -78,3 +78,6 @@
 [submodule "home/.vim/bundle/vim-vinegar"]
 	path = home/.vim/bundle/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
+[submodule "home/.vim/bundle/vim-skip"]
+	path = home/.vim/bundle/vim-skip
+	url = https://github.com/jayflo/vim-skip.git
