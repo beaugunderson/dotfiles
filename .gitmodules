@@ -81,3 +81,6 @@
 [submodule "home/.vim/bundle/vim-skip"]
 	path = home/.vim/bundle/vim-skip
 	url = https://github.com/jayflo/vim-skip.git
+[submodule "home/.vim/bundle/vim-exchange"]
+	path = home/.vim/bundle/vim-exchange
+	url = git://github.com/tommcdo/vim-exchange.git
