@@ -93,7 +93,7 @@ endif
 
 set fillchars=vert:\ 
 
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['jshint', 'jscs']
 
 let g:syntastic_python_checkers = ['flake8', 'pylint']
 
