@@ -34,6 +34,9 @@ else
   set formatoptions=croqanl " add anl
 endif
 
+" Add sudow for writing to read-only files
+cnoremap sudow w !sudo tee % >/dev/null
+
 " Unite commands
 let g:unite_source_history_yank_enable=1 " Keep track of history
 
