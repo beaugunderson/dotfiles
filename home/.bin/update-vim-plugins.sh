@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 pushd ~/.homesick/repos/dotfiles/home/.vim/bundle/YouCompleteMe
 ./install.sh
