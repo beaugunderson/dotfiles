@@ -74,6 +74,10 @@ hi link             Search            IncSearch
 hi link             WarningMsg        ErrorMsg
 
 " Terminal colors
+hi Normal           cterm=none        ctermfg=255      ctermbg=233
+hi IncSearch        cterm=none        ctermfg=255      ctermbg=25
+hi Search           cterm=none        ctermfg=255      ctermbg=25
+hi OverLength       cterm=none        ctermfg=1
 hi Boolean          cterm=none        ctermfg=13       ctermbg=none
 hi Character        cterm=bold        ctermfg=230      ctermbg=none
 hi ColorColumn      cterm=none        ctermfg=none     ctermbg=234
@@ -99,7 +103,6 @@ hi Folded           cterm=none        ctermfg=0        ctermbg=240
 hi Function         cterm=bold        ctermfg=229      ctermbg=none
 hi Identifier       cterm=none        ctermfg=223      ctermbg=none
 hi Ignore           cterm=none        ctermfg=251      ctermbg=none
-hi IncSearch        cterm=none        ctermfg=255      ctermbg=25
 hi Include          cterm=bold        ctermfg=114      ctermbg=none
 hi Keyword          cterm=bold        ctermfg=86       ctermbg=none
 hi Label            cterm=bold        ctermfg=225      ctermbg=none
@@ -109,17 +112,14 @@ hi MatchParen       cterm=none        ctermfg=0        ctermbg=208
 hi ModeMsg          cterm=none        ctermfg=230      ctermbg=none
 hi MoreMsg          cterm=none        ctermfg=230      ctermbg=none
 hi NonText          cterm=none        ctermfg=230      ctermbg=60
-hi Normal           cterm=none        ctermfg=255      ctermbg=233
 hi Number           cterm=bold        ctermfg=153      ctermbg=none
 hi Operator         cterm=bold        ctermfg=173      ctermbg=none
-hi OverLength       cterm=none        ctermfg=1        ctermbg=none
 hi Pmenu            cterm=none        ctermfg=0        ctermbg=3
 hi PmenuSel         cterm=none        ctermfg=0        ctermbg=7
 hi PreCondit        cterm=bold        ctermfg=114      ctermbg=none
 hi PreProc          cterm=bold        ctermfg=222      ctermbg=none
 hi Question         cterm=none        ctermfg=194      ctermbg=none
 hi Repeat           cterm=bold        ctermfg=208      ctermbg=none
-hi Search           cterm=none        ctermfg=255      ctermbg=25
 hi Special          cterm=bold        ctermfg=153      ctermbg=none
 hi SpecialChar      cterm=bold        ctermfg=153      ctermbg=none
 hi SpecialComment   cterm=bold        ctermfg=253      ctermbg=24

@@ -14,6 +14,9 @@ set spellfile=~/.vim/spell/words.utf8.add
 set spellcapcheck=
 set spelllang=en_us
 
+" XXX
+set textwidth=79
+
 " Wrapping
 set wrap
 "set linebreak " Doesn't work with list option
@@ -148,8 +151,6 @@ set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,.git,.svn
 
 set title
 
-set textwidth=79
-
 if exists("&colorcolumn")
   set colorcolumn=+1
 endif
@@ -200,7 +201,7 @@ inoremap <Nul> <C-x><C-o>
 map <silent><A-Right> :tabnext<CR>
 map <silent><A-Left> :tabprevious<CR>
 
-autocmd WinEnter,BufRead * match OverLength /\%80v.\+/
+call matchadd('OverLength', '\%>80v.\+', 0)
 
 " Syntax-specific
 let c_space_errors = 1
