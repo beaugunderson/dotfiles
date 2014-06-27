@@ -93,3 +93,6 @@
 [submodule "home/.vim/bundle/vim-sensible"]
 	path = home/.vim/bundle/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
+[submodule "home/.vim/bundle/vimshell.vim"]
+	path = home/.vim/bundle/vimshell.vim
+	url = https://github.com/Shougo/vimshell.vim.git
