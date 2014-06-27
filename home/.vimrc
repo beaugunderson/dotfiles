@@ -96,12 +96,12 @@ endif
 set fillchars=vert:\ 
 
 " Syntastic options
-let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+let g:syntastic_javascript_checkers = ['eslint']
 
 let g:syntastic_python_checkers = ['flake8', 'pylint']
 
-let g:syntastic_mode_map = { 'mode': 'active',
-  \ 'passive_filetypes': ['cpp'] }
+let g:syntastic_mode_map = {'mode': 'active',
+  \ 'passive_filetypes': ['cpp']}
 
 let g:syntastic_always_populate_loc_list = 1
 
