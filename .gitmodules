@@ -90,3 +90,6 @@
 [submodule "home/.vim/bundle/html5"]
 	path = home/.vim/bundle/html5
 	url = https://github.com/othree/html5.vim.git
+[submodule "home/.vim/bundle/vim-sensible"]
+	path = home/.vim/bundle/vim-sensible
+	url = https://github.com/tpope/vim-sensible.git

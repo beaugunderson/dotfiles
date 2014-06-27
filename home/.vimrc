@@ -3,12 +3,8 @@ call pathogen#infect()
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 set background=dark
+
 colorscheme gardener
-
-syntax on
-
-filetype plugin on
-filetype indent on
 
 set spellfile=~/.vim/spell/words.utf8.add
 set spellcapcheck=
@@ -120,9 +116,9 @@ if has("persistent_undo")
   set undodir=~/.vimundo
 endif
 
-set encoding=utf-8
+set nocompatible
 
-set list listchars=tab:··,trail:·,nbsp:␣
+set list listchars=tab:→\ ,trail:·,nbsp:␣
 
 set ignorecase
 set smartcase
@@ -130,26 +126,19 @@ set smartcase
 set magic
 
 set modelines=0
-set t_Co=256
-set nocompatible
 
-set ruler
-" Always display the statusline in all windows
-set laststatus=2
+set t_Co=256
+set term=xterm-256color
+
 " Hide the default mode text
 set noshowmode
 set showtabline=2
-
-set autoread
-set wildmenu
 
 set completeopt=menu,preview,longest
 
 set mouse=a
 set mousehide
 set ttymouse=xterm2
-
-set term=xterm-256color
 
 set browsedir=buffer
 set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,.git,.svn
@@ -160,7 +149,6 @@ if exists("&colorcolumn")
   set colorcolumn=+1
 endif
 
-set smarttab autoindent
 set tabstop=2
 set shiftwidth=2
 set backspace=eol,start,indent
@@ -169,7 +157,6 @@ set number
 
 set hl=l:Visual
 set hlsearch
-set incsearch
 set showmatch
 
 " Toggle pasting with F2
