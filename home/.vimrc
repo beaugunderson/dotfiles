@@ -88,17 +88,16 @@ if has("autocmd")
       \    exe "normal g'\"" |
       \ endif
 
-   au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
-
    au BufNewFile,BufReadPost *.ejs setl filetype=jst
+   au BufNewFile,BufReadPost .eslintrc setl filetype=json
 endif
 
 set fillchars=vert:\ 
 
 " Syntastic options
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint', 'jscs']
 
-let g:syntastic_python_checkers = ['flake8', 'pylint']
+let g:syntastic_python_checkers = ['pylint', 'flake8']
 
 let g:syntastic_mode_map = {'mode': 'active',
   \ 'passive_filetypes': ['cpp']}
