@@ -88,8 +88,8 @@ if has("autocmd")
       \    exe "normal g'\"" |
       \ endif
 
-   au BufNewFile,BufReadPost *.ejs setl filetype=jst
-   au BufNewFile,BufReadPost .eslintrc setl filetype=json
+   autocmd BufNewFile,BufReadPost .eslintrc setl filetype=json
+   autocmd BufNewFile,BufReadPost *.ejs setl filetype=jst
 endif
 
 set fillchars=vert:\ 
