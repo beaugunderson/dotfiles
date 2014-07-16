@@ -18,6 +18,10 @@ shell_is_osx && export PATH=$(brew --prefix ruby)/bin
 # Add swift toolchain on OS X
 shell_is_osx && PATH=$PATH:./Applications/Xcode6-Beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
 
+# Add AWS tools
+shell_is_osx && \
+  PATH=$PATH:~/aws/AWS-ElasticBeanstalk-CLI-2.6.3/eb/macosx/python2.7
+
 # Reset the path
 shell_is_linux && export PATH=
 
