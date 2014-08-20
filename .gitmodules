@@ -96,3 +96,9 @@
 [submodule "home/.vim/bundle/vimshell.vim"]
 	path = home/.vim/bundle/vimshell.vim
 	url = https://github.com/Shougo/vimshell.vim.git
+[submodule "home/.vim/bundle/vim-search-pulse"]
+	path = home/.vim/bundle/vim-search-pulse
+	url = https://github.com/inside/vim-search-pulse
+[submodule "home/.vim/bundle/vim-abolish"]
+	path = home/.vim/bundle/vim-abolish
+	url = https://github.com/tpope/vim-abolish.git
