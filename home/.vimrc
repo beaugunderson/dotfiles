@@ -164,6 +164,12 @@ set showmatch
 " Toggle pasting with F2
 set pastetoggle=<F2>
 
+" Disables paste mode when leaving insert mode
+autocmd InsertLeave *
+    \ if &paste == 1 |
+    \     set nopaste |
+    \ endif
+
 " Space toggles search highlights
 noremap <space> :set hlsearch! hlsearch?<CR>
 
