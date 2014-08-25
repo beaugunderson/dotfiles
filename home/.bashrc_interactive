@@ -154,9 +154,6 @@ alias ...="cd ../.."
 alias cd..="cd .."
 alias cd...="cd ../.."
 
-# Selector
-source ~/.bin/bash-selector.sh --hist --cd
-
 # Source AWS settings
 source ~/.bin/aws.sh
 
