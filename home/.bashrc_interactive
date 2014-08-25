@@ -35,7 +35,6 @@ shell_is_osx && export PATH=$PATH:/Applications/Postgres.app/Contents/MacOS/bin
 export PROMPT_COMMAND="history -a"
 export SHELL=`which bash`
 export SSH_ENV=$HOME/.ssh/environment
-export TERM=xterm-256color
 
 shell_is_osx && export \
   JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"

@@ -126,9 +126,6 @@ set magic
 
 set modelines=0
 
-set t_Co=256
-set term=xterm-256color
-
 " Hide the default mode text
 set noshowmode
 set showtabline=2
@@ -137,7 +134,12 @@ set completeopt=menu,preview,longest
 
 set mouse=a
 set mousehide
-set ttymouse=xterm2
+
+if has("mouse_sgr")
+  set ttymouse=sgr
+else
+  set ttymouse=xterm2
+end
 
 set browsedir=buffer
 set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,.git,.svn
