@@ -16,6 +16,7 @@ set textwidth=79
 " Wrapping
 set wrap
 "set linebreak " Doesn't work with list option
+let &showbreak='↪ '
 
 " Map leader to comma
 let mapleader=","
