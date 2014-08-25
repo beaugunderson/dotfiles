@@ -70,27 +70,26 @@ nnoremap <leader>td :TernDef<cr>
 " Fix highlighting for git signs
 highlight clear SignColumn
 
-" Fix slow exit from insert mode
-if ! has("gui_running")
+if has("autocmd")
+  " When editing a file, always jump to the last cursor position
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \    exe "normal g'\"" |
+        \ endif
+
+  " Fix slow exit from insert mode
+  if ! has("gui_running")
     set ttimeoutlen=10
 
     augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-
+      autocmd!
+      autocmd InsertEnter * set timeoutlen=0
+      autocmd InsertLeave * set timeoutlen=1000
     augroup END
-endif
+  endif
 
-if has("autocmd")
-   " When editing a file, always jump to the last cursor position
-   autocmd BufReadPost *
-      \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-      \    exe "normal g'\"" |
-      \ endif
-
-   autocmd BufNewFile,BufReadPost .eslintrc setl filetype=json
-   autocmd BufNewFile,BufReadPost *.ejs setl filetype=jst
+  autocmd BufNewFile,BufReadPost .eslintrc setl filetype=json
+  autocmd BufNewFile,BufReadPost *.ejs setl filetype=jst
 endif
 
 set fillchars=vert:\ 
