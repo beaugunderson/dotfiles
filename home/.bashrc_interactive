@@ -108,6 +108,8 @@ alias egrep="egrep --color=auto"
 alias tree="tree -C"
 alias treen="tree -C -I node_modules"
 
+shell_is_linux && alias bower="bower --allow-root"
+
 shell_is_osx && function dash {
   open dash://$1
 }
