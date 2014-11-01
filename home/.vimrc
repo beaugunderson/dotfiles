@@ -57,15 +57,14 @@ nnoremap <space>/ :Unite -start-insert grep:.<cr>
 " XXX: Opens as kind 'common', needs to be 'file'
 nnoremap <space>p :Unite output:VimProcBang\ projects\ glob<cr>
 
-" Make YouCompleteMe play nice with Tern
-let g:ycm_cache_omnifunc = 0
+" Hardcode python since we use virtualenvs
+if has("mac")
+  let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
+elseif has("unix")
+  let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+end
 
-" Tern
-let g:tern_show_argument_hints="on_hold"
-
-nnoremap <leader>tr :TernRename<cr>
-nnoremap <leader>tt :TernType<cr>
-nnoremap <leader>td :TernDef<cr>
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " Soon
 "noremap <Up> <nop>
@@ -101,12 +100,29 @@ endif
 set fillchars=vert:\ 
 
 " Syntastic options
+let g:syntastic_aggregate_errors = 1
+
+" Check on open
+let g:syntastic_check_on_open = 1
+
+" Don't check on close
+let g:syntastic_check_on_wq = 0
+
+" Custom symbols
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
+
+let g:syntastic_style_error_symbol = "S✗"
+let g:syntastic_style_warning_symbol = "S⚠"
+
+" Shorter loc list
+let g:syntastic_loc_list_height = 5
+
+" Jump if there's an error (but not a warning)
+let g:syntastic_auto_jump = 2
+
 let g:syntastic_javascript_checkers = ['eslint', 'jscs']
-
 let g:syntastic_python_checkers = ['pylint', 'flake8']
-
-let g:syntastic_mode_map = {'mode': 'active',
-  \ 'passive_filetypes': ['cpp']}
 
 let g:syntastic_always_populate_loc_list = 1
 
