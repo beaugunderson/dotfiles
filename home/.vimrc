@@ -128,10 +128,6 @@ let g:syntastic_always_populate_loc_list = 1
 
 let g:syntastic_auto_loc_list = 2
 
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name")
-  \ . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-  \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
 if has("persistent_undo")
   set undofile
   set undodir=~/.vimundo
@@ -181,9 +177,6 @@ set number
 set hl=l:Visual
 set hlsearch
 set showmatch
-
-" Toggle pasting with F2
-set pastetoggle=<F2>
 
 " Disables paste mode when leaving insert mode
 autocmd InsertLeave *
