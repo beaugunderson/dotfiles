@@ -124,6 +124,8 @@ let g:syntastic_auto_jump = 2
 let g:syntastic_javascript_checkers = ['eslint', 'jscs']
 let g:syntastic_python_checkers = ['pylint', 'flake8']
 
+let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
+
 let g:syntastic_always_populate_loc_list = 1
 
 let g:syntastic_auto_loc_list = 2
@@ -163,6 +165,10 @@ set browsedir=buffer
 set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,.git,.svn
 
 set title
+
+if exists("&breakindent")
+  set breakindent
+endif
 
 if exists("&colorcolumn")
   set colorcolumn=+1
