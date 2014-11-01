@@ -140,6 +140,14 @@ alias lll="$LS -ahlF $LS_OPTIONS"
 
 alias p="projects"
 
+pcf() {
+  cd $(projects ls -1 | fzf | xargs -I {} projects get --porcelain {} directory)
+}
+
+pof() {
+  open $(projects ls -1 | fzf | xargs -I {} projects get --porcelain {} homepage)
+}
+
 alias gs="git status"
 alias gd="git diff -w"
 
@@ -152,6 +160,9 @@ alias ...="cd ../.."
 
 alias cd..="cd .."
 alias cd...="cd ../.."
+
+# Source fuzzy finder completions
+source ~/.fzf.bash
 
 # Source AWS settings
 source ~/.bin/aws.sh
