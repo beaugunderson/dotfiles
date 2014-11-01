@@ -2,6 +2,12 @@ call pathogen#infect()
 
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
+if has("mac")
+  set rtp+=/usr/local/Cellar/fzf/0.8.7
+elseif has("unix")
+  set rtp+=~/.fzf
+endif
+
 set background=dark
 
 colorscheme gardener
