@@ -84,3 +84,9 @@
 [submodule "home/.vim/bundle/neomru"]
 	path = home/.vim/bundle/neomru
 	url = https://github.com/Shougo/neomru.vim
+[submodule "home/.vim/bundle/jedi-vim"]
+	path = home/.vim/bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "home/.vim/bundle/vim-commentary"]
+	path = home/.vim/bundle/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
