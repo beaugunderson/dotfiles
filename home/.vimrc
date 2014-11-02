@@ -50,12 +50,13 @@ let g:unite_source_history_yank_enable=1 " Keep track of history
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 nnoremap <C-p> :Unite -start-insert file_mru file_rec/async<cr>
-nnoremap <space>o :Unite -start-insert outline<cr>
-nnoremap <space>y :Unite history/yank<cr>
-nnoremap <space>/ :Unite -start-insert grep:.<cr>
+
+nnoremap <leader>o :Unite -start-insert outline<cr>
+nnoremap <leader>y :Unite history/yank<cr>
+nnoremap <leader>/ :Unite -start-insert grep:.<cr>
 
 " XXX: Opens as kind 'common', needs to be 'file'
-nnoremap <space>p :Unite output:VimProcBang\ projects\ glob<cr>
+"nnoremap <space>p :Unite output:VimProcBang\ projects\ glob<cr>
 
 " Hardcode python since we use virtualenvs
 if has("mac")
@@ -205,8 +206,12 @@ autocmd InsertLeave *
     \     set nopaste |
     \ endif
 
-" Space toggles search highlights
-noremap <space> :set hlsearch! hlsearch?<CR>
+" <leader>space toggles search highlights
+noremap <leader><space> :set hlsearch! hlsearch?<CR>
+
+" Toggle comments with the space key
+nmap <space> gcc
+vmap <space> gc
 
 " Keep search results centered in the screen
 nnoremap <silent> n nzz
