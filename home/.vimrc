@@ -140,6 +140,7 @@ let g:syntastic_auto_jump = 2
 let g:syntastic_javascript_checkers = ['eslint', 'jscs']
 let g:syntastic_python_checkers = ['pylint', 'flake8']
 
+let g:syntastic_javascript_eslint_args = '--rulesdir ~/.eslint'
 let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
 
 let g:syntastic_always_populate_loc_list = 1
