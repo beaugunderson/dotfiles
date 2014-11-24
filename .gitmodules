@@ -14,10 +14,6 @@
 	path = home/.vim/bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
 	ignore = dirty
-[submodule "home/.vim/bundle/vim-human-dates"]
-	path = home/.vim/bundle/vim-human-dates
-	url = https://beaugunderson@github.com/beaugunderson/vim-human-dates.git
-	ignore = dirty
 [submodule "home/.vim/bundle/vim-scss-instead"]
 	path = home/.vim/bundle/vim-scss-instead
 	url = https://beaugunderson@github.com/beaugunderson/vim-scss-instead.git
