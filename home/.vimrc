@@ -231,6 +231,16 @@ vnoremap > >gv
 nnoremap / /\v
 vnoremap / /\v
 
+" <Leader>j join without gap
+nnoremap <expr> <Leader>j ':<C-U><BS>'
+  \. repeat('Ji <Esc>"_diw', v:count<=2 ? 1 : v:count-1)
+
+" [count]<Leader>j and {Visual}<Leader>j
+xnoremap <script> <Leader>j <Esc><SID>(NoGapJoin)
+
+nnoremap <expr> <SID>(NoGapJoin) (line(".")>line("'<") ? "'<" : "")
+  \. repeat('Ji <Esc>"_diw', max([line("'>")-line("'<"), 1]))
+
 " Ctrl-c copies to clipboard
 map <C-c> "+y
 
