@@ -181,7 +181,8 @@ end
 set browsedir=buffer
 set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,.git,.svn
 
-set title
+" I don't really use the title and it contributes to iTerm2 slowness
+set notitle
 
 if exists("&breakindent")
   set breakindent
