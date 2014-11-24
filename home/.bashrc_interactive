@@ -150,6 +150,10 @@ pof() {
   open $(projects ls -1 | fzf | xargs -I {} projects get --porcelain {} homepage)
 }
 
+pef() {
+  vim $(projects ls -1 | xargs -I {} find {} \( ! -path "*/.git/*" \) -and \( ! -path "*/node_modules/*" \) 2> /dev/null | fzf)
+}
+
 alias gs="git status"
 alias gd="git diff -w"
 
