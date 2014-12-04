@@ -41,6 +41,10 @@ shell_is_osx && export \
 
 export WORKON_HOME=~/.envs
 
+# lolcommits options
+export LOLCOMMITS_FORK=true
+export LOLCOMMITS_STEALTH=true
+
 # UTF-8 support, fixes Ruby among other things
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -142,16 +146,55 @@ alias lll="$LS -ahlF $LS_OPTIONS"
 
 alias p="projects"
 
-pcf() {
-  cd $(projects ls -1 | fzf | xargs -I {} projects get --porcelain {} directory)
+export FZF_DEFAULT_OPTS="--extended --select-1 --sort=2500"
+
+contract-home() {
+  sed "s|^$HOME|~|"
 }
 
-pof() {
-  open $(projects ls -1 | fzf | xargs -I {} projects get --porcelain {} homepage)
+# cd to a project via fzf
+pd() {
+  cd $(projects ls -1 | \
+    fzf --query="$1" | \
+    xargs -I {} projects get --porcelain "{}" directory)
 }
 
-pef() {
-  vim $(projects ls -1 | xargs -I {} find {} \( ! -path "*/.git/*" \) -and \( ! -path "*/node_modules/*" \) 2> /dev/null | fzf)
+# open a project's URL via fzf
+po() {
+  open $(projects ls -1 | \
+    fzf --query="$1" | \
+    xargs -I {} projects get --porcelain "{}" homepage)
+}
+
+# edit a project file with $EDITOR via fzf
+# note: requires gnu find
+pe() {
+  FILTERS='-type f '
+
+  # filter out .git and node_modules with -prune to make the find much faster
+  FILTERS+='-not -path \*/.git/\* -prune '
+  FILTERS+='-not -path \*/node_modules/\* -prune '
+
+  ADDITIONAL_FILTERS=$1
+
+  if PROJECT_DIRECTORY=`projects resolve --relative .`; then
+    FILE=$(bash -c "find $PROJECT_DIRECTORY \
+      $FILTERS $ADDITIONAL_FILTERS 2> /dev/null" | \
+        ignore-pipe | contract-home | fzf)
+  else
+    FILE=$(projects glob --expand | \
+      xargs -I {} bash -c "find "{}" \
+        $FILTERS $ADDITIONAL_FILTERS 2> /dev/null" | \
+         ignore-pipe | contract-home | fzf)
+  fi
+
+  # bash -c needed to handle tilde expansion
+  [ ! -z "$FILE" ] && bash -c "${EDITOR:-vim} "$FILE""
+}
+
+# edit a project file modified within in the last 7 days
+per() {
+  pe "-mtime -7"
 }
 
 alias gs="git status"
@@ -166,9 +209,6 @@ alias ...="cd ../.."
 
 alias cd..="cd .."
 alias cd...="cd ../.."
-
-# Source fuzzy finder completions
-source ~/.fzf.bash
 
 # Source AWS settings
 source ~/.bin/aws.sh
@@ -187,6 +227,9 @@ source ~/.completion/ssh.sh
 
 # Source npm completion
 eval "$(npm completion -)"
+
+# Source fuzzy finder completions
+source ~/.fzf.bash
 
 # Source virtualenvwrapper.sh if it exists
 [ -f /usr/local/bin/virtualenvwrapper.sh ] && \
