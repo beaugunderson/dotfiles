@@ -215,16 +215,26 @@ alias cd...="cd ../.."
 # Source AWS settings
 source ~/.bin/aws.sh
 
+# shell_is_osx && source /etc/bash_completion.d/git-prompt
+
 # Source bash completion
 shell_is_osx && \
   [ -f `brew --prefix`/etc/bash_completion ] && \
     source `brew --prefix`/etc/bash_completion
+
+shell_is_linux && \
+  [ -f /usr/share/bash-completion/bash_completion ] && \
+    source /usr/share/bash-completion/bash_completion
+
+# Source fuzzy finder completions
+source ~/.fzf.bash
 
 # Source brew completion
 shell_is_osx && \
   source `brew --repository`/Library/Contributions/brew_bash_completion.sh
 
 # Source SSH completion
+# TODO: Get this for free if moved to ~/.bash_completion/ssh.sh
 source ~/.completion/ssh.sh
 
 # Source npm completion
