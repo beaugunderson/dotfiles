@@ -182,9 +182,6 @@ shell_is_osx && \
 shell_is_osx && \
   source `brew --repository`/Library/Contributions/brew_bash_completion.sh
 
-# Source z
-source ~/.bin/z.sh
-
 # Source SSH completion
 source ~/.completion/ssh.sh
 
