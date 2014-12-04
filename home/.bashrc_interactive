@@ -1,9 +1,11 @@
 export BASH_ENV=$HOME/.bashrc
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-export HISTSIZE=1000
-export HISTFILESIZE=2000
+export HISTFILE=~/.bash_eternal_history
+export HISTFILESIZE=
 export HISTIGNORE="&:[bf]g:exit"
+export HISTSIZE=
+export HISTTIMEFORMAT="[%F %T] "
 
 export INPUTRC=~/.inputrc
 export PAGER="less -r"
@@ -297,6 +299,9 @@ function virtualenv_status {
 }
 
 function _prompt_command {
+  # Save history after each command
+  history -a
+
   PS1="$BOX_COLOR$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u`virtualenv_status`"
   PS1="$PS1 $MEDIUM_GRAY\w`git_status`$NOTHING "
 }
