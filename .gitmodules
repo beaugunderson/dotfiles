@@ -89,3 +89,6 @@
 [submodule "home/.vim/bundle/vim-bracketed-paste"]
 	path = home/.vim/bundle/vim-bracketed-paste
 	url = https://github.com/ConradIrwin/vim-bracketed-paste
+[submodule "home/.vim/bundle/dash.vim"]
+	path = home/.vim/bundle/dash.vim
+	url = https://github.com/rizzatti/dash.vim.git
