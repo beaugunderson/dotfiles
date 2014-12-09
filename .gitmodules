@@ -92,3 +92,6 @@
 [submodule "home/.vim/bundle/dash.vim"]
 	path = home/.vim/bundle/dash.vim
 	url = https://github.com/rizzatti/dash.vim.git
+[submodule "home/.vim/bundle/javascript-libraries-syntax.vim"]
+	path = home/.vim/bundle/javascript-libraries-syntax.vim
+	url = https://github.com/othree/javascript-libraries-syntax.vim.git
