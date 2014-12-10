@@ -94,9 +94,9 @@ highlight clear SignColumn
 if has("autocmd")
   " When editing a file, always jump to the last cursor position
   autocmd BufReadPost *
-        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-        \    exe "normal g'\"" |
-        \ endif
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \    exe "normal g'\"" |
+    \ endif
 
   " Fix slow exit from insert mode
   if ! has("gui_running")
@@ -204,9 +204,9 @@ set showmatch
 
 " Disables paste mode when leaving insert mode
 autocmd InsertLeave *
-    \ if &paste == 1 |
-    \     set nopaste |
-    \ endif
+  \ if &paste == 1 |
+  \     set nopaste |
+  \ endif
 
 " <leader>space toggles search highlights
 noremap <leader><space> :set hlsearch! hlsearch?<CR>
