@@ -231,6 +231,12 @@ vnoremap > >gv
 nnoremap / /\v
 vnoremap / /\v
 
+" Commonly-typed command alternatives
+command! -bang W :w
+command! -bang Wq :wq
+command! -bang WQ :wq
+command! -bang Q :q
+
 " <Leader>j join without gap
 nnoremap <expr> <Leader>j ':<C-U><BS>'
   \. repeat('Ji <Esc>"_diw', v:count<=2 ? 1 : v:count-1)
