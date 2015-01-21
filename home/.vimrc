@@ -147,6 +147,9 @@ let g:syntastic_always_populate_loc_list = 1
 
 let g:syntastic_auto_loc_list = 2
 
+" Make decisions persistent
+let g:localvimrc_persistent = 1
+
 if has("persistent_undo")
   set undofile
   set undodir=~/.vimundo
