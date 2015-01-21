@@ -247,9 +247,6 @@ source ~/.fzf.bash
 [ -f /usr/local/bin/virtualenvwrapper.sh ] && \
   source /usr/local/bin/virtualenvwrapper.sh
 
-# Source projects completion
-eval "$(projects alias)"
-
 # Source host-specific options
 [ -f ~/.hosts/$HOSTNAME.sh ] && source ~/.hosts/$HOSTNAME.sh
 
