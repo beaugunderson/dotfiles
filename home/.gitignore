@@ -1,12 +1,16 @@
 node_modules
 .git
+tmp
 
 LOCK
 .coveralls.yml
 .lvimrc
+.DS_Store
 
 *.swp
 *.pyc
 *.old
 *.log
 *.lock
+
+test.sh
