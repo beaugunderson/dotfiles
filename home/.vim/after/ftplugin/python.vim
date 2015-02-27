@@ -1,5 +1,12 @@
 let python_highlight_all = 1
 
+if getline(1) =~ '^#!.*python3$'
+  " TODO: Set this based on hashbang or some other metric
+  let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+  let g:syntastic_python_pylint_exe = '/usr/local/bin/python3 /usr/local/bin/pylint'
+  let g:syntastic_python_flake8_exe = '/usr/local/bin/python3 /usr/local/bin/flake8'
+endif
+
 setl expandtab
 setl tabstop=4
 setl shiftwidth=4
