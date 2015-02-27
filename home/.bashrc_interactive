@@ -11,6 +11,8 @@ export INPUTRC=~/.inputrc
 export PAGER="less -r"
 export EDITOR="vim"
 
+export FIGNORE=$FIGNORE:.pyc:.o
+
 # git wants to use /usr/bin/vim instead of /usr/local/bin/vim on OS X
 shell_is_osx && export GIT_EDITOR="/usr/local/bin/vim"
 
