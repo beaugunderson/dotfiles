@@ -95,6 +95,9 @@ let g:SuperTabDefaultCompletionType = "<C-n>"
 highlight clear SignColumn
 
 if has("autocmd")
+  " Edit in place for crontab on OS X
+  autocmd FileType crontab setlocal nowritebackup
+
   " When editing a file, always jump to the last cursor position
   autocmd BufReadPost *
     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
