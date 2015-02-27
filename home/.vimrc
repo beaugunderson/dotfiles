@@ -280,6 +280,9 @@ xnoremap <script> <Leader>j <Esc><SID>(NoGapJoin)
 nnoremap <expr> <SID>(NoGapJoin) (line(".")>line("'<") ? "'<" : "")
   \. repeat('Ji <Esc>"_diw', max([line("'>")-line("'<"), 1]))
 
+" Change :wrench: to 🔧
+nnoremap <expr> <Leader>e ':%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>'
+
 " Ctrl-c copies to clipboard
 map <C-c> "+y
 
