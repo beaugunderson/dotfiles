@@ -16,6 +16,9 @@ set spellfile=~/.vim/spell/words.utf8.add
 set spellcapcheck=
 set spelllang=en_us
 
+" Don't enable folding by default, zc will enable though
+set nofoldenable
+
 " XXX
 set textwidth=79
 
