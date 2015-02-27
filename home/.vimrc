@@ -209,7 +209,7 @@ else
 end
 
 set browsedir=buffer
-set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,.git,.svn
+set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,*.pyc,.git,.svn
 
 " I don't really use the title and it contributes to iTerm2 slowness
 set notitle
