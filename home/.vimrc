@@ -22,7 +22,7 @@ set textwidth=79
 " Wrapping
 set wrap
 "set linebreak " Doesn't work with list option
-let &showbreak='↪ '
+let &showbreak="↪ "
 
 " Map leader to comma
 let mapleader=","
@@ -60,9 +60,9 @@ nnoremap <leader>/ :Unite -start-insert grep:.<cr>
 
 " Hardcode python since we use virtualenvs
 if has("mac")
-  let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
+  let g:ycm_path_to_python_interpreter = "/usr/local/bin/python"
 elseif has("unix")
-  let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+  let g:ycm_path_to_python_interpreter = "/usr/bin/python"
 end
 
 " Disable most of vim-jedi's features, what we really want is the arguments
@@ -80,7 +80,7 @@ let g:jedi#documentation_command = "<leader>pk"
 let g:jedi#usages_command = "<leader>pu"
 let g:jedi#rename_command = "<leader>pr"
 
-let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:SuperTabDefaultCompletionType = "<C-n>"
 
 " Soon
 "noremap <Up> <nop>
