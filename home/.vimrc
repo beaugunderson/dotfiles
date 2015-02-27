@@ -116,6 +116,8 @@ if has("autocmd")
   endif
 
   autocmd BufNewFile,BufReadPost .eslintrc setl filetype=json
+  autocmd BufNewFile,BufReadPost .jscsrc setl filetype=json
+
   autocmd BufNewFile,BufReadPost *.ejs setl filetype=jst
 endif
 
