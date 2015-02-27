@@ -245,6 +245,9 @@ noremap <leader><space> :set hlsearch! hlsearch?<CR>
 nmap <space> gcc
 vmap <space> gc
 
+" Add support for comment toggling in git commits
+autocmd FileType gitcommit set commentstring=#\ %s
+
 " Keep search results centered in the screen
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
