@@ -106,6 +106,8 @@ fi
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && \
   source $HOME/.tmuxinator/scripts/tmuxinator
 
+alias ag=pt
+
 # Add some github magic
 alias git=hub
 
