@@ -115,8 +115,8 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
-alias tree="tree -C"
-alias treen="tree -C -I node_modules"
+alias tree="tree -C -I node_modules"
+alias treed="tree -C -I node_modules --du --si --sort=size --dirsfirst"
 
 shell_is_linux && alias bower="bower --allow-root"
 
