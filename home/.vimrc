@@ -156,6 +156,7 @@ let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy'
 let g:syntastic_html_tidy_ignore_errors = [
     \  'trimming empty <span>',
     \  'plain text isn''t allowed in <head> elements',
+    \  'plain text isn''t allowed in <table> elements',
     \  '<a> escaping malformed URI reference',
     \  '<form> escaping malformed URI reference',
     \  '<img> escaping malformed URI reference',
