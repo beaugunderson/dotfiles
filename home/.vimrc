@@ -1,4 +1,46 @@
-call pathogen#infect()
+call plug#begin('~/.vim/plugged')
+
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'ervandew/supertab'
+" Plug 'h1mesuke/unite-outline'
+" Plug 'Lokaltog/powerline'
+" Plug 'Lokaltog/vim-powerline'
+" Plug 'rizzatti/dash.vim'
+" Plug 'Shouga/vimproc', { 'do': 'make' }
+" Plug 'Shougo/neomru'
+" Plug 'Shougo/unite'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+
+Plug 'airblade/vim-gitgutter'
+Plug 'beaugunderson/vim-scss-instead'
+Plug 'bling/vim-airline'
+Plug 'bogado/file-line'
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'embear/vim-localvimrc'
+Plug 'GutenYe/json5.vim', { 'for': 'json' }
+Plug 'hdima/python-syntax', { 'for': 'python' }
+Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+Plug 'junegunn/vim-emoji'
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
+Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'scrooloose/syntastic'
+Plug 'Shougo/neocomplete.vim'
+Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
+Plug 'wakatime/vim-wakatime'
+
+call plug#end()
 
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
@@ -50,7 +92,7 @@ cnoremap sudow w !sudo tee % >/dev/null
 let g:unite_source_history_yank_enable=1 " Keep track of history
 
 " Fuzzy matching by default
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 nnoremap <C-p> :Unite -start-insert file_mru file_rec/async<cr>
 
