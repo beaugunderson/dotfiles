@@ -110,3 +110,9 @@
 [submodule "home/.vim/bundle/vim-wakatime"]
 	path = home/.vim/bundle/vim-wakatime
 	url = git://github.com/wakatime/vim-wakatime.git
+[submodule "home/.vim/bundle/neocomplete.vim"]
+	path = home/.vim/bundle/neocomplete.vim
+	url = https://github.com/Shougo/neocomplete.vim.git
+[submodule "home/.vim/bundle/tern_for_vim"]
+	path = home/.vim/bundle/tern_for_vim
+	url = https://github.com/marijnh/tern_for_vim.git
