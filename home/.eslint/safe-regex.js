@@ -1,10 +1,13 @@
+'use strict';
+
+// Originally from:
+// https://github.com/evilpacket/eslint-rules/blob/master/no-unsafe-regex.js
+
 var safe = require('safe-regex');
 
-module.exports = function(context) {
-  'use strict';
-
+module.exports = function (context) {
   return {
-    'Literal': function(node) {
+    Literal: function (node) {
       var token = context.getTokens(node)[0];
 
       if (token.type !== 'RegularExpression') {
