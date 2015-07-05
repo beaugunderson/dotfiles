@@ -1,6 +1,7 @@
 [user]
 	name = Beau Gunderson
 	email = beau@beaugunderson.com
+	username = beaugunderson
 [core]
 	whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=2
 	excludesfile = ~/.gitignore
