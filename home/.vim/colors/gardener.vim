@@ -2,8 +2,7 @@ set background=dark
 hi clear
 syntax reset
 
-let g:colors_name = "gardener"
-let colors_name = "gardener"
+let g:colors_name = 'gardener'
 
 " GUI Colors
 hi Boolean          guibg=bg          guifg=#ff55ff    gui=bold
