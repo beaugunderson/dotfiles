@@ -14,6 +14,9 @@ export INPUTRC=~/.inputrc
 export PAGER="less -r"
 export EDITOR="vim"
 
+# true color support by default in neovim
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 export FIGNORE=$FIGNORE:.pyc:.o
 
 # git wants to use /usr/bin/vim instead of /usr/local/bin/vim on OS X
