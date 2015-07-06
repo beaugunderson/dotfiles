@@ -101,11 +101,8 @@ nnoremap j gj
 nnoremap <Up> gk
 nnoremap <Down> gj
 
-if version >= 7300
-  set formatoptions=croqanlj " add anlj
-else
-  set formatoptions=croqanl " add anl
-endif
+" TODO: add 'a' and remove 'c' for markdown and plain text files
+set formatoptions=croqnl " add nl
 
 " Add sudow for writing to read-only files
 cnoremap sudow w !sudo tee % >/dev/null
