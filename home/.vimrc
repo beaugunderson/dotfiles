@@ -1,3 +1,5 @@
+scriptencoding utf8
+
 call g:plug#begin('~/.vim/plugged')
 
 " Plug 'h1mesuke/unite-outline'
