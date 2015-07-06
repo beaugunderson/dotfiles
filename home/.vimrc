@@ -55,10 +55,10 @@ call g:plug#end()
 
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
-if has("mac")
-  set rtp+=/usr/local/Cellar/fzf/0.8.7
-elseif has("unix")
-  set rtp+=~/.fzf
+if has('mac')
+  set runtimepath+=/usr/local/opt/fzf
+elseif has('unix')
+  set runtimepath+=~/.fzf
 endif
 
 set background=dark
