@@ -91,8 +91,19 @@ set textwidth=79
 
 " Wrapping
 set wrap
-"set linebreak " Doesn't work with list option
-let &showbreak="↪ "
+
+set list
+set listchars=tab:→\ ,trail:·,nbsp:␣
+
+" Break at a sensible place instead of at any character
+set linebreak
+
+let &g:showbreak = '↪ '
+
+if exists('&breakindent')
+  set breakindent
+  set breakindentopt=shift:-2
+endif
 
 " Map leader to comma
 let g:mapleader = ','
@@ -123,7 +134,6 @@ augroup vimrc
   autocmd!
 augroup END
 
-set fillchars=vert:\ 
 " Disables paste mode when leaving insert mode
 autocmd vimrc InsertLeave *
   \ if &paste == 1 |
@@ -163,6 +173,8 @@ autocmd vimrc BufNewFile,BufReadPost .jscsrc setlocal filetype=json
 
 autocmd vimrc BufNewFile,BufReadPost *.ejs setlocal filetype=jst
 
+set fillchars=vert:\  " So we don't get a trailing space error
+
 " Make decisions persistent
 let g:localvimrc_persistent = 1
 
@@ -172,8 +184,6 @@ if has('persistent_undo')
 endif
 
 set nocompatible
-
-set list listchars=tab:→\ ,trail:·,nbsp:␣
 
 set ignorecase
 set smartcase
@@ -202,10 +212,6 @@ set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,*.pyc,.git,.svn
 
 " I don't really use the title and it contributes to iTerm2 slowness
 set notitle
-
-if exists("&breakindent")
-  set breakindent
-endif
 
 if exists('&colorcolumn')
   set colorcolumn=+1
