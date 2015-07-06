@@ -53,6 +53,7 @@ Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 
 call g:plug#end()
 
+source ~/.vim/vimrc/iterm.vim
 source ~/.vim/vimrc/jedi.vim
 
 if !has('nvim')
