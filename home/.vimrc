@@ -107,8 +107,6 @@ set formatoptions=croqnl " add nl
 " Add sudow for writing to read-only files
 cnoremap sudow w !sudo tee % >/dev/null
 
-let g:SuperTabDefaultCompletionType = "<C-n>"
-
 " Soon
 "noremap <Up> <nop>
 "noremap <Down> <nop>
