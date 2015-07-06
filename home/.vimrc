@@ -55,6 +55,10 @@ call g:plug#end()
 
 source ~/.vim/vimrc/jedi.vim
 
+if !has('nvim')
+  source ~/.vim/vimrc/neocomplete.vim
+endif
+
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
 
