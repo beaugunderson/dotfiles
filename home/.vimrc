@@ -117,44 +117,49 @@ cnoremap sudow w !sudo tee % >/dev/null
 " Fix highlighting for git signs
 highlight clear SignColumn
 
-if has("autocmd")
-  " Edit in place for crontab on OS X
-  autocmd FileType crontab setlocal nowritebackup
-
-  " When editing a file, always jump to the last cursor position
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-    \    exe "normal g'\"" |
-    \ endif
-
-  " Fix slow exit from insert mode
-  if ! has("gui_running")
-    set ttimeoutlen=10
-
-    augroup FastEscape
-      autocmd!
-      autocmd InsertEnter * set timeoutlen=0
-      autocmd InsertLeave * set timeoutlen=1000
-    augroup END
-  endif
-
-  autocmd BufNewFile,BufReadPost .eslintrc setl filetype=json
-  autocmd BufNewFile,BufReadPost .jscsrc setl filetype=json
-
-  autocmd BufNewFile,BufReadPost *.ejs setl filetype=jst
-endif
+augroup vimrc
+  autocmd!
+augroup END
 
 set fillchars=vert:\ 
+" Disables paste mode when leaving insert mode
+autocmd vimrc InsertLeave *
+  \ if &paste == 1 |
+  \   set nopaste |
+  \ endif
 
+" Kill the silly tern previews
+autocmd vimrc BufEnter * set completeopt-=preview
 
+" Edit in place for crontab on OS X
+autocmd vimrc FileType crontab setlocal nowritebackup
 
+" When editing a file, always jump to the last cursor position
+autocmd vimrc BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line('$') |
+  \   exe "normal g'\"" |
+  \ endif
 
+" Add support for comment toggling in git commits
+autocmd vimrc FileType gitcommit set commentstring=#\ %s
 
+" Fix slow exit from insert mode
+if !has('gui_running')
+  set ttimeoutlen=10
 
+  augroup FastEscape
+    autocmd!
+    autocmd InsertEnter * set timeoutlen=0
+    autocmd InsertLeave * set timeoutlen=1000
+  augroup END
+endif
 
+autocmd vimrc BufNewFile,BufReadPost requirements.txt setlocal filetype=conf
 
+autocmd vimrc BufNewFile,BufReadPost .eslintrc setlocal filetype=json
+autocmd vimrc BufNewFile,BufReadPost .jscsrc setlocal filetype=json
 
-
+autocmd vimrc BufNewFile,BufReadPost *.ejs setlocal filetype=jst
 
 " Make decisions persistent
 let g:localvimrc_persistent = 1
@@ -214,12 +219,6 @@ set highlight=l:Visual
 set hlsearch
 set showmatch
 
-" Disables paste mode when leaving insert mode
-autocmd InsertLeave *
-  \ if &paste == 1 |
-  \     set nopaste |
-  \ endif
-
 " <leader>space toggles search highlights
 noremap <leader><space> :set hlsearch! hlsearch?<CR>
 
@@ -229,9 +228,6 @@ noremap <leader>r :redraw!<CR>
 " Toggle comments with the space key
 nmap <space> gcc
 vmap <space> gc
-
-" Add support for comment toggling in git commits
-autocmd FileType gitcommit set commentstring=#\ %s
 
 " Keep search results centered in the screen
 nnoremap <silent> n nzz
