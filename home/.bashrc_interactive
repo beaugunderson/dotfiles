@@ -254,9 +254,6 @@ shell_is_linux && \
   [ -f /usr/share/bash-completion/bash_completion ] && \
     source /usr/share/bash-completion/bash_completion
 
-# Source fuzzy finder completions
-source ~/.fzf.bash
-
 # Source brew completion
 shell_is_osx && \
   source `brew --repository`/Library/Contributions/brew_bash_completion.sh
