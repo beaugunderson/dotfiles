@@ -120,7 +120,8 @@ fi
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && \
   source $HOME/.tmuxinator/scripts/tmuxinator
 
-alias ag=pt
+alias ag="pt -f"
+alias aga="pt -f --depth=50 --noglobal-gitignore --noptignore -U"
 
 # Add some github magic
 alias git=hub
@@ -129,8 +130,8 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
-alias tree="tree -C -I node_modules"
-alias treed="tree -C -I node_modules --du --si --sort=size --dirsfirst"
+alias tree="tree -C -I node_modules -I \*.pyc"
+alias treed="tree -C -I node_modules -I \*.pyc --du --si --sort=size --dirsfirst"
 
 shell_is_linux && alias bower="bower --allow-root"
 
@@ -179,6 +180,12 @@ pd() {
     xargs -I {} projects get --porcelain "{}" directory)
 }
 
+hd() {
+  echo $(projects ls -1 | \
+    fzf --query="$1" | \
+    xargs -I {} projects get --porcelain "{}" directory) | hexdump -C
+}
+
 # open a project's URL via fzf
 po() {
   open $(projects ls -1 | \
@@ -219,6 +226,7 @@ per() {
 
 alias gs="git status"
 alias gd="git diff -w"
+alias gp="git push"
 
 alias df="df -h"
 
@@ -229,6 +237,8 @@ alias ...="cd ../.."
 
 alias cd..="cd .."
 alias cd...="cd ../.."
+
+alias rmpyc="find . -name \*.pyc -print -delete"
 
 # Source AWS settings
 source ~/.bin/aws.sh
