@@ -66,6 +66,8 @@ source ~/.vim/vimrc/syntastic.vim
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
 
+let g:tern_show_signature_in_pum = 1
+
 if has('mac')
   set runtimepath+=/usr/local/opt/fzf
 elseif has('unix')
