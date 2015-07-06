@@ -5,6 +5,10 @@ if getline(1) =~ '^#!.*python3$'
   let g:syntastic_python_python_exec = '/usr/local/bin/python3'
   let g:syntastic_python_pylint_exe = '/usr/local/bin/python3 /usr/local/bin/pylint'
   let g:syntastic_python_flake8_exe = '/usr/local/bin/python3 /usr/local/bin/flake8'
+else
+  let g:syntastic_python_python_exec = '/usr/local/bin/python'
+  let g:syntastic_python_pylint_exe = '/usr/local/bin/python /usr/local/bin/pylint'
+  let g:syntastic_python_flake8_exe = '/usr/local/bin/python /usr/local/bin/flake8'
 endif
 
 setl expandtab

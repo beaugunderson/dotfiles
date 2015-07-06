@@ -107,13 +107,6 @@ set formatoptions=croqnl " add nl
 " Add sudow for writing to read-only files
 cnoremap sudow w !sudo tee % >/dev/null
 
-" Hardcode python since we use virtualenvs
-if has("mac")
-  let g:ycm_path_to_python_interpreter = "/usr/local/bin/python"
-elseif has("unix")
-  let g:ycm_path_to_python_interpreter = "/usr/bin/python"
-end
-
 let g:SuperTabDefaultCompletionType = "<C-n>"
 
 " Soon
