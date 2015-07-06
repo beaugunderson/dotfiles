@@ -53,7 +53,8 @@ Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 
 call g:plug#end()
 
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'powerlineish'
 
 if has('mac')
   set runtimepath+=/usr/local/opt/fzf
