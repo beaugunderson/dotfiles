@@ -1,35 +1,38 @@
-call plug#begin('~/.vim/plugged')
+call g:plug#begin('~/.vim/plugged')
 
-" Plug 'altercation/vim-colors-solarized'
-" Plug 'ervandew/supertab'
 " Plug 'h1mesuke/unite-outline'
-" Plug 'Lokaltog/powerline'
-" Plug 'Lokaltog/vim-powerline'
 " Plug 'rizzatti/dash.vim'
-" Plug 'Shouga/vimproc', { 'do': 'make' }
 " Plug 'Shougo/neomru'
 " Plug 'Shougo/unite'
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 
 Plug 'airblade/vim-gitgutter'
 Plug 'beaugunderson/vim-scss-instead'
+Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'
 Plug 'bogado/file-line'
+Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'embear/vim-localvimrc'
-Plug 'GutenYe/json5.vim', { 'for': 'json' }
-Plug 'hdima/python-syntax', { 'for': 'python' }
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+Plug 'GutenYe/json5.vim', {'for': 'json'}
+Plug 'hdima/python-syntax', {'for': 'python'}
+Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
 Plug 'junegunn/vim-emoji'
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
+Plug 'marijnh/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}
+Plug 'othree/html5.vim', {'for': 'html'}
+Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'scrooloose/syntastic'
-Plug 'Shougo/neocomplete.vim'
+Plug 'syngan/vim-vimlint', {'for': 'vim'}
+
+if !has('nvim')
+  Plug 'Shougo/neocomplete.vim'
+endif
+
+Plug 'Shougo/vimproc', {'do': 'make'}
+Plug 'todesking/vint-syntastic', {'for': 'vim'}
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -38,9 +41,15 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
-Plug 'wakatime/vim-wakatime'
 
-call plug#end()
+if has('nvim')
+  Plug 'Valloric/YouCompleteMe', {'do': './install.sh'}
+endif
+
+Plug 'wakatime/vim-wakatime'
+Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
+
+call g:plug#end()
 
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
