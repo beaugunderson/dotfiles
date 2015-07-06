@@ -223,6 +223,9 @@ autocmd InsertLeave *
 " <leader>space toggles search highlights
 noremap <leader><space> :set hlsearch! hlsearch?<CR>
 
+" <leader>r redraws the screen
+noremap <leader>r :redraw!<CR>
+
 " Toggle comments with the space key
 nmap <space> gcc
 vmap <space> gc
