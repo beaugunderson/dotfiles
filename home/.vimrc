@@ -60,6 +60,7 @@ if !has('nvim')
 endif
 
 source ~/.vim/vimrc/syntastic.vim
+" source ~/.vim/vimrc/unite.vim
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
@@ -108,21 +109,6 @@ endif
 
 " Add sudow for writing to read-only files
 cnoremap sudow w !sudo tee % >/dev/null
-
-" Unite commands
-let g:unite_source_history_yank_enable=1 " Keep track of history
-
-" Fuzzy matching by default
-" call unite#filters#matcher_default#use(['matcher_fuzzy'])
-
-nnoremap <C-p> :Unite -start-insert file_mru file_rec/async<cr>
-
-nnoremap <leader>o :Unite -start-insert outline<cr>
-nnoremap <leader>y :Unite history/yank<cr>
-nnoremap <leader>/ :Unite -start-insert grep:.<cr>
-
-" XXX: Opens as kind 'common', needs to be 'file'
-"nnoremap <space>p :Unite output:VimProcBang\ projects\ glob<cr>
 
 " Hardcode python since we use virtualenvs
 if has("mac")
