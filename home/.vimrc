@@ -67,6 +67,7 @@ set background=dark
 colorscheme gardener
 
 set spellfile=~/.vim/spell/words.utf8.add
+" Don't check for sentence capitalization
 set spellcapcheck=
 set spelllang=en_us
 
@@ -82,7 +83,7 @@ set wrap
 let &showbreak="↪ "
 
 " Map leader to comma
-let mapleader=","
+let g:mapleader = ','
 
 " Move through display lines, not numbered lines
 nnoremap k gk
@@ -232,7 +233,7 @@ let g:syntastic_auto_loc_list = 2
 " Make decisions persistent
 let g:localvimrc_persistent = 1
 
-if has("persistent_undo")
+if has('persistent_undo')
   set undofile
   set undodir=~/.vimundo
 endif
@@ -257,7 +258,7 @@ set completeopt=menu,preview,longest
 set mouse=a
 set mousehide
 
-if has("mouse_sgr")
+if has('mouse_sgr')
   set ttymouse=sgr
 else
   set ttymouse=xterm2
@@ -273,7 +274,7 @@ if exists("&breakindent")
   set breakindent
 endif
 
-if exists("&colorcolumn")
+if exists('&colorcolumn')
   set colorcolumn=+1
 endif
 
@@ -283,7 +284,7 @@ set backspace=eol,start,indent
 set complete=.,w,b,u,U,t,i,d
 set number
 
-set hl=l:Visual
+set highlight=l:Visual
 set hlsearch
 set showmatch
 
@@ -353,4 +354,4 @@ map <silent><A-Left> :tabprevious<CR>
 call matchadd('OverLength', '\%>80v.\+', 0)
 
 " Syntax-specific
-let c_space_errors = 1
+let g:c_space_errors=1
