@@ -183,7 +183,6 @@ if has('persistent_undo')
   set undodir=~/.vimundo
 endif
 
-set nocompatible
 
 set ignorecase
 set smartcase
