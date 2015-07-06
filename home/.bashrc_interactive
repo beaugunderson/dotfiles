@@ -1,5 +1,8 @@
 export BASH_ENV=$HOME/.bashrc
 
+# support for node history
+export NODE_REPL_HISTORY_FILE=~/.node-history
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTFILE=~/.bash_eternal_history
 export HISTFILESIZE=
