@@ -61,4 +61,8 @@
   "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
   "disallowKeywordsOnNewLine": ["else"],
   "validateParameterSeparator": ", "
+  "requireDollarBeforejQueryAssignment": true,
+  "requireDotNotation": true,
+  "jsDoc": true,
+  "disallowYodaConditions": true
 }
