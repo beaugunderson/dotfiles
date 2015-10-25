@@ -29,6 +29,7 @@
     "no-self-compare": 2,
     "no-shadow": 1,
     "no-spaced-func": 2,
+    "no-undef": 1,
     "no-underscore-dangle": 0,
     "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
     "object-curly-spacing": [2, "never"],

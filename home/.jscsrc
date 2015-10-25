@@ -60,9 +60,20 @@
   "disallowImplicitTypeConversion": ["numeric", "boolean", "binary", "string"],
   "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
   "disallowKeywordsOnNewLine": ["else"],
-  "validateParameterSeparator": ", "
+  "validateParameterSeparator": ", ",
   "requireDollarBeforejQueryAssignment": true,
   "requireDotNotation": true,
-  "jsDoc": true,
-  "disallowYodaConditions": true
+  "jsDoc": {
+    "checkAnnotations": true
+  },
+  "disallowYodaConditions": true,
+  "requirePaddingNewLinesAfterUseStrict": true,
+  "requirePaddingNewLinesAfterBlocks": {
+    "allExcept": [
+      "inCallExpressions",
+      "inNewExpressions",
+      "inArrayExpressions",
+      "inProperties"
+    ]
+  }
 }
