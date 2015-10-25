@@ -1,6 +1,6 @@
 scriptencoding utf8
 
-call g:plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged')
 
 " Plug 'h1mesuke/unite-outline'
 " Plug 'rizzatti/dash.vim'
@@ -51,7 +51,7 @@ endif
 Plug 'wakatime/vim-wakatime'
 Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 
-call g:plug#end()
+call plug#end()
 
 source ~/.vim/vimrc/iterm.vim
 source ~/.vim/vimrc/jedi.vim
