@@ -1,12 +1,11 @@
 {
+  "extends": "eslint:recommended",
+
   "env": {
+    "es6": true,
     "node": true,
     "browser": true
   },
-
-  "plugins": [
-    "safe-regex"
-  ],
 
   "rules": {
     "array-bracket-spacing": [2, "never"],
@@ -17,7 +16,10 @@
     "default-case": 2,
     "func-style": [2, "declaration"],
     "guard-for-in": 2,
+    "indent": [2, 2],
+    "linebreak-style": [2, "unix"],
     "max-nested-callbacks": 0,
+    "no-console": 0,
     "no-else-return": 1,
     "no-eq-null": 2,
     "no-floating-decimal": 2,
@@ -29,13 +31,12 @@
     "no-self-compare": 2,
     "no-shadow": 1,
     "no-spaced-func": 2,
-    "no-undef": 1,
+    "no-undef": 2,
     "no-underscore-dangle": 0,
     "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
     "object-curly-spacing": [2, "never"],
     "quotes": [1, "single", "avoid-escape"],
     "radix": 2,
-    "safe-regex/safe-regex": 2,
     "semi": [2, "always"],
     "semi-spacing": [2, {"before": false, "after": true}],
     "space-after-keywords": [2, "always"],
