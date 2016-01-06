@@ -120,8 +120,10 @@ fi
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && \
   source $HOME/.tmuxinator/scripts/tmuxinator
 
-alias ag="pt -f"
+alias ag="pt -f --home-ptignore"
 alias aga="pt -f --depth=50 --noglobal-gitignore --noptignore -U"
+
+alias c="ls -1 | wc -l"
 
 # Add some github magic
 alias git=hub
@@ -130,8 +132,12 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
+alias k='zsh -c ". ~/.bin/k.sh; k"'
+
 alias tree="tree -C -I node_modules -I \*.pyc"
 alias treed="tree -C -I node_modules -I \*.pyc --du --si --sort=size --dirsfirst"
+
+alias work="cd ~/p/open-humans && workon open-humans"
 
 shell_is_linux && alias bower="bower --allow-root"
 
