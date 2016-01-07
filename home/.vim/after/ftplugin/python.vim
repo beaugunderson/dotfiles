@@ -21,13 +21,13 @@ setl tags+=$HOME/.vim/tags/python.ctags
 setl omnifunc=pythoncomplete#Complete
 
 setl makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-setl efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+setl errorformat=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 
 map <silent><C-Left> <C-T>
 map <silent><C-Right> <C-]>
 
 if has('python')
-python << EOF
+  python << EOF
 import os
 import sys
 import vim
@@ -35,13 +35,10 @@ import vim
 for p in sys.path:
     if os.path.isdir(p):
         vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-EOF
 
-python << EOL
-import vim
 def EvaluateCurrentRange():
     eval(compile('\n'.join(vim.current.range),'','exec'),globals())
-EOL
+EOF
 
-map <C-h> :py EvaluateCurrentRange()
+  map <C-h> :py EvaluateCurrentRange()
 endif
