@@ -26,6 +26,7 @@ Plug 'marijnh/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}
 Plug 'othree/html5.vim', {'for': 'html'}
 Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'rhysd/npm-debug-log.vim'
 Plug 'scrooloose/syntastic'
 Plug 'syngan/vim-vimlint', {'for': 'vim'}
 
@@ -49,6 +50,7 @@ if has('nvim')
 endif
 
 Plug 'wakatime/vim-wakatime'
+Plug 'wincent/terminus'
 Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 
 call plug#end()
