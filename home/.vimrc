@@ -55,7 +55,6 @@ Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 
 call plug#end()
 
-source ~/.vim/vimrc/iterm.vim
 source ~/.vim/vimrc/jedi.vim
 
 if !has('nvim')
@@ -200,14 +199,8 @@ set showtabline=2
 
 set completeopt=menu,preview,longest
 
-set mouse=a
-set mousehide
-
-if has('mouse_sgr')
-  set ttymouse=sgr
-else
-  set ttymouse=xterm2
-end
+" XXX: Broken with iTerm2 nightly? Displays the output in the command line.
+set t_RV=
 
 set browsedir=buffer
 set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,*.pyc,.git,.svn
