@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'beaugunderson/vim-scss-instead'
 Plug 'benekastah/neomake'
-Plug 'bling/vim-airline'
 Plug 'bogado/file-line'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'ConradIrwin/vim-bracketed-paste'
@@ -20,6 +19,8 @@ Plug 'embear/vim-localvimrc'
 Plug 'GutenYe/json5.vim', {'for': 'json'}
 Plug 'hdima/python-syntax', {'for': 'python'}
 Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
+" doesn't work with jedi-vim for some reason
+" Plug 'jmcantrell/vim-virtualenv', {'for': 'python'}
 Plug 'junegunn/vim-emoji'
 Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
 Plug 'marijnh/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}
@@ -49,6 +50,8 @@ if has('nvim')
   Plug 'Valloric/YouCompleteMe', {'do': './install.sh'}
 endif
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'wakatime/vim-wakatime'
 Plug 'wincent/terminus'
 Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
