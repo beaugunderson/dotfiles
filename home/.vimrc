@@ -199,6 +199,8 @@ autocmd vimrc BufNewFile,BufReadPost .jscsrc setlocal filetype=json
 
 autocmd vimrc BufNewFile,BufReadPost *.ejs setlocal filetype=jst
 
+autocmd vimrc BufNewFile,BufReadPost * LocalVimRC
+
 set fillchars=vert:\  " So we don't get a trailing space error
 
 " Make decisions persistent
