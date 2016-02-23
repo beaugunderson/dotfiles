@@ -198,6 +198,7 @@ autocmd vimrc BufNewFile,BufReadPost .eslintrc setlocal filetype=json
 autocmd vimrc BufNewFile,BufReadPost .jscsrc setlocal filetype=json
 
 autocmd vimrc BufNewFile,BufReadPost *.ejs setlocal filetype=jst
+autocmd vimrc BufNewFile,BufReadPost *.pegjs setlocal filetype=pegjs
 
 autocmd vimrc BufNewFile,BufReadPost * LocalVimRC
 
