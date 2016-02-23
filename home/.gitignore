@@ -1,7 +1,8 @@
-node_modules
-.git
+node_modules/
+npm-debug.log
+.git/
 .tox
-tmp
+tmp/
 *.egg-info
 
 LOCK
