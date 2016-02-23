@@ -6,36 +6,39 @@ call plug#begin('~/.vim/plugged')
 " Plug 'rizzatti/dash.vim'
 " Plug 'Shougo/neomru'
 " Plug 'Shougo/unite'
+" doesn't work with jedi-vim for some reason
+" Plug 'jmcantrell/vim-virtualenv', {'for': 'python'}
+" Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
 
+" Colorschemes
+Plug 'ewilazarus/preto'
+
+" JavaScript/HTML plugins
+Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
+Plug 'marijnh/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}
+Plug 'moll/vim-node' ", {'for': 'javascript'} doesn't work with this one
+Plug 'othree/html5.vim', {'for': 'html'}
+Plug 'othree/yajs.vim', {'for': 'javascript'}
+Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
+Plug 'othree/jspc.vim', {'for': 'javascript'}
+Plug 'gavocanov/vim-js-indent', {'for': 'javascript'}
+Plug 'rhysd/npm-debug-log.vim'
+Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'GutenYe/json5.vim', {'for': 'json'}
+
+" Other plugins
 Plug 'airblade/vim-gitgutter'
-Plug 'beaugunderson/vim-scss-instead'
 Plug 'benekastah/neomake'
 Plug 'bogado/file-line'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'embear/vim-localvimrc'
-Plug 'GutenYe/json5.vim', {'for': 'json'}
 Plug 'hdima/python-syntax', {'for': 'python'}
-Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
-" doesn't work with jedi-vim for some reason
-" Plug 'jmcantrell/vim-virtualenv', {'for': 'python'}
 Plug 'junegunn/vim-emoji'
-Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
-Plug 'marijnh/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}
-Plug 'othree/html5.vim', {'for': 'html'}
-Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'rhysd/npm-debug-log.vim'
 Plug 'scrooloose/syntastic'
-Plug 'syngan/vim-vimlint', {'for': 'vim'}
-
-if !has('nvim')
-  Plug 'Shougo/neocomplete.vim'
-endif
-
 Plug 'Shougo/vimproc', {'do': 'make'}
+Plug 'syngan/vim-vimlint', {'for': 'vim'}
 Plug 'todesking/vint-syntastic', {'for': 'vim'}
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
@@ -45,11 +48,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
-
-if has('nvim')
-  Plug 'Valloric/YouCompleteMe', {'do': './install.sh'}
-endif
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wakatime/vim-wakatime'
@@ -57,12 +55,20 @@ Plug 'wincent/terminus'
 Plug 'Yggdroot/hiPairs'
 Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 
+if !has('nvim')
+  Plug 'Shougo/neocomplete.vim'
+else
+  Plug 'Shougo/deoplete'
+endif
+
 call plug#end()
 
 source ~/.vim/vimrc/jedi.vim
 
 if !has('nvim')
   source ~/.vim/vimrc/neocomplete.vim
+else
+  let g:deoplete#enable_at_startup = 1
 endif
 
 source ~/.vim/vimrc/syntastic.vim
