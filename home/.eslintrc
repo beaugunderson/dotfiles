@@ -35,6 +35,7 @@
     "no-undef": 2,
     "no-underscore-dangle": 0,
     "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
+    "one-var": [2, "never"],
     "object-curly-spacing": [2, "never"],
     "quotes": [1, "single", "avoid-escape"],
     "radix": 2,
