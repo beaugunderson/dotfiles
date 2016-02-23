@@ -17,4 +17,25 @@ let g:neocomplete#sources#buffer#cache_limit_size = 50000
 let g:neocomplete#sources#syntax#min_keyword_length = 2
 let g:neocomplete#enable_auto_close_preview = 1
 
+if !exists('g:neocomplete#sources#omni#functions')
+  let g:neocomplete#sources#omni#functions = {}
+endif
+
+let g:neocomplete#sources#omni#functions.javascript = [
+  \ 'jspc#omni',
+  \ 'tern#Complete',
+  \]
+
+function! s:close_popup_and_complete()
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>close_popup_and_complete()<CR>
+
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
