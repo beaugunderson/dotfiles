@@ -121,7 +121,7 @@ fi
   source $HOME/.tmuxinator/scripts/tmuxinator
 
 alias ag="pt -f --home-ptignore"
-alias aga="pt -f --depth=50 --noglobal-gitignore --noptignore -U"
+alias aga="pt -f --depth=50 --skip-vcs-ignores --noptignore -U"
 
 alias c="ls -1 | wc -l"
 
