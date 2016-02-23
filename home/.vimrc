@@ -77,6 +77,8 @@ source ~/.vim/vimrc/syntastic.vim
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
 
+let g:used_javascript_libs = 'jquery,underscore'
+
 let g:hiPairs_timeout = 3
 let g:hiPairs_insert_timeout = 3
 let g:hiPairs_stopline_more = 50
