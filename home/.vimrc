@@ -54,6 +54,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wakatime/vim-wakatime'
 Plug 'wincent/terminus'
+Plug 'Yggdroot/hiPairs'
 Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 
 call plug#end()
@@ -69,6 +70,19 @@ source ~/.vim/vimrc/syntastic.vim
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
+
+let g:hiPairs_timeout = 3
+let g:hiPairs_insert_timeout = 3
+let g:hiPairs_stopline_more = 50
+
+let g:hiPairs_hl_matchPair = {
+  \ 'term': 'underline,bold',
+  \ 'cterm': 'underline,bold',
+  \ 'ctermfg': 'NONE',
+  \ 'ctermbg': 'NONE',
+  \ 'gui': 'underline,bold',
+  \ 'guifg': 'NONE',
+  \ 'guibg': 'NONE'}
 
 let g:tern_show_signature_in_pum = 1
 
