@@ -308,6 +308,9 @@ map <C-c> "+y
 " Make Y behave like C and D
 nnoremap Y y$
 
+" let semicolon do colon commands
+nnoremap ; :
+
 " What does this do?
 inoremap <Nul> <C-x><C-o>
 
