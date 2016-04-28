@@ -260,6 +260,9 @@ noremap <leader><space> :set hlsearch! hlsearch?<CR>
 " <leader>r redraws the screen
 noremap <leader>r :redraw!<CR>
 
+" <leader>n goes to the next error
+nmap <leader>n :lnext<CR>
+
 " Toggle comments with the space key
 nmap <space> gcc
 vmap <space> gc
