@@ -58,6 +58,7 @@ Plug 'wakatime/vim-wakatime'
 Plug 'wincent/terminus'
 Plug 'Yggdroot/hiPairs'
 Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
+Plug 'zirrostig/vim-schlepp'
 
 if !has('nvim')
   Plug 'Shougo/neocomplete.vim'
@@ -77,6 +78,14 @@ endif
 
 source ~/.vim/vimrc/syntastic.vim
 " source ~/.vim/vimrc/unite.vim
+
+vmap <unique> <s-left> <plug>SchleppLeft
+vmap <unique> <s-right> <plug>SchleppRight
+vmap <unique> <s-up> <plug>SchleppUp
+vmap <unique> <s-down> <plug>SchleppDown
+vmap <unique> D <plug>SchleppDup
+
+let g:Schlepp#dupTrimWS = 1
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
