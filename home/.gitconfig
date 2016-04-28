@@ -64,12 +64,12 @@
 [rebase]
 	stat = true
 [mergetool "splice"]
-	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+	cmd = "nvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
 	trustExitCode = true
 [mergetool "vimdiff3"]
-	cmd = vim -f -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
+	cmd = nvim -f -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
 [mergetool "fugitive"]
-	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+	cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
 [merge]
 	tool = fugitive
 	conflictstyle = merge
