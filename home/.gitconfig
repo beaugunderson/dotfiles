@@ -5,6 +5,7 @@
 [core]
 	whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=2
 	excludesfile = ~/.gitignore
+	untrackedCache = true
 [color]
 	branch = auto
 	diff = auto
