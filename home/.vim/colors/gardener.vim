@@ -1,147 +1,150 @@
 set background=dark
-hi clear
+highlight clear
 syntax reset
 
 let g:colors_name = 'gardener'
 
-" GUI Colors
-hi Boolean          guibg=bg          guifg=#ff55ff    gui=bold
-hi Character        guibg=bg          guifg=#ffffcc    gui=bold
-hi Comment          guibg=bg          guifg=#888888    gui=none
-hi Conditional      guibg=bg          guifg=#aadd55    gui=bold
-hi Constant         guibg=bg          guifg=white      gui=bold
-hi Cursor           guibg=#cc4455     guifg=white      gui=bold
-hi Debug            guibg=bg          guifg=#ff9999    gui=none
-hi Define           guibg=bg          guifg=#66ccdd    gui=bold
-hi Delimiter        guibg=bg          guifg=fg         gui=bold
-hi DiffAdd          guibg=#446688     guifg=fg         gui=none
-hi DiffChange       guibg=#558855     guifg=fg         gui=none
-hi DiffDelete       guibg=#884444     guifg=fg         gui=none
-hi DiffText         guibg=#884444     guifg=fg         gui=bold
-hi Directory        guibg=bg          guifg=#337700    gui=none
-hi Error            guibg=#ff0000     guifg=white      gui=bold
-hi ErrorMsg         guibg=bg          guifg=#ff0000    gui=bold
-hi Exception        guibg=bg          guifg=#66ffcc    gui=bold
-hi Float            guibg=bg          guifg=#bbddff    gui=bold
-hi Function         guibg=bg          guifg=#ffffaa    gui=bold
-hi Identifier       guibg=bg          guifg=#ffddaa    gui=none
-hi Ignore           guibg=bg          guifg=#cccccc    gui=italic
-hi IncSearch        guibg=#0066cc     guifg=white      gui=none
-hi Include          guibg=bg          guifg=#99cc99    gui=bold
-hi Keyword          guibg=bg          guifg=#66ffcc    gui=bold
-hi Label            guibg=bg          guifg=#ffccff    gui=bold
-hi ModeMsg          guibg=bg          guifg=#ffeecc    gui=none
-hi NonText          guibg=#445566     guifg=#ffeecc    gui=bold
-hi Normal           guibg=black       guifg=white      gui=none
-hi Number           guibg=bg          guifg=#bbddff    gui=bold
-hi Operator         guibg=bg          guifg=#cc9966    gui=bold
-hi PreProc          guibg=bg          guifg=#ffcc99    gui=bold
-hi Question         guibg=bg          guifg=#ccffcc    gui=bold
-hi Repeat           guibg=bg          guifg=#ff9900    gui=bold
-hi Special          guibg=bg          guifg=#bbddff    gui=bold
-hi SpecialChar      guibg=bg          guifg=#bbddff    gui=bold
-hi SpecialComment   guibg=#334455     guifg=#dddddd    gui=italic
-hi SpecialKey       guibg=bg          guifg=fg         gui=none
-hi Statement        guibg=bg          guifg=#ffffcc    gui=bold
-hi StatusLine       guibg=#cc4455     guifg=white      gui=bold
-hi StatusLineNC     guibg=#ffeecc     guifg=black      gui=none
-hi StorageClass     guibg=bg          guifg=#99cc99    gui=bold
-hi String           guibg=bg          guifg=#ffffcc    gui=none
-hi Structure        guibg=bg          guifg=#99ff99    gui=bold
-hi Tag              guibg=bg          guifg=#bbddff    gui=bold
-hi Title            guibg=#445566     guifg=white      gui=bold
-hi Titled           guibg=bg          guifg=fg         gui=none
-hi Todo             guibg=#556677     guifg=#ff0000    gui=bold
-hi Type             guibg=bg          guifg=#ccffaa    gui=bold
-hi Typedef          guibg=bg          guifg=#99cc99    gui=italic
-hi Underlined       guibg=bg          guifg=#99ccff    gui=underline
-hi VertSplit        guibg=black       guifg=#ffeecc    gui=none
-hi Visual           guibg=#557799     guifg=white      gui=none
-hi htmlH1           guibg=bg          guifg=#ffffff    gui=bold
-hi htmlH2           guibg=bg          guifg=#dadada    gui=bold
-hi htmlH3           guibg=bg          guifg=#c6c6c6    gui=bold
-hi htmlH4           guibg=bg          guifg=#b2b2b2    gui=bold
-hi htmlH5           guibg=bg          guifg=#9e9e9e    gui=bold
-hi htmlH6           guibg=bg          guifg=#8a8a8a    gui=bold
-hi linenr           guibg=#262626     guifg=#808080    gui=bold
+" so $VIMRUNTIME/syntax/hitest.vim
 
-hi link             CursorIM          Cursor
-hi link             Macro             Include
-hi link             MoreMsg           ModeMsg
-hi link             PreCondit         Include
-hi link             Search            IncSearch
-hi link             WarningMsg        ErrorMsg
+" GUI Colors
+highlight Boolean          guibg=bg          guifg=#ff55ff    gui=bold
+highlight Character        guibg=bg          guifg=#ffffcc    gui=bold
+highlight ColorColumn      guibg=#1c1c1c     guifg=none       gui=none
+highlight Comment          guibg=bg          guifg=#888888    gui=none
+highlight Conditional      guibg=bg          guifg=#aadd55    gui=bold
+highlight Constant         guibg=bg          guifg=white      gui=bold
+highlight Cursor           guibg=#cc4455     guifg=white      gui=bold
+highlight Debug            guibg=bg          guifg=#ff9999    gui=none
+highlight Define           guibg=bg          guifg=#66ccdd    gui=bold
+highlight Delimiter        guibg=bg          guifg=fg         gui=bold
+highlight DiffAdd          guibg=#446688     guifg=fg         gui=none
+highlight DiffChange       guibg=#558855     guifg=fg         gui=none
+highlight DiffDelete       guibg=#884444     guifg=fg         gui=none
+highlight DiffText         guibg=#884444     guifg=fg         gui=bold
+highlight Directory        guibg=bg          guifg=#337700    gui=none
+highlight Error            guibg=#ff0000     guifg=white      gui=bold  guisp=undercurl
+highlight ErrorMsg         guibg=bg          guifg=#ff0000    gui=bold
+highlight Exception        guibg=bg          guifg=#66ffcc    gui=bold
+highlight Float            guibg=bg          guifg=#bbddff    gui=bold
+highlight Function         guibg=bg          guifg=#ffffaa    gui=bold
+highlight Identifier       guibg=bg          guifg=#ffddaa    gui=none
+highlight Ignore           guibg=bg          guifg=#cccccc    gui=italic
+highlight IncSearch        guibg=#0066cc     guifg=white      gui=none
+highlight Include          guibg=bg          guifg=#99cc99    gui=bold
+highlight Keyword          guibg=bg          guifg=#66ffcc    gui=bold
+highlight Label            guibg=bg          guifg=#ffccff    gui=bold
+highlight ModeMsg          guibg=bg          guifg=#ffeecc    gui=none
+highlight NonText          guibg=#445566     guifg=#ffeecc    gui=bold
+highlight Normal           guibg=black       guifg=white      gui=none
+highlight Number           guibg=bg          guifg=#bbddff    gui=bold
+highlight Operator         guibg=bg          guifg=#cc9966    gui=bold
+highlight PreProc          guibg=bg          guifg=#ffcc99    gui=bold
+highlight Question         guibg=bg          guifg=#ccffcc    gui=bold
+highlight Repeat           guibg=bg          guifg=#ff9900    gui=bold
+highlight Special          guibg=bg          guifg=#bbddff    gui=bold
+highlight SpecialChar      guibg=bg          guifg=#bbddff    gui=bold
+highlight SpecialComment   guibg=#334455     guifg=#dddddd    gui=italic
+highlight SpecialKey       guibg=bg          guifg=fg         gui=none
+highlight Statement        guibg=bg          guifg=#ffffcc    gui=bold
+highlight StatusLine       guibg=#cc4455     guifg=white      gui=bold
+highlight StatusLineNC     guibg=#ffeecc     guifg=black      gui=none
+highlight StorageClass     guibg=bg          guifg=#99cc99    gui=bold
+highlight String           guibg=bg          guifg=#ffffcc    gui=none
+highlight Structure        guibg=bg          guifg=#99ff99    gui=bold
+highlight Tag              guibg=bg          guifg=#bbddff    gui=bold
+highlight Title            guibg=#445566     guifg=white      gui=bold
+highlight Titled           guibg=bg          guifg=fg         gui=none
+highlight Todo             guibg=#556677     guifg=#ff0000    gui=bold
+highlight Type             guibg=bg          guifg=#ccffaa    gui=bold
+highlight Typedef          guibg=bg          guifg=#99cc99    gui=italic
+highlight Underlined       guibg=bg          guifg=#99ccff    gui=underline
+highlight VertSplit        guibg=black       guifg=#ffeecc    gui=none
+highlight Visual           guibg=#557799     guifg=white      gui=none
+highlight htmlH1           guibg=bg          guifg=#ffffff    gui=bold
+highlight htmlH2           guibg=bg          guifg=#dadada    gui=bold
+highlight htmlH3           guibg=bg          guifg=#c6c6c6    gui=bold
+highlight htmlH4           guibg=bg          guifg=#b2b2b2    gui=bold
+highlight htmlH5           guibg=bg          guifg=#9e9e9e    gui=bold
+highlight htmlH6           guibg=bg          guifg=#8a8a8a    gui=bold
+highlight linenr           guibg=#262626     guifg=#808080    gui=bold
+
+highlight link             CursorIM          Cursor
+highlight link             Macro             Include
+highlight link             MoreMsg           ModeMsg
+highlight link             PreCondit         Include
+highlight link             Search            IncSearch
+highlight link             WarningMsg        ErrorMsg
 
 " Terminal colors
-hi Normal           cterm=none        ctermfg=255      ctermbg=233
-hi IncSearch        cterm=none        ctermfg=255      ctermbg=25
-hi Search           cterm=none        ctermfg=255      ctermbg=25
-hi OverLength       cterm=none        ctermfg=1
-hi Boolean          cterm=none        ctermfg=13       ctermbg=none
-hi Character        cterm=bold        ctermfg=230      ctermbg=none
-hi ColorColumn      cterm=none        ctermfg=none     ctermbg=234
-hi Comment          cterm=none        ctermfg=240      ctermbg=none
-hi Conditional      cterm=bold        ctermfg=149      ctermbg=none
-hi Constant         cterm=bold        ctermfg=255      ctermbg=none
-hi Cursor           cterm=bold        ctermfg=255      ctermbg=167
-hi CursorIM         cterm=bold        ctermfg=255      ctermbg=167
-hi Debug            cterm=none        ctermfg=210      ctermbg=none
-hi Define           cterm=bold        ctermfg=68       ctermbg=none
-hi Delimiter        cterm=bold        ctermfg=255      ctermbg=none
-hi DiffAdd          cterm=none        ctermfg=10       ctermbg=none
-hi DiffChange       cterm=none        ctermfg=255      ctermbg=235
-hi DiffDelete       cterm=none        ctermfg=9        ctermbg=none
-hi DiffText         cterm=bold        ctermfg=255      ctermbg=2
-hi Directory        cterm=none        ctermfg=64       ctermbg=none
-hi Error            cterm=none        ctermfg=255      ctermbg=196
-hi ErrorMsg         cterm=bold        ctermfg=196      ctermbg=none
-hi Exception        cterm=bold        ctermfg=86       ctermbg=none
-hi Float            cterm=bold        ctermfg=153      ctermbg=none
-hi FoldColumn       cterm=none        ctermfg=0        ctermbg=240
-hi Folded           cterm=none        ctermfg=0        ctermbg=240
-hi Function         cterm=bold        ctermfg=229      ctermbg=none
-hi Identifier       cterm=none        ctermfg=223      ctermbg=none
-hi Ignore           cterm=none        ctermfg=251      ctermbg=none
-hi Include          cterm=bold        ctermfg=114      ctermbg=none
-hi Keyword          cterm=bold        ctermfg=86       ctermbg=none
-hi Label            cterm=bold        ctermfg=225      ctermbg=none
-hi Linear           cterm=none        ctermfg=248      ctermbg=none
-hi Macro            cterm=bold        ctermfg=114      ctermbg=none
-hi MatchParen       cterm=none        ctermfg=0        ctermbg=208
-hi ModeMsg          cterm=none        ctermfg=230      ctermbg=none
-hi MoreMsg          cterm=none        ctermfg=230      ctermbg=none
-hi NonText          cterm=none        ctermfg=230      ctermbg=60
-hi Number           cterm=bold        ctermfg=153      ctermbg=none
-hi Operator         cterm=bold        ctermfg=173      ctermbg=none
-hi Pmenu            cterm=none        ctermfg=0        ctermbg=3
-hi PmenuSel         cterm=none        ctermfg=0        ctermbg=7
-hi PreCondit        cterm=bold        ctermfg=114      ctermbg=none
-hi PreProc          cterm=bold        ctermfg=222      ctermbg=none
-hi Question         cterm=none        ctermfg=194      ctermbg=none
-hi Repeat           cterm=bold        ctermfg=208      ctermbg=none
-hi Special          cterm=bold        ctermfg=153      ctermbg=none
-hi SpecialChar      cterm=bold        ctermfg=153      ctermbg=none
-hi SpecialComment   cterm=bold        ctermfg=253      ctermbg=24
-hi SpellBad         cterm=none        ctermfg=0        ctermbg=1
-hi Statement        cterm=bold        ctermfg=230      ctermbg=none
-hi StatusLine       cterm=bold        ctermfg=255      ctermbg=167
-hi StatusLineNC     cterm=none        ctermfg=16       ctermbg=229
-hi StorageClass     cterm=bold        ctermfg=78       ctermbg=none
-hi String           cterm=none        ctermfg=230      ctermbg=none
-hi Structure        cterm=bold        ctermfg=114      ctermbg=none
-hi Tag              cterm=bold        ctermfg=153      ctermbg=none
-hi Title            cterm=bold        ctermfg=255      ctermbg=none
-hi Type             cterm=bold        ctermfg=193      ctermbg=none
-hi Typedef          cterm=bold        ctermfg=114      ctermbg=none
-hi VertSplit        cterm=none        ctermfg=0        ctermbg=229
-hi Visual           cterm=none        ctermfg=255      ctermbg=68
-hi WarningMsg       cterm=bold        ctermfg=196      ctermbg=none
-hi htmlH1           cterm=bold        ctermfg=255      ctermbg=none
-hi htmlH2           cterm=bold        ctermfg=253      ctermbg=none
-hi htmlH3           cterm=bold        ctermfg=251      ctermbg=none
-hi htmlH4           cterm=bold        ctermfg=249      ctermbg=none
-hi htmlH5           cterm=bold        ctermfg=247      ctermbg=none
-hi htmlH6           cterm=bold        ctermfg=245      ctermbg=none
-hi linenr           cterm=bold        ctermfg=244      ctermbg=235
+highlight Normal           cterm=none        ctermfg=255      ctermbg=233
+highlight IncSearch        cterm=none        ctermfg=255      ctermbg=25
+highlight Search           cterm=none        ctermfg=255      ctermbg=25
+highlight OverLength       cterm=none        ctermfg=1
+highlight Boolean          cterm=none        ctermfg=13       ctermbg=none
+highlight Character        cterm=bold        ctermfg=230      ctermbg=none
+highlight ColorColumn      cterm=none        ctermfg=none     ctermbg=234
+highlight Comment          cterm=none        ctermfg=240      ctermbg=none
+highlight Conditional      cterm=bold        ctermfg=149      ctermbg=none
+highlight Constant         cterm=bold        ctermfg=255      ctermbg=none
+highlight Cursor           cterm=bold        ctermfg=255      ctermbg=167
+highlight CursorIM         cterm=bold        ctermfg=255      ctermbg=167
+highlight Debug            cterm=none        ctermfg=210      ctermbg=none
+highlight Define           cterm=bold        ctermfg=68       ctermbg=none
+highlight Delimiter        cterm=bold        ctermfg=255      ctermbg=none
+highlight DiffAdd          cterm=none        ctermfg=10       ctermbg=none
+highlight DiffChange       cterm=none        ctermfg=255      ctermbg=235
+highlight DiffDelete       cterm=none        ctermfg=9        ctermbg=none
+highlight DiffText         cterm=bold        ctermfg=255      ctermbg=2
+highlight Directory        cterm=none        ctermfg=64       ctermbg=none
+highlight Error            cterm=none        ctermfg=255      ctermbg=196
+highlight ErrorMsg         cterm=bold        ctermfg=196      ctermbg=none
+highlight Exception        cterm=bold        ctermfg=86       ctermbg=none
+highlight Float            cterm=bold        ctermfg=153      ctermbg=none
+highlight FoldColumn       cterm=none        ctermfg=0        ctermbg=240
+highlight Folded           cterm=none        ctermfg=0        ctermbg=240
+highlight Function         cterm=bold        ctermfg=229      ctermbg=none
+highlight Identifier       cterm=none        ctermfg=223      ctermbg=none
+highlight Ignore           cterm=none        ctermfg=251      ctermbg=none
+highlight Include          cterm=bold        ctermfg=114      ctermbg=none
+highlight Keyword          cterm=bold        ctermfg=86       ctermbg=none
+highlight Label            cterm=bold        ctermfg=225      ctermbg=none
+highlight Linear           cterm=none        ctermfg=248      ctermbg=none
+highlight Macro            cterm=bold        ctermfg=114      ctermbg=none
+highlight MatchParen       cterm=none        ctermfg=0        ctermbg=208
+highlight ModeMsg          cterm=none        ctermfg=230      ctermbg=none
+highlight MoreMsg          cterm=none        ctermfg=230      ctermbg=none
+highlight NonText          cterm=none        ctermfg=230      ctermbg=60
+highlight Number           cterm=bold        ctermfg=153      ctermbg=none
+highlight Operator         cterm=bold        ctermfg=173      ctermbg=none
+" highlight Pmenu            cterm=none        ctermfg=0        ctermbg=3
+" highlight PmenuSel         cterm=none        ctermfg=0        ctermbg=7
+highlight PreCondit        cterm=bold        ctermfg=114      ctermbg=none
+highlight PreProc          cterm=bold        ctermfg=222      ctermbg=none
+highlight Question         cterm=none        ctermfg=194      ctermbg=none
+highlight Repeat           cterm=bold        ctermfg=208      ctermbg=none
+highlight Special          cterm=bold        ctermfg=153      ctermbg=none
+highlight SpecialChar      cterm=bold        ctermfg=153      ctermbg=none
+highlight SpecialComment   cterm=bold        ctermfg=253      ctermbg=24
+highlight SpellBad         cterm=none        ctermfg=0        ctermbg=1
+highlight Statement        cterm=bold        ctermfg=230      ctermbg=none
+highlight StatusLine       cterm=bold        ctermfg=255      ctermbg=167
+highlight StatusLineNC     cterm=none        ctermfg=16       ctermbg=229
+highlight StorageClass     cterm=bold        ctermfg=78       ctermbg=none
+highlight String           cterm=none        ctermfg=230      ctermbg=none
+highlight Structure        cterm=bold        ctermfg=114      ctermbg=none
+highlight Tag              cterm=bold        ctermfg=153      ctermbg=none
+highlight Title            cterm=bold        ctermfg=255      ctermbg=none
+highlight Type             cterm=bold        ctermfg=193      ctermbg=none
+highlight Typedef          cterm=bold        ctermfg=114      ctermbg=none
+highlight VertSplit        cterm=none        ctermfg=0        ctermbg=229
+highlight Visual           cterm=none        ctermfg=255      ctermbg=68
+highlight WarningMsg       cterm=bold        ctermfg=196      ctermbg=none
+highlight htmlH1           cterm=bold        ctermfg=255      ctermbg=none
+highlight htmlH2           cterm=bold        ctermfg=253      ctermbg=none
+highlight htmlH3           cterm=bold        ctermfg=251      ctermbg=none
+highlight htmlH4           cterm=bold        ctermfg=249      ctermbg=none
+highlight htmlH5           cterm=bold        ctermfg=247      ctermbg=none
+highlight htmlH6           cterm=bold        ctermfg=245      ctermbg=none
+highlight linenr           cterm=bold        ctermfg=244      ctermbg=235
 
-hi link             javaScriptDotNotation Function
+highlight link             javaScriptDotNotation Function
