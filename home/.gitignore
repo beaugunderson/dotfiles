@@ -16,4 +16,8 @@ LOCK
 *.log
 *.lock
 
+*.afdesign
+
 test.sh
+
+build/
