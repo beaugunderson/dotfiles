@@ -126,8 +126,10 @@ fi
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && \
   source $HOME/.tmuxinator/scripts/tmuxinator
 
-alias ag="pt -f --home-ptignore"
-alias aga="pt -f --depth=50 --skip-vcs-ignores --noptignore -U"
+# alias ag="pt -f --home-ptignore"
+# alias aga="pt -f --depth=50 --skip-vcs-ignores --noptignore -U"
+
+alias agn="tag --ignore migrations --ignore fixtures"
 
 alias c="ls -1 | wc -l"
 
@@ -351,5 +353,14 @@ function _prompt_command {
   PS1="$BOX_COLOR$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u`virtualenv_status`"
   PS1="$PS1 $MEDIUM_GRAY\w`git_status`$NOTHING "
 }
+
+
+if hash ag 2>/dev/null; then
+  tag() {
+    command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
+  }
+
+  alias ag=tag
+fi
 
 PROMPT_COMMAND=_prompt_command
