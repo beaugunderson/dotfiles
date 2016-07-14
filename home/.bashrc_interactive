@@ -148,6 +148,7 @@ alias treed="tree -C -I node_modules -I \*.pyc --du --si --sort=size --dirsfirst
 alias vim="nvim"
 
 alias work="cd ~/p/open-humans && workon open-humans"
+alias work-data="cd ~/p/open-humans-data-processing && workon processing"
 
 shell_is_linux && alias bower="bower --allow-root"
 
