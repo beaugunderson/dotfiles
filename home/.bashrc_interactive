@@ -184,7 +184,7 @@ alias lll="$LS -ahlF $LS_OPTIONS"
 
 alias p="projects"
 
-export FZF_DEFAULT_OPTS="--extended --select-1 --sort=2500"
+export FZF_DEFAULT_OPTS="--extended --select-1 --sort=2500 --inline-info"
 
 contract-home() {
   sed "s|^$HOME|~|"
