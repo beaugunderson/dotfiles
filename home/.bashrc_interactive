@@ -275,10 +275,6 @@ shell_is_linux && \
   [ -f /usr/share/bash-completion/bash_completion ] && \
     source /usr/share/bash-completion/bash_completion
 
-# Source brew completion
-shell_is_osx && \
-  source `brew --repository`/Library/Contributions/brew_bash_completion.sh
-
 # Source SSH completion
 # TODO: Get this for free if moved to ~/.bash_completion/ssh.sh
 source ~/.completion/ssh.sh
