@@ -6,9 +6,10 @@ export NODE_REPL_HISTORY_FILE=~/.node-history
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTFILE=~/.bash_eternal_history
 export HISTFILESIZE=
-export HISTIGNORE="&:[bf]g:exit"
+export HISTIGNORE="&:[bf]g:exit:ls:history:clear"
 export HISTSIZE=
 export HISTTIMEFORMAT="[%F %T] "
+export HISTCONTROL="erasedups:ignoreboth"
 
 export INPUTRC=~/.inputrc
 export PAGER="less -r"
@@ -50,7 +51,6 @@ export PATH=$PATH:/usr/local/go/bin:/usr/local/heroku/bin:/usr/games:$GOPATH/bin
 # Hardcode Postgres on OS X
 shell_is_osx && export PATH=$PATH:/Applications/Postgres.app/Contents/MacOS/bin
 
-export PROMPT_COMMAND="history -a"
 export SHELL=`which bash`
 export SSH_ENV=$HOME/.ssh/environment
 
@@ -70,12 +70,17 @@ export LANG=en_US.UTF-8
 unset LC_ALL
 
 shopt -s checkwinsize
-shopt -s cdspell
+shopt -s autocd 2> /dev/null
+shopt -s dirspell 2> /dev/null
+shopt -s cdspell 2> /dev/null
 shopt -s cmdhist
 shell_is_linux && shopt -s dirspell
 # append to the history file, don't overwrite it
 shopt -s histappend
 shopt -s no_empty_cmd_completion
+shopt -s globstar 2> /dev/null
+
+export PROMPT_DIRTRIM=2
 
 # Ignore Ctrl-S, Ctrl-Q
 stty -ixon -ixoff
