@@ -212,8 +212,8 @@ po() {
 
 # edit a project file with $EDITOR via fzf
 # note: requires gnu find
-pe() {
-  FILTERS='-type f '
+pe_base() {
+  FILTERS=$1
 
   # filter out .git and node_modules with -prune to make the find much faster
   FILTERS+='-not -path \*/.git/\* -prune '
@@ -224,21 +224,25 @@ pe() {
   if PROJECT_DIRECTORY=`projects resolve --relative .`; then
     FILE=$(bash -c "find $PROJECT_DIRECTORY \
       $FILTERS $ADDITIONAL_FILTERS 2> /dev/null" | \
-        ignore-pipe | contract-home | fzf)
+        ignore-pipe | contract-home | fzf --query "$2")
   else
     FILE=$(projects glob --expand | \
       xargs -I {} bash -c "find "{}" \
         $FILTERS $ADDITIONAL_FILTERS 2> /dev/null" | \
-         ignore-pipe | contract-home | fzf)
+         ignore-pipe | contract-home | fzf --query "$2")
   fi
 
   # bash -c needed to handle tilde expansion
   [ ! -z "$FILE" ] && bash -c "${EDITOR:-vim} "$FILE""
 }
 
-# edit a project file modified within in the last 7 days
+pe() {
+  pe_base "-type f " "$1"
+}
+
+# edit a project file modified within the last 7 days
 per() {
-  pe "-mtime -7"
+  pe_base "-type f -mtime -7 " "$1"
 }
 
 alias gs="git status"
