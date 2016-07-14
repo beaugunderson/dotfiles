@@ -37,6 +37,7 @@
 [diff]
 	renames = copies
 	noprefix = true
+	compactionHeuristic = true
 	# wordRegex
 [grep]
 	lineNumber = true
