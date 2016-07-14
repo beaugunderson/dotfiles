@@ -35,6 +35,10 @@ shell_is_osx && \
 shell_is_osx && \
   export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
+# Add CUDA tools
+shell_is_osx && \
+  export PATH=$PATH:/Developer/NVIDIA/CUDA-7.5/bin
+
 # Reset the path
 shell_is_linux && export PATH=
 
