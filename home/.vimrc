@@ -264,9 +264,6 @@ set showtabline=2
 
 set completeopt=menu,preview,longest,noinsert
 
-" XXX: Broken with iTerm2 nightly? Displays the output in the command line.
-" set t_RV=
-
 set browsedir=buffer
 set wildignore=*.o,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png,*.pyc,.git,.svn
 
