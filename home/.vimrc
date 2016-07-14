@@ -26,26 +26,36 @@ Plug 'othree/yajs.vim', {'for': 'javascript'}
 Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
 Plug 'othree/jspc.vim', {'for': 'javascript'}
 Plug 'gavocanov/vim-js-indent', {'for': 'javascript'}
-Plug 'rhysd/npm-debug-log.vim'
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'GutenYe/json5.vim', {'for': 'json'}
 
+" Python plugins
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'tweekmonster/braceless.vim', {'for': 'python'}
+Plug 'tweekmonster/django-plus.vim', {'for': 'python'}
+Plug 'tweekmonster/impsort.vim', {'for': 'python'}
+" Plug 'hdima/python-syntax', {'for': 'python'}
+
+" Go plugins
+Plug 'fatih/vim-go', {'for': 'go'}
+
 " Other plugins
 Plug 'airblade/vim-gitgutter'
-Plug 'benekastah/neomake'
 Plug 'bogado/file-line'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'embear/vim-localvimrc'
-Plug 'hdima/python-syntax', {'for': 'python'}
+Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-emoji'
-Plug 'scrooloose/syntastic'
+Plug 'justinmk/vim-gtfo'
+Plug 'Konfekt/FastFold'
+Plug 'rhysd/npm-debug-log.vim'
 Plug 'Shougo/vimproc', {'do': 'make'}
 Plug 'syngan/vim-vimlint', {'for': 'vim'}
 Plug 'todesking/vint-syntastic', {'for': 'vim'}
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
@@ -61,22 +71,36 @@ Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 Plug 'zirrostig/vim-schlepp'
 
 if !has('nvim')
+  Plug 'scrooloose/syntastic'
   Plug 'Shougo/neocomplete.vim'
 else
-  Plug 'Shougo/deoplete'
+  Plug 'benekastah/neomake'
+
+  function! DoRemote(arg)
+    UpdateRemotePlugins
+  endfunction
+
+  Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
+  Plug 'zchee/deoplete-jedi', {'for': 'python'}
+  Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
 endif
 
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
+
+set termguicolors
 
 source ~/.vim/vimrc/jedi.vim
 
 if !has('nvim')
   source ~/.vim/vimrc/neocomplete.vim
+  source ~/.vim/vimrc/syntastic.vim
 else
-  let g:deoplete#enable_at_startup = 1
+  source ~/.vim/vimrc/deoplete.vim
+  source ~/.vim/vimrc/neomake.vim
 endif
 
-source ~/.vim/vimrc/syntastic.vim
 " source ~/.vim/vimrc/unite.vim
 
 vmap <unique> <s-left> <plug>SchleppLeft
@@ -238,7 +262,7 @@ set modelines=0
 set noshowmode
 set showtabline=2
 
-set completeopt=menu,preview,longest
+set completeopt=menu,preview,longest,noinsert
 
 " XXX: Broken with iTerm2 nightly? Displays the output in the command line.
 " set t_RV=
