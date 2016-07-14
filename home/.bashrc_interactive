@@ -13,15 +13,12 @@ export HISTCONTROL="erasedups:ignoreboth"
 
 export INPUTRC=~/.inputrc
 export PAGER="less -r"
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # true color support by default in neovim
-export NVIM_TUI_ENABLE_TRUE_COLOR=1
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 export FIGNORE=$FIGNORE:.pyc:.o
-
-# git wants to use /usr/bin/vim instead of /usr/local/bin/vim on OS X
-shell_is_osx && export GIT_EDITOR="/usr/local/bin/vim"
 
 # Hardcode ruby on OS X
 shell_is_osx && export PATH=$(brew --prefix ruby)/bin
@@ -141,6 +138,8 @@ alias k='zsh -c ". ~/.bin/k.sh; k"'
 
 alias tree="tree -C -I node_modules -I \*.pyc"
 alias treed="tree -C -I node_modules -I \*.pyc --du --si --sort=size --dirsfirst"
+
+alias vim="nvim"
 
 alias work="cd ~/p/open-humans && workon open-humans"
 
