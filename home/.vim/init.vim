@@ -1,1 +1,1 @@
-/Users/beau/.vimrc
+../.vimrc
