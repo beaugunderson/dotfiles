@@ -7,7 +7,9 @@ augroup Neomake
   autocmd QuitPre * let g:neomake_verbose = 0
 augroup END
 
-let g:neomake_javascript_enabled_makers = ['eslint', 'jscs']
+let g:neomake_javascript_enabled_makers = ['eslint_d', 'jscs']
+
+let g:neomake_python_enabled_makers = ['flake8', 'pylint', 'pep257']
 
 " let g:neomake_warning_sign = {
 "   \ 'text': 'W',
