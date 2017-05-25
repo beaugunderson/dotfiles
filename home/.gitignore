@@ -22,3 +22,6 @@ test.sh
 
 build/
 site-packages/
+
+.floo
+.flooignore
