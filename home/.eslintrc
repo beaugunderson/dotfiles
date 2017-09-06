@@ -21,7 +21,7 @@
     "computed-property-spacing": [2, "never"],
     "consistent-this": [1, "self"],
     "default-case": 2,
-    "eqeqeq": ["error", "allow-null"],
+    "eqeqeq": [1, "allow-null"],
     "func-style": [2, "declaration"],
     "guard-for-in": 2,
     "indent": [2, 2],
@@ -48,7 +48,7 @@
     "radix": 2,
     "semi": [2, "always"],
     "semi-spacing": [2, {"before": false, "after": true}],
-    "keyword-spacing": ["error", {
+    "keyword-spacing": [2, {
       "before": true,
       "after": true
     }],
