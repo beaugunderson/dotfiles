@@ -11,17 +11,17 @@
 	local = 214
 	remote = 10
 [color "diff"]
-	meta = yellow bold
-	commit = green bold
+	commit = 227 bold
 	frag = magenta bold
-	old = red bold
+	meta = 227
 	new = green bold
+	old = red bold
 	whitespace = red reverse
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = "red bold 52"
+	newHighlight = green bold 22
 	newNormal = green bold
-	newHighlight = "green bold 22"
+	oldHighlight = red bold 52
+	oldNormal = red bold
 [color "status"]
 	added = 214
 	changed = 10
