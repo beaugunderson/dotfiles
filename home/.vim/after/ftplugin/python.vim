@@ -1,15 +1,25 @@
-let python_highlight_all = 1
+let g:python_highlight_all = 1
 
-if getline(1) =~ '^#!.*python3$'
-  " TODO: Set this based on hashbang or some other metric
-  let g:syntastic_python_python_exec = '/usr/local/bin/python3'
-  let g:syntastic_python_pylint_exe = '/usr/local/bin/python3 /usr/local/bin/pylint'
-  let g:syntastic_python_flake8_exe = '/usr/local/bin/python3 /usr/local/bin/flake8'
-else
-  let g:syntastic_python_python_exec = '/usr/local/bin/python'
-  let g:syntastic_python_pylint_exe = '/usr/local/bin/python /usr/local/bin/pylint'
-  let g:syntastic_python_flake8_exe = '/usr/local/bin/python /usr/local/bin/flake8'
-endif
+" if getline(1) =~ '^#!.*python3$'
+"   " TODO: Set this based on hashbang or some other metric
+"   let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+"   let g:syntastic_python_pylint_exe = '/usr/local/bin/python3 /usr/local/bin/pylint'
+"   let g:syntastic_python_flake8_exe = '/usr/local/bin/python3 /usr/local/bin/flake8'
+"   let g:syntastic_python_pep257_exe = '/usr/local/bin/python3 /usr/local/bin/pep257'
+" else
+"   let g:syntastic_python_python_exec = '/usr/local/bin/python'
+"   let g:syntastic_python_pylint_exe = '/usr/local/bin/python /usr/local/bin/pylint'
+"   let g:syntastic_python_flake8_exe = '/usr/local/bin/python /usr/local/bin/flake8'
+"   let g:syntastic_python_pep257_exe = '/usr/local/bin/python /usr/local/bin/pep257'
+" endif
+
+" turn off vim's awful indentation
+" filetype indent off
+
+let g:braceless_generate_scripts = 1
+
+" turn on braceless' better indentation
+BracelessEnable +indent +highlight-cc2
 
 setl expandtab
 setl tabstop=4
