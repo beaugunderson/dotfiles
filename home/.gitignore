@@ -21,3 +21,4 @@ LOCK
 test.sh
 
 build/
+site-packages/
