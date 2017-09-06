@@ -6,6 +6,7 @@
 	whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=2
 	excludesfile = ~/.gitignore
 	untrackedCache = true
+	disambiguate = commit
 [color "branch"]
 	current = 214 reverse
 	local = 214
@@ -37,20 +38,23 @@
 [diff]
 	renames = copies
 	noprefix = true
-	compactionHeuristic = true
+	renameLimit = 5000
 	# wordRegex
 [grep]
 	lineNumber = true
 	extendedRegexp = true
 [alias]
-	# git reauthor $START..$END
-	reauthor = !sh -c 'eval `git log --reverse --topo-order --pretty=format:\"git cherry-pick %H && git commit --amend -C %H --author=\\\"%aN <%aE>\\\" && \" $0 `"echo success"'
+	diff = diff -w
+	diffr = diff --relative -w
+	# le: last edited; order branches by the last commit date
+	le = for-each-ref --sort=-committerdate --format='%(align:width=32)%(refname:short)%(end) %(committerdate:relative)' refs/heads/
 	lg = log --graph --decorate --all --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	ls = ls-files
-	cs = clone -p
-	update-submodules = submodule foreach git pull --no-rebase origin master
 	# Show files ignored by git:
-	ign = ls-files -o -i --exclude-standard
+	ls-ignored = ls-files -o -i --exclude-standard
+	# git reauthor $START..$END
+	reauthor = !sh -c 'eval `git log --reverse --topo-order --pretty=format:\"git cherry-pick %H && git commit --amend -C %H --author=\\\"%aN <%aE>\\\" && \" $0 `"echo success"'
+	update-submodules = submodule foreach git pull --no-rebase origin master
 	wdiff = diff --color-words
 [pull]
 	rebase = true
