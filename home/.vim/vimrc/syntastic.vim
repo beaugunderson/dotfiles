@@ -19,7 +19,7 @@ let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_jump = 3
 
 let g:syntastic_javascript_checkers = ['eslint', 'jscs']
-let g:syntastic_python_checkers = ['pylint', 'flake8', 'pep257']
+let g:syntastic_python_checkers = ['pylint', 'flake8', 'pydocstyle']
 let g:syntastic_vim_checkers = ['vimlint', 'vint']
 
 " Use a tidy that supports HTML5
