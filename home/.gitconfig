@@ -52,14 +52,6 @@
 	# Show files ignored by git:
 	ign = ls-files -o -i --exclude-standard
 	wdiff = diff --color-words
-	switch = !legit switch \"$@\"
-	branches = !legit branches
-	sprout = !legit sprout \"$@\"
-	unpublish = !legit unpublish \"$@\"
-	harvest = !legit harvest \"$@\"
-	sync = !legit sync \"$@\"
-	publish = !legit publish \"$@\"
-	graft = !legit graft \"$@\"
 [pull]
 	rebase = true
 [rebase]
