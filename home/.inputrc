@@ -1,5 +1,5 @@
+# do history expansion when space entered
 $if Bash
-  #do history expansion when space entered
   Space: magic-space
 $endif
 
@@ -26,6 +26,9 @@ Control-k: menu-complete-backward
 set convert-meta off
 set input-meta on
 set output-meta on
+
+set colored-completion-prefix on
+set colored-stats on
 
 set completion-ignore-case on
 set completion-map-case on
