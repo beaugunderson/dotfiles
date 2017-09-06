@@ -68,6 +68,7 @@ sudo -H pip3 install --upgrade virtualenvwrapper
 shell_is_osx && gem install lolcommits
 
 gem install foreman
+gem install homesick
 gem install neovim
 gem install tmuxinator
 
