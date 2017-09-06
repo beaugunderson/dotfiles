@@ -1,20 +1,14 @@
 #!/usr/bin/env bash
 
-red=`tput setaf 1`
-green=`tput setaf 2`
-reset=`tput sgr0`
+red=$(tput setaf 1)
+reset=$(tput sgr0)
 
-casks=( $(brew cask list) )
+outdated=( $(brew cask outdated | awk '$1') )
 
-for cask in ${casks[@]}
+for cask in "${outdated[@]}"
 do
-    installed="$(brew cask info $cask | grep 'Not installed')"
+    echo "${red}${cask}${reset} requires ${red}update${reset}."
 
-    if [[ $installed = *[!\ ]* ]]; then
-        echo "${red}${cask}${reset} requires ${red}update${reset}."
-        (set -x; brew cask uninstall $cask --force;)
-        (set -x; brew cask install $cask --force;)
-    else 
-        echo "${red}${cask}${reset} is ${green}up-to-date${reset}."
-    fi
+    (set -x; brew cask uninstall "$cask" --force;)
+    (set -x; brew cask install "$cask" --force;)
 done
