@@ -1,7 +1,15 @@
+#!/usr/bin/env bash
+
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 export BASH_ENV=$HOME/.bashrc
 
 # support for node history
-export NODE_REPL_HISTORY_FILE=~/.node-history
+export NODE_REPL_HISTORY=~/.node-history
+
+# yarn build_dev likes to die with out of memory errors
+export NODE_OPTIONS=--max_old_space_size=4096
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTFILE=~/.bash_eternal_history
@@ -11,25 +19,26 @@ export HISTSIZE=
 export HISTTIMEFORMAT="[%F %T] "
 export HISTCONTROL="erasedups:ignoreboth"
 
-export INPUTRC=~/.inputrc
-export PAGER="less -r"
-export EDITOR="nvim"
-
-# true color support by default in neovim
-export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+export TZ="America/Los_Angeles"
 
 export FIGNORE=$FIGNORE:.pyc:.o
 
+export EDITOR=/usr/local/bin/nvim
+
+# Disable Terminal.app's sessions
+shell_is_osx && export SHELL_SESSION_HISTORY=0
+
 # Hardcode ruby on OS X
-shell_is_osx && export PATH=$(brew --prefix ruby)/bin
+shell_is_osx && export PATH="$(brew --prefix ruby)/bin"
+
+# Add brewed Python2
+# shell_is_osx && export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
+export PYTHONBREAKPOINT=pudb.set_trace
 
 # Add swift toolchain on OS X
 shell_is_osx && \
   export PATH=$PATH:./Applications/Xcode6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-
-# Add AWS tools
-shell_is_osx && \
-  export PATH=$PATH:~/aws/AWS-ElasticBeanstalk-CLI-2.6.3/eb/macosx/python2.7
 
 # Add go
 shell_is_osx && \
@@ -43,17 +52,25 @@ shell_is_osx && \
 shell_is_linux && export PATH=
 
 # Add GOPATH
-export GOPATH=~/gocode
+shell_is_linux && export GOPATH=~/gocode
+shell_is_osx && export GOPATH=~/go
 
 export PATH=$PATH:$HOME/.bin:/bin:/usr/local/bin:/usr/bin:/sbin:/usr/sbin
 export PATH=$PATH:/usr/local/sbin:/usr/local/lib/php:/var/lib/gems/1.9/bin
 export PATH=$PATH:/usr/local/heroku/bin:/usr/games:$GOPATH/bin
+export PATH=$PATH:/opt/X11/bin:$HOME/.cargo/bin
+export PATH="$HOME/.yarn/bin:$PATH"
+
+# for MacPorts
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+export PATH=/Users/beau/.local/bin/luna-studio:$PATH
 
 # Hardcode Postgres on OS X
 shell_is_osx && export PATH=$PATH:/Applications/Postgres.app/Contents/MacOS/bin
 
-export SHELL=`which bash`
-export SSH_ENV=$HOME/.ssh/environment
+# export PATH=$HOME/.npmbrew/current/bin:$PATH
+
+export SHELL=$(which bash)
 
 shell_is_osx && export \
   JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"
@@ -64,18 +81,15 @@ export WORKON_HOME=~/.envs
 export LOLCOMMITS_FORK=true
 export LOLCOMMITS_STEALTH=true
 
-# UTF-8 support, fixes Ruby among other things
-export LC_CTYPE=en_US.UTF-8
-export LANG=en_US.UTF-8
+# maximize ridiculosity
+export ANSIBLE_COW_SELECTION=random
 
-unset LC_ALL
-
+shopt -s checkhash
 shopt -s checkwinsize
 shopt -s autocd 2> /dev/null
 shopt -s dirspell 2> /dev/null
 shopt -s cdspell 2> /dev/null
 shopt -s cmdhist
-shell_is_linux && shopt -s dirspell
 # append to the history file, don't overwrite it
 shopt -s histappend
 shopt -s no_empty_cmd_completion
@@ -92,14 +106,15 @@ set -o ignoreeof
 # Vi editing mode
 set -o vi
 
+export SSH_ENV=$HOME/.ssh/environment
+
 function start_agent {
   echo "Initialising new SSH agent..."
   /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-  echo succeeded
   chmod 600 "${SSH_ENV}"
   . "${SSH_ENV}" > /dev/null
-  /usr/bin/ssh-add;
-  [ -f ~/.ssh/heroku-pgp ] && /usr/bin/ssh-add ~/.ssh/heroku-pgp;
+  /usr/bin/ssh-add ~/.ssh/id_rsa
+  /usr/bin/ssh-add ~/.ssh/canvas_ed25519
 }
 
 # Source SSH settings, if applicable
@@ -124,14 +139,16 @@ fi
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && \
-  source $HOME/.tmuxinator/scripts/tmuxinator
+  source "$HOME/.tmuxinator/scripts/tmuxinator"
 
 # alias ag="pt -f --home-ptignore"
 # alias aga="pt -f --depth=50 --skip-vcs-ignores --noptignore -U"
 
-alias agn="tag --ignore migrations --ignore fixtures"
+alias outdated="pip list -l -o --format=columns"
 
-alias c="ls -1 | wc -l"
+# alias agn="tag --ignore migrations --ignore fixtures"
+
+# alias c="ls -1 | wc -l"
 
 # Add some github magic
 alias git=hub
@@ -147,23 +164,46 @@ alias treed="tree -C -I node_modules -I \*.pyc --du --si --sort=size --dirsfirst
 
 alias vim="nvim"
 
-alias work="cd ~/p/pcp && workon pcp"
-alias work-web="cd ~/p/canvas-web && workon canvas-web"
+alias dc=docker-compose
+alias dr="docker-compose run --service-ports --rm web"
+alias drn="docker-compose run --rm web"
+alias drm="docker-compose run --rm web ./manage.py"
+alias drms="docker-compose run --service-ports --rm web ./manage.py"
+alias dsa="docker stop \$(docker ps -a -q)"
+alias dt="docker-compose run --rm web ./manage.py test --parallel --exclude-tag=integration"
+alias dtk="docker-compose run --rm web ./manage.py test --keepdb --parallel --exclude-tag=integration"
+alias rebuild-home="docker-compose down; docker-compose build; dr ./wait-for-postgres.sh; drm migrate; drm build_canvas_clinic"
+
+alias surescripts-proxy="ssh -C -D 1080 staging"
+alias surescripts-directories="sudo ssh -L :443:dir-staging.surescripts.net:443 -i /Users/beau/.ssh/canvas_ed25519 ubuntu@52.35.245.124"
+alias surescripts-script="sudo ssh -L :443:smr-staging.surescripts.net:443 -i /Users/beau/.ssh/canvas_ed25519 ubuntu@52.35.245.124"
+
+alias ssh="TERM=xterm-256color ssh"
+
+# Open Humans
 alias work-oh="cd ~/p/open-humans && workon open-humans"
 alias work-oh-data="cd ~/p/open-humans-data-processing && workon processing"
+
+# Turn on and off IPv6, useful for maintaining anonymity on VPNs
+shell_is_osx && alias v6-off="networksetup -setv6off Wi-Fi"
+shell_is_osx && alias v6-on="networksetup -setv6automatic Wi-Fi"
+
+# Turn on and off tap behavior for the trackpad
+shell_is_osx && alias tap-on="defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1"
+shell_is_osx && alias tap-off="defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 0"
 
 shell_is_linux && alias bower="bower --allow-root"
 
 shell_is_osx && function dash {
-  open dash://$1
+  open "dash://$1"
 }
 
 # Fancy LS_COLORS
 DIRCOLORS=dircolors
 
-[ ! -z `which gdircolors 2> /dev/null` ] && DIRCOLORS=gdircolors
+[ ! -z "$(which gdircolors 2> /dev/null)" ] && DIRCOLORS=gdircolors
 
-eval $($DIRCOLORS -b $HOME/.dircolors)
+eval $($DIRCOLORS -b "$HOME/.dircolors")
 
 if [ -z `which gls 2> /dev/null` ] && shell_is_osx
 then
@@ -174,7 +214,7 @@ fi
 
 LS=ls
 
-[ ! -z `which gls 2> /dev/null` ] && LS=gls
+[ ! -z "$(which gls 2> /dev/null)" ] && LS=gls
 
 alias l="$LS -hF $LS_OPTIONS"
 alias ls="$LS -hF $LS_OPTIONS"
@@ -184,9 +224,15 @@ alias lrt="$LS -hlFrt $LS_OPTIONS"
 alias lx="$LS -hlFX $LS_OPTIONS"
 alias lll="$LS -ahlF $LS_OPTIONS"
 
-alias p="projects"
+alias p=projects
+alias px=path-extractor
 
+export FZF_DEFAULT_COMMAND='\rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,static-files}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--extended --select-1 --sort=2500 --inline-info"
+# export FZF_ALT_C_COMMAND="cd ~/; bfs -type d -nohidden | sed s/^\./~/"  
+
+bind -x '"\C-p": vim $(fzf);'
 
 contract-home() {
   sed "s|^$HOME|~|"
@@ -223,7 +269,7 @@ pe_base() {
 
   ADDITIONAL_FILTERS=$1
 
-  if PROJECT_DIRECTORY=`projects resolve --relative .`; then
+  if PROJECT_DIRECTORY=$(projects resolve --relative .); then
     FILE=$(bash -c "find $PROJECT_DIRECTORY \
       $FILTERS $ADDITIONAL_FILTERS 2> /dev/null" | \
         ignore-pipe | contract-home | fzf --query "$2")
@@ -235,7 +281,7 @@ pe_base() {
   fi
 
   # bash -c needed to handle tilde expansion
-  [ ! -z "$FILE" ] && bash -c "${EDITOR:-vim} "$FILE""
+  [ ! -z "$FILE" ] && bash -c "${EDITOR:-vim} \"$FILE\""
 }
 
 pe() {
@@ -247,13 +293,17 @@ per() {
   pe_base "-type f -mtime -7 " "$1"
 }
 
-alias gs="git status"
-alias gd="git diff -w"
+alias f="find . -name"
+
+alias ga="gid add"
+alias gd="git diffr"
+alias gda="git diff"
 alias gp="git push"
+alias gpom="git pull origin master"
+alias gs.="git status ."
+alias gs="git status"
 
 alias df="df -h"
-
-alias www-permissions="chown -R www-data: . && chmod -R ug+rw ."
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -261,7 +311,19 @@ alias ...="cd ../.."
 alias cd..="cd .."
 alias cd...="cd ../.."
 
-alias rmpyc="find . -name \*.pyc -print -delete"
+alias dc='popd'
+
+function cd() {
+  if [ $# -eq 0 ]; then
+    DIR="${HOME}"
+  else
+    DIR="$1"
+  fi
+
+  builtin pushd "${DIR}" > /dev/null
+}
+
+alias rmpyc="find . \( -name \*.pyc -or -name __pycache__ \) -print -delete"
 
 # Source AWS settings
 source ~/.bin/aws.sh
@@ -285,14 +347,33 @@ source ~/.completion/ssh.sh
 eval "$(npm completion -)"
 
 # Source fuzzy finder completions
-source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export WORKON_HOME=$HOME/.envs
+export PROJECT_HOME=$HOME/p
+
+export VIRTUALENVWRAPPER_PROJECT_CD=0
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 
 # Source virtualenvwrapper.sh if it exists
-[ -f /usr/local/bin/virtualenvwrapper.sh ] && \
-  source /usr/local/bin/virtualenvwrapper.sh
+[ -f /usr/local/bin/virtualenvwrapper_lazy.sh ] && \
+  source /usr/local/bin/virtualenvwrapper_lazy.sh
+
+# Canvas Medical
+alias work-home="cd ~/p/canvas/home-app && source $WORKON_HOME/home/bin/activate"
+alias work-messaging="cd ~/p/canvas/messaging && source $WORKON_HOME/messaging/bin/activate"
+alias work-ontologies="cd ~/p/canvas/ontologies && source $WORKON_HOME/ontologies/bin/activate"
+alias work-pharmacy="cd ~/p/canvas/pharmacy && source $WORKON_HOME/pharmacy/bin/activate"
+alias work-science="cd ~/p/canvas/science && source $WORKON_HOME/science/bin/activate"
+alias work-sdk="cd ~/p/science-sdk && source $WORKON_HOME/sdk/bin/activate"
+alias work-web="cd ~/p/canvas-web && source $WORKON_HOME/canvas-web/bin/activate"
+
+alias start-home="cd ~/p/canvas/home-app && tmuxinator start ."
+alias start-lighthouse="cd ~/p/canvas/lighthouse && tmuxinator start ."
 
 # Source host-specific options
-[ -f ~/.hosts/$HOSTNAME.sh ] && source ~/.hosts/$HOSTNAME.sh
+[ -f "$HOME/.hosts/$HOSTNAME.sh" ] && source "$HOME/.hosts/$HOSTNAME.sh"
 
 # Create Prompt
 if shell_is_linux
@@ -302,7 +383,7 @@ else
   BOX_COLOR="\[\e[0;32m\]"
 fi
 
-WHITE="\[\e[1;37m\]"
+# WHITE="\[\e[1;37m\]"
 RED="\[\e[1;31m\]"
 GRAY="\[\e[38;05;239m\]"
 LIGHT_GRAY="\[\e[38;05;235m\]"
@@ -312,13 +393,24 @@ YELLOW="\[\e[38;05;172m\]"
 NOTHING="\[\e[0m\]"
 
 # If I use literal Unicode characters then it wedges bash on OS X
-BOX=`echo -e "\xE2\x97\xBC"`
+BOX=$(echo -e "\xE2\x97\xBC")
 SLASH="/"
 
 if (($SHLVL > 1))
 then
   BOX_COLOR=$MEDIUM_GRAY
 fi
+
+# Usage: codi [filetype] [filename]
+codi() {
+  vim "$2" -c \
+    "let g:startify_disable_at_vimenter = 1 |\
+    set buftype=nofile laststatus=0 nonu nornu |\
+    hi ColorColumn ctermbg=NONE |\
+    hi VertSplit ctermbg=NONE |\
+    hi NonText ctermfg=0 |\
+    Codi ${1:-python}"
+}
 
 function git_branch {
   command git branch --no-color 2> /dev/null | \
@@ -345,7 +437,7 @@ function git_status {
 function virtualenv_status {
   if [[ $VIRTUAL_ENV ]]
   then
-    echo -e " $YELLOW`basename $VIRTUAL_ENV`"
+    echo -e " $YELLOW$(basename $VIRTUAL_ENV)"
   fi
 }
 
@@ -353,17 +445,64 @@ function _prompt_command {
   # Save history after each command
   history -a
 
-  PS1="$BOX_COLOR$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u`virtualenv_status`"
-  PS1="$PS1 $MEDIUM_GRAY\w`git_status`$NOTHING "
+  # Set window title for time-tracking purposes
+  # https://timingapp.com/help/terminal
+  echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"
+
+  PS1="\[$(iterm2_prompt_mark)\]"
+  PS1="$PS1 $BOX_COLOR$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u$(virtualenv_status)"
+  PS1="$PS1 $MEDIUM_GRAY\w$(git_status)$NOTHING "
 }
 
+PROMPT_COMMAND=_prompt_command
 
-if hash ag 2>/dev/null; then
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
+export TAG_SEARCH_PROG=rg
+
+if hash rg 2>/dev/null; then
   tag() {
     command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
   }
 
-  alias ag=tag
+  alias rg=tag
 fi
 
-PROMPT_COMMAND=_prompt_command
+alias rgjs='rg --type js'
+alias rgpy='rg --type py'
+alias rgxml='rg --type xml'
+
+alias ag=rg
+alias agpy=rgpy
+alias agjs=rgjs
+
+man() {
+  env \
+    LESS_TERMCAP_md=$'\e[1;36m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[1;41m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[1;32m' \
+    man "$@"
+}
+
+# export NVM_DIR="$HOME/.nvm"
+# source "$(brew --prefix nvm)/nvm.sh"
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+lips() {
+  local ip=`ifconfig en0 | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}'`
+  local locip extip
+
+  [ "$ip" != "" ] && locip=$ip || locip="inactive"
+
+  ip=`dig +short myip.opendns.com @resolver1.opendns.com`
+  [ "$ip" != "" ] && extip=$ip || extip="inactive"
+
+  printf '%11s: %s\n%11s: %s\n' "Local IP" $locip "External IP" $extip
+}
+
+# SDR
+alias baudline="DYLD_LIBRARY_PATH=/opt/X11/lib/flat_namespace:\$DYLD_LIBRARY_PATH /Applications/baudline.app/Contents/Resources/baudline"
