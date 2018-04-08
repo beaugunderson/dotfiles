@@ -3,8 +3,9 @@ $if Bash
   Space: magic-space
 $endif
 
-Control-j: menu-complete
-Control-k: menu-complete-backward
+# these break tmuxinator
+# Control-j: menu-complete
+# Control-k: menu-complete-backward
 
 "\M-s": menu-complete
 
