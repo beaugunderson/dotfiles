@@ -1,8 +1,15 @@
 scriptencoding utf8
 
+set t_Co=256
+
+" disable some things for speed
 let g:loaded_vimballPlugin = 1
 let g:loaded_rrhelper = 1
 let g:did_install_default_menus = 1
+
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
 
 call plug#begin('~/.vim/plugged')
 
@@ -10,98 +17,96 @@ call plug#begin('~/.vim/plugged')
 " Plug 'rizzatti/dash.vim'
 " Plug 'Shougo/neomru'
 " Plug 'Shougo/unite'
+
 " doesn't work with jedi-vim for some reason
 " Plug 'jmcantrell/vim-virtualenv', {'for': 'python'}
-" Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
-
-" Colorschemes
-Plug 'ewilazarus/preto'
 
 " JavaScript/HTML plugins
-Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
-Plug 'marijnh/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}
-Plug 'moll/vim-node' ", {'for': 'javascript'} doesn't work with this one
-Plug 'othree/html5.vim', {'for': 'html'}
-Plug 'othree/yajs.vim', {'for': 'javascript'}
-Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
-Plug 'othree/jspc.vim', {'for': 'javascript'}
-Plug 'gavocanov/vim-js-indent', {'for': 'javascript'}
+Plug 'carlitux/deoplete-ternjs', {'for': 'javascript', 'do': 'npm install -g tern'}
 Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'gavocanov/vim-js-indent', {'for': 'javascript'}
 Plug 'GutenYe/json5.vim', {'for': 'json'}
+" Plug 'marijnh/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}
+Plug 'moll/vim-node'          " support 'gf' on require/import lines
+Plug 'othree/html5.vim', {'for': 'html'}
+
+" JSX plugins
+Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']}
+Plug 'mxw/vim-jsx', {'for': 'javascript.jsx'}
 
 " Python plugins
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tweekmonster/braceless.vim', {'for': 'python'}
 Plug 'tweekmonster/django-plus.vim', {'for': 'python'}
 Plug 'tweekmonster/impsort.vim', {'for': 'python'}
-" Plug 'hdima/python-syntax', {'for': 'python'}
+Plug 'vim-python/python-syntax', {'for': 'python'}
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
 
-" Go plugins
+" Other filetypes
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'chrisbra/csv.vim', {'for': 'csv'}
+Plug 'dearrrfish/vim-applescript'
+Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'keith/swift.vim'
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+Plug 'lepture/vim-jinja'
+Plug 'pearofducks/ansible-vim'
+Plug 'syngan/vim-vimlint', {'for': 'vim'}
+Plug 'tomlion/vim-solidity', {'for': 'solidity'}
+Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 
 " Other plugins
-Plug 'airblade/vim-gitgutter'
-Plug 'bogado/file-line'
-Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'embear/vim-localvimrc'
-Plug 'junegunn/gv.vim'
+" Plug 'ConradIrwin/vim-bracketed-paste' " not needed with terminus?
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter' " git +/- in the gutter
+Plug 'ap/vim-css-color'       " colorize hex strings in files
+Plug 'bogado/file-line'       " support `vim file.js:50`
+Plug 'embear/vim-localvimrc'  " support .lvimrc files
+Plug 'gerw/vim-HiLinkTrace'   " HLT/HLT! commands
+Plug 'junegunn/goyo.vim'      " distraction-free writing
+Plug 'junegunn/gv.vim'        " GV command for browsing git revisions
+Plug 'junegunn/limelight.vim' " hyper-distraction-free writing
 Plug 'junegunn/vim-emoji'
-Plug 'justinmk/vim-gtfo'
+Plug 'junegunn/vim-slash'     " improve search
 Plug 'Konfekt/FastFold'
-Plug 'rhysd/npm-debug-log.vim'
+Plug 'mileszs/ack.vim'
+" Plug 'neomake/neomake'        " linting
+Plug 'ryanoasis/vim-devicons'
+Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
+" XXX still needed?
 Plug 'Shougo/vimproc', {'do': 'make'}
-Plug 'syngan/vim-vimlint', {'for': 'vim'}
 Plug 'todesking/vint-syntastic', {'for': 'vim'}
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'     " git support, e.g. GBlame
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-rhubarb'      " extends vim-fugitive for github
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-vinegar'      " better file navigator
+Plug 'tweekmonster/startuptime.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'wakatime/vim-wakatime'
-Plug 'wincent/terminus'
-Plug 'Yggdroot/hiPairs'
-Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
+Plug 'w0rp/ale'               " asynchronous linting
+Plug 'wakatime/vim-wakatime'  " log editing activity to wakatime.com
+Plug 'wincent/terminus'       " iTerm niceties (focus, mouse)
 Plug 'zirrostig/vim-schlepp'
-
-if !has('nvim')
-  Plug 'scrooloose/syntastic'
-  Plug 'Shougo/neocomplete.vim'
-else
-  Plug 'benekastah/neomake'
-
-  function! DoRemote(arg)
-    UpdateRemotePlugins
-  endfunction
-
-  Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
-  Plug 'zchee/deoplete-jedi', {'for': 'python'}
-  Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
-endif
-
-Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
-set termguicolors
+if has('nvim')
+  set emoji
+  set inccommand=split
+  set termguicolors
+endif
 
 source ~/.vim/vimrc/jedi.vim
 
-if !has('nvim')
-  source ~/.vim/vimrc/neocomplete.vim
-  source ~/.vim/vimrc/syntastic.vim
-else
+if has('nvim')
+  source ~/.vim/vimrc/ale.vim
   source ~/.vim/vimrc/deoplete.vim
-  source ~/.vim/vimrc/neomake.vim
 endif
-
-" source ~/.vim/vimrc/unite.vim
 
 vmap <unique> <s-left> <plug>SchleppLeft
 vmap <unique> <s-right> <plug>SchleppRight
@@ -109,37 +114,25 @@ vmap <unique> <s-up> <plug>SchleppUp
 vmap <unique> <s-down> <plug>SchleppDown
 vmap <unique> D <plug>SchleppDup
 
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+
 let g:Schlepp#dupTrimWS = 1
 
+let g:ackprg = 'ag --vimgrep'
+
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'succulent'
 
 let g:used_javascript_libs = 'jquery,underscore'
 
-let g:hiPairs_timeout = 3
-let g:hiPairs_insert_timeout = 3
-let g:hiPairs_stopline_more = 50
-
-let g:hiPairs_hl_matchPair = {
-  \ 'term': 'underline,bold',
-  \ 'cterm': 'underline,bold',
-  \ 'ctermfg': 'NONE',
-  \ 'ctermbg': 'NONE',
-  \ 'gui': 'underline,bold',
-  \ 'guifg': 'NONE',
-  \ 'guibg': 'NONE'}
-
 let g:tern_show_signature_in_pum = 1
 
-if has('mac')
-  set runtimepath+=/usr/local/opt/fzf
-elseif has('unix')
-  set runtimepath+=~/.fzf
-endif
+let g:javascript_plugin_flow = 1
 
 set background=dark
 
-colorscheme gardener
+colorscheme evening-dark
 
 set spellfile=~/.vim/spell/words.utf8.add
 " Don't check for sentence capitalization
@@ -229,27 +222,34 @@ if !has('gui_running')
   augroup END
 endif
 
-autocmd vimrc BufNewFile,BufReadPost requirements.txt setlocal filetype=conf
+autocmd vimrc BufNewFile,BufReadPost *requirements.txt setlocal filetype=conf
+autocmd vimrc BufNewFile,BufReadPost *requirements.in setlocal filetype=conf
 
 autocmd vimrc BufNewFile,BufReadPost .eslintrc setlocal filetype=json
-autocmd vimrc BufNewFile,BufReadPost .jscsrc setlocal filetype=json
 
-autocmd vimrc BufNewFile,BufReadPost *.ejs setlocal filetype=jst
-autocmd vimrc BufNewFile,BufReadPost *.pegjs setlocal filetype=pegjs
+autocmd vimrc BufNewFile,BufReadPost *.osascript setlocal filetype=applescript
 
-autocmd vimrc BufNewFile,BufReadPost * LocalVimRC
+autocmd vimrc BufNewFile,BufReadPost *.ts setlocal filetype=typescript
+
+autocmd vimrc User GoyoEnter Limelight
+autocmd vimrc User GoyoLeave Limelight!
 
 set fillchars=vert:\  " So we don't get a trailing space error
+
+let g:localvimrc_event = ['BufReadPre']
 
 " Make decisions persistent
 let g:localvimrc_persistent = 1
 
 if has('persistent_undo')
   set undofile
-  set undodir=~/.vimundo
+  set undodir=~/.vim/.undo//
 endif
 
-set directory=~/tmp//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swap//
+
+set backupcopy=yes
 
 set ignorecase
 set smartcase
@@ -280,7 +280,6 @@ set backspace=eol,start,indent
 set complete=.,w,b,u,U,t,i,d
 set number
 
-set highlight=l:Visual
 set hlsearch
 set showmatch
 
@@ -292,6 +291,8 @@ noremap <leader>r :redraw!<CR>
 
 " <leader>n goes to the next error
 nmap <leader>n :lnext<CR>
+
+map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 
 " Toggle comments with the space key
 nmap <space> gcc
@@ -317,7 +318,11 @@ vnoremap / /\v
 command! -bang W :w
 command! -bang Wq :wq
 command! -bang WQ :wq
-command! -bang Q :q
+command! -bang WQa :wqa
+command! -bang Wqa :wqa
+command! -bang Q :q<bang>
+command! -bang QA :qa<bang>
+command! -bang Qa :qa<bang>
 
 " <Leader>j join without gap
 nnoremap <expr> <Leader>j ':<C-U><BS>'
@@ -335,19 +340,70 @@ nnoremap <expr> <Leader>e ':%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0)
 " Ctrl-c copies to clipboard
 map <C-c> "+y
 
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Ctrl-p opens fzf
+map <C-p> :Files<CR>
+map <C-g> :GFiles<CR>
+
+map <leader>c :Files ~/p/canvas<CR>
+
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+  \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
+  \ -g "!{.git,node_modules,vendor}/*" '
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+
+map <leader>f :ALEFix<CR>
+
+" cq instaed of ci'
+onoremap q i'
+onoremap Q i"
+
 " Make Y behave like C and D
 nnoremap Y y$
 
 " let semicolon do colon commands
 nnoremap ; :
 
-" What does this do?
-inoremap <Nul> <C-x><C-o>
+call matchadd('Todo', '\vTODO(_\w+)*', 0)
 
-map <silent><A-Right> :tabnext<CR>
-map <silent><A-Left> :tabprevious<CR>
+highlight OverLength cterm=none ctermfg=1
 
 call matchadd('OverLength', '\%>80v.\+', 0)
 
-" Syntax-specific
-let g:c_space_errors=1
+function HideHtml()
+  syntax match Entity "&lt;" conceal cchar=<
+  syntax match Entity "&gt;" conceal cchar=>
+  syntax match Entity "&amp;" conceal cchar=&
+
+  " XXX Entity
+  syntax match Entity /\v[<][a-zA-Z 0-9"\/=:{}-]+[>]/ conceal
+
+  set conceallevel=2
+endfunction
+
+set cinoptions=(0,W1s,m1
+
+command! FZFMru call fzf#run({
+\  'source':  v:oldfiles,
+\  'sink':    'e',
+\  'options': '-m -x +s',
+\  'down':    '40%'})
+
+" center result after searching
+noremap <plug>(slash-after) zz

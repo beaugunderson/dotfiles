@@ -1,5 +1,7 @@
 " Disable most of vim-jedi's features, what we really want is the arguments
 " overlay
+let g:jedi#force_py_version = 3
+
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0

@@ -1,7 +1,6 @@
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_at_startup = 1
 
 function! s:close_popup_and_complete()
   return pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
@@ -11,3 +10,12 @@ endfunction
 inoremap <silent> <CR> <C-r>=<SID>close_popup_and_complete()<CR>
 
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#case_insensitive = 1
+
+let g:deoplete#sources#ternjs#filetypes = [
+\  'javascript',
+\  'javascript.jsx',
+\  'jsx',
+\]
