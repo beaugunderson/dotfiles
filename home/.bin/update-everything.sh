@@ -42,7 +42,7 @@ npm install -g dockerlint
 npm install -g electron
 npm install -g eslint
 npm install -g eslint_d
-npm install -g generator-kibana-plugin
+npm install -g flow-bin
 npm install -g gulp
 npm install -g jscs
 npm install -g json
@@ -55,9 +55,12 @@ npm install -g node-gyp-install
 npm install -g npm-check-updates
 npm install -g npmbrew
 npm install -g pmm
+npm install -g prettier
 npm install -g standard
 npm install -g supervisor
+npm install -g stylelint
 npm install -g ttystudio
+npm install -g vsce
 npm install -g yo
 
 # upgrade global python modules
