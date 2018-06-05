@@ -7,10 +7,6 @@ let g:loaded_vimballPlugin = 1
 let g:loaded_rrhelper = 1
 let g:did_install_default_menus = 1
 
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-
 call plug#begin('~/.vim/plugged')
 
 " Plug 'h1mesuke/unite-outline'
@@ -22,25 +18,23 @@ call plug#begin('~/.vim/plugged')
 " Plug 'jmcantrell/vim-virtualenv', {'for': 'python'}
 
 " JavaScript/HTML plugins
-Plug 'carlitux/deoplete-ternjs', {'for': 'javascript', 'do': 'npm install -g tern'}
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'gavocanov/vim-js-indent', {'for': 'javascript'}
 Plug 'GutenYe/json5.vim', {'for': 'json'}
-" Plug 'marijnh/tern_for_vim', {'do': 'npm install', 'for': 'javascript'}
 Plug 'moll/vim-node'          " support 'gf' on require/import lines
 Plug 'othree/html5.vim', {'for': 'html'}
 
 " JSX plugins
-Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']}
-Plug 'mxw/vim-jsx', {'for': 'javascript.jsx'}
+Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx', 'jsx']}
+Plug 'mxw/vim-jsx', {'for': ['javascript.jsx', 'jsx']}
 
 " Python plugins
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
+" Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tweekmonster/braceless.vim', {'for': 'python'}
 Plug 'tweekmonster/django-plus.vim', {'for': 'python'}
 Plug 'tweekmonster/impsort.vim', {'for': 'python'}
 Plug 'vim-python/python-syntax', {'for': 'python'}
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
+" Plug 'zchee/deoplete-jedi', {'for': 'python'}
 
 " Other filetypes
 Plug 'cakebaker/scss-syntax.vim'
@@ -58,10 +52,13 @@ Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 
 " Other plugins
 " Plug 'ConradIrwin/vim-bracketed-paste' " not needed with terminus?
+" Plug 'autozimu/LanguageClient-neovim', {
+"   \ 'branch': 'next',
+"   \ 'do': 'bash install.sh',
+"   \ }
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter' " git +/- in the gutter
 Plug 'ap/vim-css-color'       " colorize hex strings in files
-Plug 'bogado/file-line'       " support `vim file.js:50`
 Plug 'embear/vim-localvimrc'  " support .lvimrc files
 Plug 'gerw/vim-HiLinkTrace'   " HLT/HLT! commands
 Plug 'junegunn/goyo.vim'      " distraction-free writing
@@ -70,12 +67,12 @@ Plug 'junegunn/limelight.vim' " hyper-distraction-free writing
 Plug 'junegunn/vim-emoji'
 Plug 'junegunn/vim-slash'     " improve search
 Plug 'Konfekt/FastFold'
-Plug 'mileszs/ack.vim'
+Plug 'kopischke/vim-fetch'    " support `vim file.js:50`
+" Plug 'mileszs/ack.vim'
 " Plug 'neomake/neomake'        " linting
 Plug 'ryanoasis/vim-devicons'
-Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
-" XXX still needed?
-Plug 'Shougo/vimproc', {'do': 'make'}
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+" Plug 'Shougo/vimproc', {'do': 'make'}
 Plug 'todesking/vint-syntastic', {'for': 'vim'}
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
@@ -101,11 +98,12 @@ if has('nvim')
   set termguicolors
 endif
 
-source ~/.vim/vimrc/jedi.vim
+" source ~/.vim/vimrc/jedi.vim
 
 if has('nvim')
   source ~/.vim/vimrc/ale.vim
   source ~/.vim/vimrc/deoplete.vim
+  " source ~/.vim/vimrc/lsc.vim
 endif
 
 vmap <unique> <s-left> <plug>SchleppLeft
@@ -119,14 +117,12 @@ let g:ale_sign_warning = '⚠'
 
 let g:Schlepp#dupTrimWS = 1
 
-let g:ackprg = 'ag --vimgrep'
+" let g:ackprg = 'ag --vimgrep'
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'succulent'
 
 let g:used_javascript_libs = 'jquery,underscore'
-
-let g:tern_show_signature_in_pum = 1
 
 let g:javascript_plugin_flow = 1
 
@@ -195,9 +191,6 @@ autocmd vimrc InsertLeave *
   \ if &paste == 1 |
   \   set nopaste |
   \ endif
-
-" Kill the silly tern previews
-autocmd vimrc BufEnter * set completeopt-=preview
 
 " Edit in place for crontab on OS X
 autocmd vimrc FileType crontab setlocal nowritebackup
