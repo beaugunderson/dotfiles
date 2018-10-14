@@ -23,7 +23,7 @@ export TZ="America/Los_Angeles"
 
 export FIGNORE=$FIGNORE:.pyc:.o
 
-export EDITOR=/usr/local/bin/nvim
+export EDITOR=$(which nvim)
 
 # Disable Terminal.app's sessions
 shell_is_osx && export SHELL_SESSION_HISTORY=0
@@ -113,8 +113,8 @@ function start_agent {
   /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
   chmod 600 "${SSH_ENV}"
   . "${SSH_ENV}" > /dev/null
-  /usr/bin/ssh-add ~/.ssh/id_rsa
-  /usr/bin/ssh-add ~/.ssh/canvas_ed25519
+  test -e "${HOME}/.ssh/id_rsa" && /usr/bin/ssh-add ~/.ssh/id_rsa
+  test -e "${HOME}/.ssh/canvas_ed22519" && /usr/bin/ssh-add ~/.ssh/canvas_ed25519
 }
 
 # Source SSH settings, if applicable
@@ -449,7 +449,10 @@ function _prompt_command {
   # https://timingapp.com/help/terminal
   echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"
 
-  PS1="\[$(iterm2_prompt_mark)\]"
+  PS1=""
+
+  shell_is_osx && PS1="\[$(iterm2_prompt_mark)\]"
+
   PS1="$PS1 $BOX_COLOR$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u$(virtualenv_status)"
   PS1="$PS1 $MEDIUM_GRAY\w$(git_status)$NOTHING "
 }
