@@ -39,15 +39,16 @@ Plug 'vim-python/python-syntax', {'for': 'python'}
 " Other filetypes
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'dearrrfish/vim-applescript'
+" Plug 'dearrrfish/vim-applescript'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'fatih/vim-go', {'for': 'go'}
-Plug 'keith/swift.vim'
+" Plug 'fatih/vim-go', {'for': 'go'}
+" Plug 'keith/swift.vim'
+Plug 'gabrielelana/vim-markdown'
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'lepture/vim-jinja'
-Plug 'pearofducks/ansible-vim'
+" Plug 'pearofducks/ansible-vim'
 Plug 'syngan/vim-vimlint', {'for': 'vim'}
-Plug 'tomlion/vim-solidity', {'for': 'solidity'}
+" Plug 'tomlion/vim-solidity', {'for': 'solidity'}
 Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 
 " Other plugins
@@ -57,8 +58,10 @@ Plug 'ynkdir/vim-vimlparser', {'for': 'vim'}
 "   \ 'do': 'bash install.sh',
 "   \ }
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-gitgutter' " git +/- in the gutter
+" re-enable after neovim fixes startup hang
+" Plug 'airblade/vim-gitgutter' " git +/- in the gutter
 Plug 'ap/vim-css-color'       " colorize hex strings in files
+" Plug 'dbeniamine/cheat.sh-vim' " programming questions/answers
 Plug 'embear/vim-localvimrc'  " support .lvimrc files
 Plug 'gerw/vim-HiLinkTrace'   " HLT/HLT! commands
 Plug 'junegunn/goyo.vim'      " distraction-free writing
@@ -69,9 +72,11 @@ Plug 'junegunn/vim-slash'     " improve search
 Plug 'Konfekt/FastFold'
 Plug 'kopischke/vim-fetch'    " support `vim file.js:50`
 " Plug 'mileszs/ack.vim'
+Plug 'misterbuckley/vim-definitive' " go to definition
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Plug 'neomake/neomake'        " linting
 Plug 'ryanoasis/vim-devicons'
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+" Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " Plug 'Shougo/vimproc', {'do': 'make'}
 Plug 'todesking/vint-syntastic', {'for': 'vim'}
 Plug 'tpope/vim-characterize'
@@ -83,6 +88,7 @@ Plug 'tpope/vim-rhubarb'      " extends vim-fugitive for github
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'      " better file navigator
+Plug 'tweekmonster/fzf-filemru'
 Plug 'tweekmonster/startuptime.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'               " asynchronous linting
@@ -98,11 +104,43 @@ if has('nvim')
   set termguicolors
 endif
 
+let g:markdown_enable_mappings = 0
+let g:markdown_enable_spell_checking = 0
+
+set updatetime=300
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1] =~# '\s'
+endfunction
+
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+
+" Show signature help while editing
+autocmd CursorHoldI * silent! call CocActionAsync('showSignatureHelp')
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Use <c-space> for trigger completion.
+" inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <C-x><C-o> to complete 'word', 'emoji' and 'include' sources
+" imap <silent> <C-x><C-o> <Plug>(coc-complete-custom)
+
 " source ~/.vim/vimrc/jedi.vim
 
 if has('nvim')
   source ~/.vim/vimrc/ale.vim
-  source ~/.vim/vimrc/deoplete.vim
+  " source ~/.vim/vimrc/deoplete.vim
   " source ~/.vim/vimrc/lsc.vim
 endif
 
@@ -285,6 +323,9 @@ noremap <leader>r :redraw!<CR>
 " <leader>n goes to the next error
 nmap <leader>n :lnext<CR>
 
+" <leader>d goes to the definition
+nnoremap <leader>d :FindDefinition<CR>
+
 map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 
 " Toggle comments with the space key
@@ -349,7 +390,10 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Ctrl-p opens fzf
-map <C-p> :Files<CR>
+" map <C-p> :Files<CR>
+" map <C-p> :Files<CR>
+
+nnoremap <C-p> :ProjectMru --tiebreak=end<cr>
 map <C-g> :GFiles<CR>
 
 map <leader>c :Files ~/p/canvas<CR>

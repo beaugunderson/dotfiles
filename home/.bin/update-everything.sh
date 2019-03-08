@@ -7,14 +7,14 @@ shell_is_osx && brew update
 shell_is_osx && brew upgrade
 
 # upgrade neovim
-shell_is_osx && brew reinstall --HEAD neovim
+shell_is_osx && brew uninstall neovim
+shell_is_osx && brew install --HEAD neovim
 
 # upgrade casks
 shell_is_osx && upgrade-casks.sh
 
 # remove old brew files
 shell_is_osx && brew cleanup
-shell_is_osx && brew cask cleanup
 
 # upgrade vim plugins
 /usr/local/bin/nvim +PlugUpgrade +qa
@@ -33,7 +33,6 @@ npm install -g npm
 npm install -g ava
 npm install -g babel-cli
 npm install -g babel-eslint
-npm install -g bower
 npm install -g browserify
 npm install -g budo
 npm install -g collaborator
@@ -44,7 +43,6 @@ npm install -g eslint
 npm install -g eslint_d
 npm install -g flow-bin
 npm install -g gulp
-npm install -g jscs
 npm install -g json
 npm install -g jsonlint
 npm install -g jsonmap
@@ -61,7 +59,6 @@ npm install -g supervisor
 npm install -g stylelint
 npm install -g ttystudio
 npm install -g vsce
-npm install -g yo
 
 # upgrade global python modules
 sudo -H pip3 install --upgrade neovim

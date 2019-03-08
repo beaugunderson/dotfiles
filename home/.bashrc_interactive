@@ -9,7 +9,8 @@ export BASH_ENV=$HOME/.bashrc
 export NODE_REPL_HISTORY=~/.node-history
 
 # yarn build_dev likes to die with out of memory errors
-export NODE_OPTIONS=--max_old_space_size=4096
+# XXX breaks cypress
+# export NODE_OPTIONS=--max_old_space_size=4096
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTFILE=~/.bash_eternal_history
@@ -55,15 +56,18 @@ shell_is_linux && export PATH=
 shell_is_linux && export GOPATH=~/gocode
 shell_is_osx && export GOPATH=~/go
 
-export PATH=$PATH:$HOME/.bin:/bin:/usr/local/bin:/usr/bin:/sbin:/usr/sbin
+shell_is_osx && export \
+  JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-11.0.1.jdk/Contents/Home/"
+
+export PATH=$PATH:$HOME/.bin:/bin:$JAVA_HOME/bin:/usr/local/bin:/usr/bin:/sbin:/usr/sbin
 export PATH=$PATH:/usr/local/sbin:/usr/local/lib/php:/var/lib/gems/1.9/bin
 export PATH=$PATH:/usr/local/heroku/bin:/usr/games:$GOPATH/bin
 export PATH=$PATH:/opt/X11/bin:$HOME/.cargo/bin
-export PATH="$HOME/.yarn/bin:$PATH"
 
 # for MacPorts
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-export PATH=/Users/beau/.local/bin/luna-studio:$PATH
+# export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
+# export PATH=/Users/beau/.local/bin/luna-studio:$PATH
 
 # Hardcode Postgres on OS X
 shell_is_osx && export PATH=$PATH:/Applications/Postgres.app/Contents/MacOS/bin
@@ -71,9 +75,6 @@ shell_is_osx && export PATH=$PATH:/Applications/Postgres.app/Contents/MacOS/bin
 # export PATH=$HOME/.npmbrew/current/bin:$PATH
 
 export SHELL=$(which bash)
-
-shell_is_osx && export \
-  JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"
 
 export WORKON_HOME=~/.envs
 
@@ -170,15 +171,18 @@ alias drn="docker-compose run --rm web"
 alias drm="docker-compose run --rm web ./manage.py"
 alias drms="docker-compose run --service-ports --rm web ./manage.py"
 alias dsa="docker stop \$(docker ps -a -q)"
-alias dt="docker-compose run --rm web ./manage.py test --parallel --exclude-tag=integration"
+alias dt='drn pytest -m "not integration"'
 alias dtk="docker-compose run --rm web ./manage.py test --keepdb --parallel --exclude-tag=integration"
-alias rebuild-home="docker-compose down; docker-compose build; dr ./wait-for-postgres.sh; drm migrate; drm build_canvas_clinic"
+alias rebuild-home="docker-compose down -v; docker-compose build web && dr ./wait-for-postgres.sh && drm migrate && drm build_canvas_clinic"
+alias reseed-home="drm flush --no-input; drm build_canvas_clinic"
 
 alias surescripts-proxy="ssh -C -D 1080 staging"
 alias surescripts-directories="sudo ssh -L :443:dir-staging.surescripts.net:443 -i /Users/beau/.ssh/canvas_ed25519 ubuntu@52.35.245.124"
 alias surescripts-script="sudo ssh -L :443:smr-staging.surescripts.net:443 -i /Users/beau/.ssh/canvas_ed25519 ubuntu@52.35.245.124"
 
 alias ssh="TERM=xterm-256color ssh"
+
+alias did="vim +'normal Go' +'r!date +\"\\%Y-\\%m-\\%dT\\%H:\\%M:\\%S\\%z\"' '/Users/beau/Dropbox/Notes - Singly/did.md'"
 
 # Open Humans
 alias work-oh="cd ~/p/open-humans && workon open-humans"
@@ -224,15 +228,27 @@ alias lrt="$LS -hlFrt $LS_OPTIONS"
 alias lx="$LS -hlFX $LS_OPTIONS"
 alias lll="$LS -ahlF $LS_OPTIONS"
 
+alias dark='osascript -e '\''tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'\'''
+
 alias p=projects
 alias px=path-extractor
 
-export FZF_DEFAULT_COMMAND='\rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,static-files}/*" 2> /dev/null'
+export FZF_DEFAULT_COMMAND='\rg --files --no-ignore --hidden --follow -g "!**/{.git,south_migrations,node_modules,static-files,.mypy_cache,__pycache__}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--extended --select-1 --sort=2500 --inline-info"
 # export FZF_ALT_C_COMMAND="cd ~/; bfs -type d -nohidden | sed s/^\./~/"  
 
-bind -x '"\C-p": vim $(fzf);'
+fzf_vim() {
+  FILE=$(fzf)
+
+  history -s "${EDITOR:-vim} \"$FILE\""
+
+  vim "$FILE"
+}
+
+export -f fzf_vim;
+
+bind -x '"\C-p": fzf_vim;'
 
 contract-home() {
   sed "s|^$HOME|~|"
@@ -279,6 +295,8 @@ pe_base() {
         $FILTERS $ADDITIONAL_FILTERS 2> /dev/null" | \
          ignore-pipe | contract-home | fzf --query "$2")
   fi
+
+  history -s "${EDITOR:-vim} \"$FILE\""
 
   # bash -c needed to handle tilde expansion
   [ ! -z "$FILE" ] && bash -c "${EDITOR:-vim} \"$FILE\""
@@ -360,8 +378,11 @@ export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ] && \
   source /usr/local/bin/virtualenvwrapper_lazy.sh
 
+alias work-tracking-tool="cd ~/p/tracking-tool"
+
 # Canvas Medical
 alias work-home="cd ~/p/canvas/home-app && source $WORKON_HOME/home/bin/activate"
+alias work-lighthouse="cd ~/p/canvas/lighthouse && source $WORKON_HOME/lighthouse/bin/activate"
 alias work-messaging="cd ~/p/canvas/messaging && source $WORKON_HOME/messaging/bin/activate"
 alias work-ontologies="cd ~/p/canvas/ontologies && source $WORKON_HOME/ontologies/bin/activate"
 alias work-pharmacy="cd ~/p/canvas/pharmacy && source $WORKON_HOME/pharmacy/bin/activate"
@@ -371,6 +392,8 @@ alias work-web="cd ~/p/canvas-web && source $WORKON_HOME/canvas-web/bin/activate
 
 alias start-home="cd ~/p/canvas/home-app && tmuxinator start ."
 alias start-lighthouse="cd ~/p/canvas/lighthouse && tmuxinator start ."
+
+alias hue="hu edit"
 
 # Source host-specific options
 [ -f "$HOME/.hosts/$HOSTNAME.sh" ] && source "$HOME/.hosts/$HOSTNAME.sh"
@@ -390,13 +413,14 @@ LIGHT_GRAY="\[\e[38;05;235m\]"
 MEDIUM_GRAY="\[\e[38;05;244m\]"
 GREEN="\[\e[38;05;34m\]"
 YELLOW="\[\e[38;05;172m\]"
+BLINK="\[\e[5m\]"
 NOTHING="\[\e[0m\]"
 
 # If I use literal Unicode characters then it wedges bash on OS X
 BOX=$(echo -e "\xE2\x97\xBC")
 SLASH="/"
 
-if (($SHLVL > 1))
+if ((SHLVL > 1))
 then
   BOX_COLOR=$MEDIUM_GRAY
 fi
@@ -431,7 +455,13 @@ function git_status {
     GIT_BRANCH=" $COLOR$GIT_BRANCH"
   fi
 
-  echo -e "$GIT_BRANCH"
+  echo -e "$GIT_BRANCH$NOTHING"
+}
+
+function heads_up_status {
+  if ! hu saved-today; then
+    echo -e " ${BLINK}${RED}heads-up not completed$NOTHING"
+  fi
 }
 
 function virtualenv_status {
@@ -454,7 +484,7 @@ function _prompt_command {
   shell_is_osx && PS1="\[$(iterm2_prompt_mark)\]"
 
   PS1="$PS1 $BOX_COLOR$BOX$GRAY \h$LIGHT_GRAY$SLASH$GRAY\u$(virtualenv_status)"
-  PS1="$PS1 $MEDIUM_GRAY\w$(git_status)$NOTHING "
+  PS1="$PS1 $MEDIUM_GRAY\w$(git_status)$(heads_up_status) "
 }
 
 PROMPT_COMMAND=_prompt_command
@@ -471,13 +501,43 @@ if hash rg 2>/dev/null; then
   alias rg=tag
 fi
 
+alias rga='rg --no-ignore --no-ignore-global -uu'
 alias rgjs='rg --type js'
 alias rgpy='rg --type py'
+alias rgtjs='rg --type js --type ts'
+alias rgts='rg --type ts'
 alias rgxml='rg --type xml'
 
-alias ag=rg
-alias agpy=rgpy
-alias agjs=rgjs
+alias weather='curl wttr.in/Seattle?0FQ'
+
+mdd() {
+  DATE=$(date '+%Y-%m-%d')
+
+  mkdir "$DATE"
+  pushd "$DATE" || return
+}
+
+function certchain() {
+    # Usage: certchain
+    # Display PKI chain-of-trust for a given domain
+    # GistID: https://gist.github.com/joshenders/cda916797665de69ebcd
+    if [[ "$#" -ne 1 ]]; then
+        echo "Usage: ${FUNCNAME} <ip|domain[:port]>"
+        return 1
+    fi
+
+    local host_port="$1"
+
+    if [[ "$1" != *:* ]]; then
+        local host_port="${1}:443"
+    fi
+
+    \openssl \
+        s_client -connect "${host_port}" </dev/null 2>/dev/null \
+        | grep -E \
+            --color=never \
+            --extended-regexp '\ (s|i):'
+}
 
 man() {
   env \
@@ -505,6 +565,14 @@ lips() {
   [ "$ip" != "" ] && extip=$ip || extip="inactive"
 
   printf '%11s: %s\n%11s: %s\n' "Local IP" $locip "External IP" $extip
+}
+
+function until-fail {
+  while "$@"; do :; done
+}
+
+pycd () {
+  pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`;
 }
 
 # SDR
