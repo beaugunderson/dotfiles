@@ -42,14 +42,13 @@ def date_added(filename):
         '""',
         '-name',
         'kMDItemDateAdded',
-        filename
+        filename,
     ], universal_newlines=True)
 
     try:
-        return arrow.get(added_string, 'YYYY-MM-DD HH:mm:ss ZZ')
-    except:  # noqa
-        print(f'Skipped {filename}')
-        return arrow.now()
+        return arrow.get(added_string, 'YYYY-MM-DD HH:mm:ss Z')
+    except arrow.parser.ParserMatchError as e:
+        print(f'Skipped {filename}: {e}')
 
 
 def format_week(week):
@@ -78,15 +77,19 @@ def sort_downloads():
     os.chdir(downloads)
 
     link_week(downloads, arrow.now(), 'This week')
-    link_week(downloads, arrow.now().replace(weeks=-1), 'Last week')
+    link_week(downloads, arrow.now().shift(weeks=-1), 'Last week')
 
-    one_day_ago = arrow.now().replace(days=-1)
+    one_day_ago = arrow.now().shift(days=-1)
 
     for filename in os.listdir(downloads):
         if filename in IGNORE_FILES:
             continue
 
         file_date = date_added(filename)
+
+        if not file_date:
+            print('no file_date for', filename)
+            continue
 
         if file_date > one_day_ago:
             continue
