@@ -50,7 +50,7 @@ shell_is_osx && \
   export PATH=$PATH:/Developer/NVIDIA/CUDA-7.5/bin
 
 # Reset the path
-shell_is_linux && export PATH=
+shell_is_linux && export PATH=/snap/bin
 
 # Add GOPATH
 shell_is_linux && export GOPATH=~/gocode
