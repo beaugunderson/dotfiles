@@ -157,12 +157,6 @@ call <sid>hi('DiffRemoved',                 s:n6, s:d1, '')
 call <sid>hi('gitCommitOverflow',           s:n6, '',      '')
 call <sid>hi('gitCommitSummary',            s:w1, '',      '')
 
-" GitGutter highlighting
-call <sid>hi('GitGutterAdd',                s:w1, s:d1, '')
-call <sid>hi('GitGutterChange',             s:h2, s:d1, '')
-call <sid>hi('GitGutterDelete',             s:n6, s:d1, '')
-call <sid>hi('GitGutterChangeDelete',       s:n4, s:d1, '')
-
 " HTML highlighting
 call <sid>hi('htmlBold',                    s:h3, '',      '')
 call <sid>hi('htmlItalic',                  s:n4, '',      '')
@@ -187,52 +181,12 @@ call <sid>hi('markdownError',               s:n3, s:d1, '')
 call <sid>hi('markdownCodeBlock',           s:w1, '',      '')
 call <sid>hi('markdownHeadingDelimiter',    s:h2, '',      '')
 
-" NERDTree highlighting
-call <sid>hi('NERDTreeDirSlash',            s:h2, '',      '')
-call <sid>hi('NERDTreeExecFile',            s:n3, '',      '')
-
-" PHP highlighting
-call <sid>hi('phpMemberSelector',           s:n3, '',      '')
-call <sid>hi('phpComparison',               s:n3, '',      '')
-call <sid>hi('phpParent',                   s:n3, '',      '')
-
 " Python highlighting
 call <sid>hi('pythonDot',                   s:d5, '',      '')
 call <sid>hi('pythonOperator',              s:n4, '',      '')
 call <sid>hi('pythonRepeat',                s:n4, '',      '')
 
 call <sid>hi('BracelessIndent',             s:n4, s:d3, '')
-
-" pythonAsync
-" pythonBuiltin
-" pythonComment
-" pythonConditional
-" pythonDecorator
-" pythonDecoratorName
-" pythonDoctest
-" pythonDoctestValue
-" pythonEscape
-" pythonException
-" pythonExceptions
-" pythonFunction
-" pythonInclude
-" pythonNumber
-" pythonQuotes
-" pythonRawString
-" pythonSpaceError
-" pythonStatement
-" pythonString
-" pythonTodo
-" pythonTripleQuotes
-
-" Ruby highlighting
-call <sid>hi('rubyAttribute',               s:h2, '',      '')
-call <sid>hi('rubyConstant',                s:h3, '',      '')
-call <sid>hi('rubyInterpolation',           s:w1, '',      '')
-call <sid>hi('rubyInterpolationDelimiter',  s:n5, '',      '')
-call <sid>hi('rubyRegexp',                  s:h1, '',      '')
-call <sid>hi('rubySymbol',                  s:w1, '',      '')
-call <sid>hi('rubyStringDelimiter',         s:w1, '',      '')
 
 " SASS highlighting
 call <sid>hi('sassidChar',                  s:n6, '',      '')
@@ -248,25 +202,18 @@ call <sid>hi('cssIncludeKeyword',           s:n1, '',      '')
 call <sid>hi('scssMixinParams',             s:d4, '',      '')
 call <sid>hi('scssFunctionName',            s:n3, '',      '')
 
-" Signify highlighting
-call <sid>hi('SignifySignAdd',              s:w1, s:d2, '')
-call <sid>hi('SignifySignChange',           s:h2, s:d2, '')
-call <sid>hi('SignifySignDelete',           s:n6, s:d2, '')
-
 " Spelling highlighting
 call <sid>hi('SpellBad',                    '',      s:d1, 'undercurl')
 call <sid>hi('SpellLocal',                  '',      s:d1, 'undercurl')
 call <sid>hi('SpellCap',                    '',      s:d1, 'undercurl')
 call <sid>hi('SpellRare',                   '',      s:d1, 'undercurl')
 
-" fugitive higlighthing
-call <sid>hi('gitCommitSummary',            s:n1, '',      'none')
-
-" neomake
-call <sid>hi('NeomakeError',                s:w1, s:d1, '')
-call <sid>hi('NeomakeWarning',              s:h2, s:d1, '')
-call <sid>hi('NeomakeInfo',                 s:n6, s:d1, '')
-call <sid>hi('NeomakeMessage',              s:n4, s:d1, '')
+" TreeSitter
+call <sid>hi('@tag',                        s:n2, '',   '')
+call <sid>hi('@tag.attribute',              s:n2, '',   '')
+call <sid>hi('@tag.delimiter',              s:h1, '',   '')
+call <sid>hi('@type',                       s:h4, '',   '')
+call <sid>hi('@variable',                   s:h4, '',   '')
 
 " Remove functions
 delf <sid>hi
