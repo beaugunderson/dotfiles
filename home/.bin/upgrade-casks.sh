@@ -9,6 +9,6 @@ for cask in "${outdated[@]}"
 do
     echo "${red}${cask}${reset} requires ${red}update${reset}."
 
-    (set -x; brew cask uninstall "$cask" --force;)
-    (set -x; brew cask install "$cask" --force;)
+    (set -x; brew uninstall "$cask" --force;)
+    (set -x; brew install "$cask" --force;)
 done

@@ -1,5 +1,4 @@
-#!/usr/local/bin/python3
-# -*- coding: utf-8 -*-
+#!/opt/homebrew/bin/python3
 
 import errno
 import os
@@ -10,17 +9,17 @@ from subprocess import check_output
 import arrow
 
 IGNORE_FILES = [
-    '.DS_Store',
-    '.idata',
-    '.localized',
-    '.rdata',
-    '.reloc',
-    '.rsrc',
-    '.rsrc_1',
-    '.tls',
-    'By week',
-    'This week',
-    'Last week',
+    ".DS_Store",
+    ".idata",
+    ".localized",
+    ".rdata",
+    ".reloc",
+    ".rsrc",
+    ".rsrc_1",
+    ".tls",
+    "By week",
+    "This week",
+    "Last week",
 ]
 
 
@@ -35,26 +34,30 @@ def mkdirp(path):
 
 
 def date_added(filename):
-    added_string = check_output([
-        'mdls',
-        '-raw',
-        '-nullMarker',
-        '""',
-        '-name',
-        'kMDItemDateAdded',
-        filename,
-    ], universal_newlines=True)
+    added_string = check_output(
+        [
+            "mdls",
+            "-raw",
+            "-nullMarker",
+            '""',
+            "-name",
+            "kMDItemDateAdded",
+            filename,
+        ],
+        universal_newlines=True,
+    )
 
     try:
-        return arrow.get(added_string, 'YYYY-MM-DD HH:mm:ss Z')
+        return arrow.get(added_string, "YYYY-MM-DD HH:mm:ss Z")
     except arrow.parser.ParserMatchError as e:
-        print(f'Skipped {filename}: {e}')
+        # print(f'Skipped {filename}: {e}')
+        pass
 
 
 def format_week(week):
     year, week, _ = week.isocalendar()
 
-    return ('By week', '{}-{:02d}'.format(year, week))
+    return ("By week", "{}-{:02d}".format(year, week))
 
 
 def link_week(downloads, week, title):
@@ -72,12 +75,12 @@ def link_week(downloads, week, title):
 
 
 def sort_downloads():
-    downloads = os.path.expanduser('~/Downloads')
+    downloads = os.path.expanduser("~/Downloads")
 
     os.chdir(downloads)
 
-    link_week(downloads, arrow.now(), 'This week')
-    link_week(downloads, arrow.now().shift(weeks=-1), 'Last week')
+    link_week(downloads, arrow.now(), "This week")
+    link_week(downloads, arrow.now().shift(weeks=-1), "Last week")
 
     one_day_ago = arrow.now().shift(days=-1)
 
@@ -87,8 +90,10 @@ def sort_downloads():
 
         file_date = date_added(filename)
 
+        # print(file_date, filename)
+
         if not file_date:
-            print('no file_date for', filename)
+            # print("no file_date for", filename)
             continue
 
         if file_date > one_day_ago:
@@ -100,12 +105,11 @@ def sort_downloads():
             mkdirp(destination)
 
         if os.path.exists(os.path.join(destination, filename)):
-            print(f'Skipping "{filename}" because it already exists')
-
+            # print(f'Skipping "{filename}" because it already exists')
             continue
 
         shutil.move(os.path.join(downloads, filename), destination)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sort_downloads()

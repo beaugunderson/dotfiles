@@ -14,13 +14,12 @@ LOCK
 *.pyc
 *.old
 *.log
-*.lock
 
 *.afdesign
 
 test.sh
 
-build/
+# build/
 site-packages/
 
 .floo

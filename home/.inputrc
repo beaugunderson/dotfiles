@@ -9,7 +9,7 @@ $endif
 
 "\M-s": menu-complete
 
-# Find these sequences using `read`
+# Incremental search using up and down arrows
 "\e[B": history-search-forward
 "\e[A": history-search-backward
 
@@ -20,6 +20,10 @@ $endif
 # Local iTerm 2 on OS X
 "\e[1;9D": vi-prev-word
 "\e[1;9C": vi-next-word
+
+# Doesn't work
+# "\e\e[D": vi-prev-word
+# "\e\e[C": vi-next-word
 
 #set keymap vi
 #set editing-mode vi

@@ -2,31 +2,38 @@
 	name = Beau Gunderson
 	email = beau@beaugunderson.com
 	username = beaugunderson
+[include]
+  path = /Users/beau/.config/delta/themes.gitconfig
 [core]
-	whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=2
-	excludesfile = ~/.gitignore
-	untrackedCache = true
+	attributesfile = /Users/beau/.gitattributes
 	disambiguate = commit
-[color "branch"]
-	current = 214 reverse
-	local = 214
-	remote = 10
-[color "diff"]
-	commit = 227 bold
-	frag = magenta bold
-	meta = 227
-	new = green bold
-	old = red bold
-	whitespace = red reverse
-[color "diff-highlight"]
-	newHighlight = green bold 22
-	newNormal = green bold
-	oldHighlight = red bold 52
-	oldNormal = red bold
-[color "status"]
-	added = 214
-	changed = 10
-	untracked = 196
+	excludesfile = /Users/beau/.gitignore
+	fsmonitor = true
+	pager = delta
+	untrackedCache = true
+	whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=2
+[init]
+	templateDir = ~/.config/git/template/
+; [color "branch"]
+; 	current = 214 reverse
+; 	local = 214
+; 	remote = 10
+; [color "diff"]
+; 	commit = 227 bold
+; 	frag = magenta bold
+; 	meta = 227
+; 	new = green bold
+; 	old = red bold
+; 	whitespace = red reverse
+; [color "diff-highlight"]
+; 	newHighlight = green bold 22
+; 	newNormal = green bold
+; 	oldHighlight = red bold 52
+; 	oldNormal = red bold
+; [color "status"]
+; 	added = 214
+; 	changed = 10
+; 	untracked = 196
 [color]
 	branch = auto
 	diff = auto
@@ -36,6 +43,8 @@
 	status = auto
 	ui = auto
 [diff]
+	algorithm = histogram
+	colorMoved = default
 	renames = copies
 	noprefix = true
 	renameLimit = 5000
@@ -46,6 +55,9 @@
 [alias]
 	diff = diff -w
 	diffr = diff --relative -w
+	pick-commit = !git log --pretty=oneline --color=always | fzf --ansi | cut -d ' ' -f1
+	# rebase interactive fuzzy
+	rif = "!f() { rev=$(git pick-commit); [[ $rev ]] && git rebase -i $rev~; }; f"
 	# le: last edited; order branches by the last commit date
 	le = for-each-ref --sort=-committerdate --format='%(align:width=32)%(refname:short)%(end) %(committerdate:relative)' refs/heads/
 	lg = log --graph --decorate --all --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
@@ -70,8 +82,7 @@
 [mergetool "fugitive"]
 	cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
 [merge]
-	tool = fugitive
-	conflictstyle = merge
+	conflictStyle = zdiff3
 [rerere]
 	enable = 1
 [url "git@github.com:"]
@@ -83,11 +94,11 @@
 	pushInsteadOf = https://github.com/
 [push]
 	default = current
+	autoSetupRemote = true
 [credential]
 	helper = cache
-[pager]
-	diff = diff-so-fancy | less --tabs=4 -RFX
-	show = diff-so-fancy | less --tabs=4 -RFX
+[interactive]
+	diffFilter = delta --color-only
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -95,3 +106,11 @@
 	required = true
 [protocol]
 	version = 2
+[delta]
+	; features = chameleon
+	hyperlinks = true
+	line-numbers = true
+	navigate = true
+	side-by-side = true
+[commit]
+	template = /Users/beau/.stCommitMsg

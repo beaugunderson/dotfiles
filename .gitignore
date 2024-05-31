@@ -1,3 +1,8 @@
 home/.vim/spell
 home/.vim/.undo/
 home/.bin/.mypy_cache/
+.swap/
+.undo-old/
+lazy-lock.json
+.mypy_cache/
+*.jar
