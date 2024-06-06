@@ -40,11 +40,6 @@ endif
 " search when using gf
 set suffixesadd=.md,.js,.jsx,.ts,.tsx
 
-let main_wiki = {}
-let main_wiki.path = '~/Dropbox/Notes/'
-
-let g:vimwiki_list = [main_wiki]
-
 let g:markdown_enable_conceal = 1
 let g:markdown_enable_insert_mode_mappings = 1
 let g:markdown_enable_mappings = 1
@@ -59,13 +54,6 @@ vmap <unique> <s-down> <plug>SchleppDown
 vmap <unique> D <plug>SchleppDup
 
 let g:Schlepp#dupTrimWS = 1
-
-" let g:airline_powerline_fonts = 1
-" let g:airline_theme = 'succulent'
-
-let g:used_javascript_libs = 'jquery,underscore'
-
-let g:javascript_plugin_flow = 1
 
 set background=dark
 
@@ -97,15 +85,6 @@ let &g:showbreak = '↪ '
 if exists('&breakindent')
   set breakindent
   set breakindentopt=shift:-2
-endif
-
-if has('nvim')
-  nnoremap <leader>xx <cmd>TroubleToggle<cr>
-  nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
-  nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
-  nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
-  nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
-  nnoremap gX <cmd>TroubleToggle lsp_references<cr>
 endif
 
 " Move through display lines, not numbered lines
@@ -169,9 +148,6 @@ autocmd vimrc BufNewFile,BufReadPost *.osascript setlocal filetype=applescript
 
 autocmd vimrc BufNewFile,BufReadPost *.ts setlocal filetype=typescript
 autocmd vimrc BufNewFile,BufReadPost *.tsx setlocal filetype=typescriptreact
-
-autocmd vimrc BufNewFile,BufReadPost *.ls setlocal filetype=leek
-autocmd vimrc BufNewFile,BufReadPost *.leek setlocal filetype=leek
 
 set fillchars=vert:\  " So we don't get a trailing space error
 
@@ -239,8 +215,6 @@ nmap <leader>n :lnext<CR>
 
 " <leader>d goes to the definition
 nnoremap <leader>d :FindDefinition<CR>
-
-map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 
 " Toggle comments with the space key
 nmap <space> gcc

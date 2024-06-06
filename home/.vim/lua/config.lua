@@ -25,16 +25,47 @@ require("lazy").setup({
   "eandrju/cellular-automaton.nvim",
 
   -- Make lua support neovim-aware
-  "folke/neodev.nvim",
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- Library items can be absolute paths
+        -- "~/projects/my-awesome-lib",
+        -- Or relative, which means they will be resolved as a plugin
+        -- "LazyVim",
+        -- When relative, you can also provide a path to the library in the plugin dir
+        "luvit-meta/library", -- see below
+      },
+    },
+  },
+  { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
 
-  -- LSP configs + nvim-cmp for completions
+  -- LSP configs
   "neovim/nvim-lspconfig",
+
+  -- comlpetions
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, {
+        -- optional completion source for require statements and module annotations
+        name = "lazydev",
+        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+      })
+    end,
+  },
+
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-path",
-  "hrsh7th/nvim-cmp",
+
+  -- snippets
   "hrsh7th/vim-vsnip",
+  "hrsh7th/cmp-vsnip",
+  "rafamadriz/friendly-snippets",
 
   -- bottom right area for LSP progress
   "j-hui/fidget.nvim",
@@ -49,7 +80,7 @@ require("lazy").setup({
   {
     "folke/trouble.nvim",
     opts = {}, -- for default options, refer to the configuration section for custom setup.
-    cmd = "Trouble",
+    -- cmd = "Trouble",
     keys = {
       {
         "<leader>xx",
@@ -93,12 +124,11 @@ require("lazy").setup({
   -- Treesitter
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
+  "windwp/nvim-ts-autotag",
+
   -- JavaScript/HTML plugins
   { "elzr/vim-json", ft = "json" },
   { "GutenYe/json5.vim", ft = "json" },
-
-  -- adds auto-closing tags to e.g. tsx, html
-  "windwp/nvim-ts-autotag",
 
   -- Other filetypes
   { "TovarishFin/vim-solidity", ft = "solidity" },
@@ -107,10 +137,9 @@ require("lazy").setup({
   { "fatih/vim-go", ft = "go" },
   { "gabrielelana/vim-markdown", ft = "markdown" },
   { "https://gitlab.com/Nate_B/vim-adif", ft = "adif" },
-  { "syngan/vim-vimlint", ft = "vim" },
-  { "ynkdir/vim-vimlparser", ft = "vim" },
 
   -- Other plugins
+  "junegunn/fzf", -- fzf integration
   "junegunn/fzf.vim", -- fzf integration
   "junegunn/vim-slash", -- improve search
   "kopischke/vim-fetch", -- support `vim file.js:50`
@@ -150,10 +179,6 @@ require("fidget").setup({})
 
 -- TODO this has additional options for CSS functions, rgb(), etc. if needed
 require("colorizer").setup()
-
-require("neodev").setup({
-  -- add any options here, or leave empty to use the default settings
-})
 
 require("mason").setup()
 require("mason-lspconfig").setup()
@@ -218,6 +243,7 @@ require("mason-lspconfig").setup_handlers({
 
 -- nvim-cmp setup
 local cmp = require("cmp")
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -248,8 +274,33 @@ cmp.setup({
     end, { "i", "s" }),
   }),
   sources = {
+    {
+      name = "buffer",
+      option = {
+        keyword_pattern = [[\k\+]],
+      },
+    },
     { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "vsnip" },
   },
+})
+
+cmp.setup.cmdline("/", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "buffer" },
+  },
+})
+
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    { name = "cmdline" },
+  }),
+  matching = { disallow_symbol_nonprefix_matching = false },
 })
 
 -- vim.keymap.set('n', ',e', vim.diagnostic.open_float)
@@ -299,22 +350,13 @@ require("formatter").setup({
 
   filetype = {
     javascript = { require("formatter.filetypes.javascript").eslint_d },
-    typescript = { require("formatter.filetypes.typescript").eslint_d },
     ["javascript.jsx"] = { require("formatter.filetypes.javascript").eslint_d },
     ["typescript.jsx"] = { require("formatter.filetypes.typescript").eslint_d },
-    typescriptreact = { require("formatter.filetypes.typescript").eslint_d },
-    sql = { require("formatter.filetypes.sql").pgformat },
     lua = { require("formatter.filetypes.lua").stylua },
-
-    ["python"] = {
-      function()
-        return {
-          exe = "black",
-          args = { "-q", "-l", "100", "-" },
-          stdin = true,
-        }
-      end,
-    },
+    python = { require("formatter.filetypes.python").ruff },
+    sql = { require("formatter.filetypes.sql").pgformat },
+    typescript = { require("formatter.filetypes.typescript").eslint_d },
+    typescriptreact = { require("formatter.filetypes.typescript").eslint_d },
 
     ["*"] = {
       function()
@@ -325,17 +367,34 @@ require("formatter").setup({
 })
 
 require("nvim-treesitter.configs").setup({
+  auto_install = true,
+  ensure_installed = {
+    "go",
+    "html",
+    "htmldjango",
+    "javascript",
+    "lua",
+    "typescript",
+    "vim",
+    "vimdoc",
+  },
+  ignore_install = {},
+  sync_install = false,
   highlight = {
     enable = true,
+    additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = true,
   },
-  autotag = {
-    enable = true,
-  },
+  modules = {},
 })
 
--- vim.builtin.treesitter.autotag.enable = true
-
--- require('nvim-ts-autotag').setup()
+require("nvim-ts-autotag").setup({
+  opts = {
+    -- Defaults
+    enable_close = true, -- Auto close tags
+    enable_rename = true, -- Auto rename pairs of tags
+    enable_close_on_slash = true, -- Auto close on trailing </
+  },
+})
