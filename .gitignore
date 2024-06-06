@@ -1,8 +1,9 @@
+home/.bin/.mypy_cache/
+home/.bin/osslsigncode
 home/.vim/spell
 home/.vim/.undo/
-home/.bin/.mypy_cache/
-.swap/
-.undo-old/
+*.jar
 lazy-lock.json
 .mypy_cache/
-*.jar
+.swap/
+.undo-old/
